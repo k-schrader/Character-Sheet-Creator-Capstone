@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.kalieschrader.CSCPractice2.model.CharacterRace;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CharacterRaceRepository extends JpaRepository<CharacterRace, Long>{
+public interface CharacterRaceRepository extends JpaRepository<CharacterRace, String>{
 
 	Optional<CharacterRace> findByRaceName(String raceName);
 
