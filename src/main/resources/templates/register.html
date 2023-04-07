@@ -33,12 +33,12 @@
                             <form action="#" th:action="@{/register/save}" th:object="${user}" method="post" >
                                 <div class="form-group">
                                     <label for="name">Your name:</label>
-                                    <input type="text" class="form-control" id="name" th:field="*{userName}"
+                                    <input type="text" class="form-control" id="name" th:field="*{playerName}"
                                         placeholder="Enter your first name" name="name">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Parent's Email:</label>
-                                    <input type="text" th:field="*{userEmail}" class="form-control" id="email"
+                                    <input type="text" th:field="*{username}" class="form-control" id="email"
                                         placeholder="Enter your parents email" name="email">
                                 </div>
                                 <div class="form-group">

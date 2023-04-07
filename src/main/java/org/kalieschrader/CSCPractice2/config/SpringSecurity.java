@@ -32,7 +32,7 @@ public class SpringSecurity{
                 .authorizeHttpRequests()
                 .requestMatchers("/register/**").permitAll()
                 .requestMatchers("/login/**").permitAll()
-                .requestMatchers("/index").permitAll()
+                .requestMatchers("/index").authenticated()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/images/**").permitAll()

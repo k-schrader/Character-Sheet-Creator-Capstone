@@ -21,9 +21,9 @@ public class User {
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.AUTO)
 	   private Long id;
-private String userEmail;
+private String username;
 private String userPass;
-private String userName;
+private String playerName;
 @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 @JoinTable(
         name = "users_roles",
@@ -33,18 +33,18 @@ private String userName;
                 name = "role_id", referencedColumnName = "id"))
 private Collection<Role> roles;
 
-public User(String userEmail, String userPass, String userName) {
+public User(String username, String userPass, String playerName) {
 	super();
-	this.userEmail = userEmail;
+	this.username = username;
 	this.userPass = userPass;
-	this.userName = userName;
+	this.playerName = playerName;
 }
 public User() {}
-public String getUserEmail() {
-	return userEmail;
+public String getUsername() {
+	return username;
 }
-public void setUserEmail(String userEmail) {
-	this.userEmail = userEmail;
+public void setUsername(String username) {
+	this.username = username;
 }
 public String getUserPass() {
 	return userPass;
@@ -52,11 +52,11 @@ public String getUserPass() {
 public void setUserPass(String userPass) {
 	this.userPass = userPass;
 }
-public String getUserName() {
-	return userName;
+public String getPlayerName() {
+	return playerName;
 }
-public void setUserName(String userName) {
-	this.userName = userName;
+public void setPlayerName(String playerName) {
+	this.playerName = playerName;
 }
 public Collection<Role> getRoles() {
     return roles;
@@ -67,7 +67,7 @@ public void setRoles(Collection<Role> roles) {
 }
 @Override
 public int hashCode() {
-	return Objects.hash(userEmail, userName, userPass);
+	return Objects.hash(username, playerName, userPass);
 }
 @Override
 public boolean equals(Object obj) {
@@ -78,12 +78,12 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	User other = (User) obj;
-	return Objects.equals(userEmail, other.userEmail) && Objects.equals(userName, other.userName)
+	return Objects.equals(username, other.username) && Objects.equals(playerName, other.playerName)
 			&& Objects.equals(userPass, other.userPass);
 }
 @Override
 public String toString() {
-	return "User [userEmail=" + userEmail + ", userPass=" + userPass + ", userName=" + userName + "]";
+	return "User [username=" + username + ", userPass=" + userPass + ", playerName=" + playerName + "]";
 }
 
 }

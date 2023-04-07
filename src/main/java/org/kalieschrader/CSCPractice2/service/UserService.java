@@ -13,7 +13,7 @@ public interface UserService {
 
     List<User> findAllUsers();
 
-	UserDetails loadUserByUserEmail(String userEmail) throws UsernameNotFoundException;
+	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
-	User findUserByUserEmail(String userEmail);
+	User findUserByUsername(String username);
 }

@@ -19,7 +19,7 @@ public class CharacterSheet {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private int charId;
 //TODO link userEmail to characterSheet table 
-private String userEmail;
+private String username;
 private String charName;
 private int hitPoints;
 private int armorClass;

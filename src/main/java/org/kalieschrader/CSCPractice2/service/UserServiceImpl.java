@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         User userNew = new User();
-        userNew.setUserName(user.getUserName());
-        userNew.setUserEmail(user.getUserEmail());
+        userNew.setPlayerName(user.getPlayerName());
+        userNew.setUsername(user.getUsername());
         // encrypt the password using spring security
         userNew.setUserPass(passwordEncoder.encode(user.getUserPass()));
 
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUserEmail(String userEmail) {
-        return userRepository.findByUserEmail(userEmail);
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
@@ -61,8 +61,8 @@ public class UserServiceImpl implements UserService {
 
     private User mapToUser(User user){
         User userNew = new User();
-        userNew.setUserName(user.getUserName());
-        userNew.setUserEmail(user.getUserEmail());
+        userNew.setPlayerName(user.getPlayerName());
+        userNew.setUsername(user.getUsername());
         return userNew;
     }
 
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public UserDetails loadUserByUserEmail(String userEmail) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
