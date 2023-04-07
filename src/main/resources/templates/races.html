@@ -1,12 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+    <title>Class</title>
 </head>
-<body>
 
+<body>
+    <form>
+    <div class="container-fluid">
+        <div class="row" style="background-color: rgb(113, 15, 15);">
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Dragonborn</h1>
+                        <img src="/Images/dragonborn.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Covered in scales, claws sprouting from their hands, and the pride of the dragons within their souls.
+                             Either born from a dragon parent or blessed by a Draconic God, being half dragon has its perks. </p>
+                        <button type="submit" name="action" value="dragonborn">Pick me!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Dwarf</h1>
+                        <img src="/Images/dwarf.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Short, bold, proud, and courageous! Dwarves are excellent warriors and even better craftsmen. 
+                            They live up to 400 years old and can hold a grudge the whole time. </p>
+                        <button type="submit" name="action" value="dwarf">Pick me!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Elf</h1>
+                        <img src="/Images/elf.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Beautiful, graceful, and magical. Elves love nature and magic and are thought to be descended from fairies.
+                             They live long lives (more than 700 years!) and they fill their time meditating in the tall trees of ancient forests  </p>
+                        <button type="submit" name="action" value="elf">Pick me!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Orc</h1>
+                        <img src="/Images/orc.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Strong, ambitious, and proud. The very first Orcs were created by the God of war and fury! 
+                            Some Orcs embrace this history and LOVE to fight, while others reject this history and prefer to use their strength in different ways. 
+                            Orcs feel their emotions very strongly. They laugh loudly when happy, cry hard when sad, and sometimes they rage when they’re mad</p>
+                        <button type="submit" name="action" value="orc">Pick me!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Halfling</h1>
+                        <img src="/Images/halfling.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Cheerful, peace-loving, and loyal. Halfings are very small, standing only 3 feet tall!
+                             Friends and family are very important, and a Halfling will go to great lengths to protect those important to them. 
+                             They are generous and will share anything they have. They love to discover new things</p>
+                        <button type="submit" name="action" value="halfling">Pick me!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Human</h1>
+                        <img src="/Images/human.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Adaptable, ambitious, and adventure-seeking. If you’re reading this, you probably know what a human is! 
+                            They strive to achieve great things in their lives and long to make fantastic discoveries. Humans are innovative and smart and get along well with 
+                            all other races </p>
+                        <button type="submit" name="action" value="human">Pick me!</button>  
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <div class="card align-items-center" style="width: 80%; margin: 10%; margin-top: 15%;">
+                    <div class="card-body" style="text-align: center;">
+                        <h1 class="card-title">Tiefling</h1>
+                        <img src="/Images/tiefling.PNG" style="height: 170px; width: 170px;">
+                        <p class="card-text" style="margin: 10px;">Self-reliant, suspicious and cursed. Tieflings are born half demon, with large horns, red skin, and blackened eyes. 
+                            This however does not make them evil! Some tieflings work very hard to be good and surprise the people who doubt them. 
+                            Other tieflings submit to their origins and let the evil take over.</p>
+                        <button type="submit" name="action" value="tiefling">Pick me!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="newcharacterstart.html">Start</a></li>
+                <li class="page-item"><a class="page-link" href="race.html">Race</a></li>
+                <li class="page-item"><a class="page-link" href="class.html">Class</a></li>
+                <li class="page-item"><a class="page-link" href="abilities.html">Abilities</a></li>
+                <li class="page-item"><a class="page-link" href="weapon.html">Weapons</a></li>
+                <li class="page-item"><a class="page-link" href="item.html">Items</a></li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+    </div>
 </body>
+
 </html>
