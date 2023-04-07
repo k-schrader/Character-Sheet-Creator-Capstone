@@ -50,7 +50,7 @@ public class AuthController {
     public String registration(@Valid @ModelAttribute("user") User user,
                                BindingResult result,
                                Model model){
-        User existingUser = userService.findUserByEmail(user.getUserEmail());
+        User existingUser = userService.findUserByUserEmail(user.getUserEmail());
 
         if(existingUser != null && existingUser.getUserEmail() != null && !existingUser.getUserEmail().isEmpty()){
             result.rejectValue("email", null,
@@ -63,7 +63,7 @@ public class AuthController {
         }
 
         userService.saveUser(user);
-        return "redirect:/register?success";
+        return "redirect:/index";
     }
 
     // handler method to handle list of users

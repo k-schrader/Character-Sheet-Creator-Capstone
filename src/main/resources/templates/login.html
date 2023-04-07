@@ -2,52 +2,58 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <script src="js/bootstrap.bundle.js"></script>
-    <title>Login Page</title>
-<link rel="stylesheet"
- href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
- integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
- crossorigin="anonymous"></head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+</head>
 
 <body>
 
-    <div class="container-fluid" style="background-image: url('../Images/fantasyHome.jpg'); height: 100%;background-repeat: no-repeat;background-attachment: fixed;
-    background-size: cover;">
-        <div class="row" style="height: 1500px;">
-            <div class="col-sm-6 col-md-6" style="height: 100%; width: 100%; text-align: center;">
-                <div class="card text-center" style="width: 80%; margin: 10%; opacity: 85%; margin-top: 15%;">
-                    <div class="card-body" style="text-align: center;">
-                        <h1 class="card-title">Welcome Back Adventurer!</h1>
-                        <div class="container">
-                            <h6 style="margin-top: 2%;">Please ask a parent to help you log in</h6>
-                            <form action="/action_page.php">
-                                <div class="form-group" style="margin: 5%;">
-                                    <label for="email">Parent's Email:</label>
-                                    <input type="email" class="form-control" id="email"
-                                        placeholder="Enter your parents email" name="email">
-                                </div>
-                                <div class="form-group"style="margin: 5%;">
-                                    <label for="pass">Password:</label>
-                                    <input type="password" class="form-control" id="pass" placeholder="Enter your password"
-                                        name="pass">
-                                </div>
-                                <a th:href="@{index.html}" class="btn btn-light btn-lg" role="button"
-                    style="-webkit-text-fill-color: black; margin: 5%;">Log in</a>
-                                <a th:href="@{register.html}" class="btn btn-light btn-lg" role="button"
-                    style="-webkit-text-fill-color: black; margin: 5%;">I don't have an account</a>
-                            </form>
-                        </div>
-                    </div>
+	<div class="container-fluid"
+		style="background-image: url('/images/fantasyHome.jpg'); height: 100%; background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+		<div class="row" style="height: 1500px;">
+			<div class="col-sm-6 col-md-6"
+				style="height: 100%; width: 100%; text-align: center;">
+				<div class="card text-center"
+					style="width: 80%; margin: 10%; opacity: 85%; margin-top: 15%;">
+					<div class="card-body" style="text-align: center;">
+						<h1 class="card-title">Welcome Back Adventurer!</h1>
+						<div class="container">
+							<h6 style="margin-top: 2%;">Please ask a parent to help you
+								log in</h6>
+							<form action="#" th:action="@{/login}"
+								th:object="${user}" method="post">
+								<div class="form-group" style="margin: 5%;">
+									<label for="email">Parent's Email:</label> <input type="text"
+										th:field="*{user.userEmail}" class="form-control" id="userEmail"
+										placeholder="Enter your parents email" name="email">
+								</div>
+								<div class="form-group" style="margin: 5%;">
+									<label for="pass">Password:</label> <input type="password"
+										th:field="*{user.userPass}" class="form-control" id="userPass"
+										placeholder="Enter your password" name="pass">
+								</div>
+								<!-- 								<a th:href="@{index.html}" class="btn btn-light btn-lg" -->
+								<!-- 									role="button" -->
+								<!-- 									style="-webkit-text-fill-color: black; margin: 5%;">Log in</a> -->
+								<label for="subbut">Sign up!</label><br> <input
+									type="submit" id="subbut" name="subbut"> <a
+									th:href="@{register.html}" class="btn btn-light btn-lg"
+									role="button"
+									style="-webkit-text-fill-color: black; margin: 5%;">I don't
+									have an account</a>
+							</form>
+						</div>
+					</div>
 
-                </div>
-            </div>
-        </div>
+				</div>
+			</div>
+		</div>
 
-    </div>
+	</div>
 </body>
 
 </html>

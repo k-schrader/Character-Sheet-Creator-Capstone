@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findByUserEmail(email);
+    public User findUserByUserEmail(String userEmail) {
+        return userRepository.findByUserEmail(userEmail);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+	public UserDetails loadUserByUserEmail(String userEmail) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
