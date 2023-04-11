@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            position: relative;
+        }
+
+        ul.nav-pills {
+            top: 20px;
+            position: fixed;
+        }
+
+        div.col-8 div {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-sm-3 col-4" id="myScrollspy">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Race</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#section11">Race</a>
+                            <a class="dropdown-item" href="#section12">Choose your race</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Class</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#section21">Class</a>
+                            <a class="dropdown-item" href="#section22">Choose your class</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Abilities</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#section31">Abilities</a>
+                            <a class="dropdown-item" href="#section32">Move on</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="col-sm-9 col-8">
+                <div id="section11" style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue;">
+                    <div id="raceCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Dragonborn</h1>
+                                        <img src="/images/dragonborn.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Covered in scales, claws
+                                            sprouting from their
+                                            hands, and the pride of the dragons within their souls.
+                                            Either born from a dragon parent or blessed by a Draconic God, being
+                                            half dragon has its
+                                            perks. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Dwarf</h1>
+                                        <img src="/images/dwarf.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Short, bold, proud, and courageous!
+                                            Dwarves are
+                                            excellent warriors and even better craftsmen.
+                                            They live up to 400 years old and can hold a grudge the whole time. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Elf</h1>
+                                        <img src="/images/elf.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Beautiful, graceful, and magical.
+                                            Elves love
+                                            nature and magic and are thought to be descended from fairies.
+                                            They live long lives (more than 700 years!) and they fill their time
+                                            meditating in the
+                                            tall trees of ancient forests </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Orc</h1>
+                                        <img src="/images/orc.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Strong, ambitious, and proud. The
+                                            very first Orcs
+                                            were created by the God of war and fury!
+                                            Some Orcs embrace this history and LOVE to fight, while others reject this
+                                            history and
+                                            prefer to use their strength in different ways.
+                                            Orcs feel their emotions very strongly. They laugh loudly when happy, cry
+                                            hard when sad,
+                                            and sometimes they rage when they’re mad</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Halfling</h1>
+                                        <img src="/images/halfling.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Cheerful, peace-loving, and loyal.
+                                            Halfings are
+                                            very small, standing only 3 feet tall!
+                                            Friends and family are very important, and a Halfling will go to great
+                                            lengths to
+                                            protect those important to them.
+                                            They are generous and will share anything they have. They love to discover
+                                            new things
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Human</h1>
+                                        <img src="/images/human.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Adaptable, ambitious, and
+                                            adventure-seeking. If
+                                            you’re reading this, you probably know what a human is!
+                                            They strive to achieve great things in their lives and long to make
+                                            fantastic
+                                            discoveries. Humans are innovative and smart and get along well with
+                                            all other races </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="cards-wrapper">
+                                    <div class="card-body" style="text-align: center; padding: 5%;">
+                                        <h1 class="card-title">Tiefling</h1>
+                                        <img src="/images/tiefling.PNG" style="height: 170px; width: 170px;">
+                                        <p class="card-text" style="margin: 10px; font-size:large;">Self-reliant, suspicious and cursed.
+                                            Tieflings
+                                            are born half demon, with large horns, red skin, and blackened eyes.
+                                            This however does not make them evil! Some tieflings work very hard to be
+                                            good and
+                                            surpise the people who doubt them.
+                                            Other tieflings submit to their origins and let the evil take over.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#raceCarousel" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#raceCarousel" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="section12"
+                        style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 15%;">
+                        <h1>I want to be a...</h1>
+                        <form>
+                            <select name="cars" class="custom-select-lg"
+                                style="padding: 10px; -webkit-text-fill-color: black;">
+                                <option value="Dragonborn">Dragonborn</option>
+                                <option value="Dwarf">Dwarf</option>
+                                <option value="Elf">Elf</option>
+                                <option value="Orc">Orc</option>
+                                <option value="Halfling">Halfling</option>
+                                <option value="Human">Human</option>
+                                <option value="Tiefling">Tiefling</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <div id="section21"
+                        style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7);">
+                        <div id="classCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Barbarian</h1>
+                                            <img src="/images/barb2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Flex your muscles and RAGE!
+                                                Barbarians know how to take a hit, and they know how to deal them even
+                                                better. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Bard</h1>
+                                            <img src="/images/bard2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Strum your lute and charm your
+                                                enimies! Bards support their team with a magical song and a charming
+                                                smile. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Cleric</h1>
+                                            <img src="/images/cleric2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Granted healing powers by the
+                                                Gods themselves, a Cleric is a blessed magical addition to your team.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Druid</h1>
+                                            <img src="/images/druid2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">One with nature and friend to all
+                                                animals! A Druid channels magic of plants and animals.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Fighter</h1>
+                                            <img src="/images/fighter2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Brave knights take up swords and
+                                                shields and leap into batttle! Masters of weapons and of battles.</p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Paladin</h1>
+                                            <img src="/images/paladin2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">A holy protector! Blessed with
+                                                both magic from the Gods and great strength in battle, a paladin is the
+                                                best of both worlds. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Rogue</h1>
+                                            <img src="/images/rogue2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Slip into shadow and disappear.
+                                                Rogues pick locks just as well as they pick pockets.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Sorcerer</h1>
+                                            <img src="/images/sorcerer2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Born with magic in their blood, a
+                                                Sorcerer is a very powerful mage since childhood.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Warlock</h1>
+                                            <img src="/images/warlock2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Locked in a deal with a dark God,
+                                                Warlocks are granted magic power from somewhere beyond.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="cards-wrapper">
+                                        <div class="card-body" style="text-align: center; padding: 10%;">
+                                            <h1 class="card-title">Wizard</h1>
+                                            <img src="/images/wizard2.png" style="height: 200px; width: 200px;">
+                                            <p class="card-text" style="margin: 10px; font-size:x-large;">Filled with a desire to gain
+                                                magical knowledge, Wizrads have learned the secrets to magic all by
+                                                themselves.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#classCarousel" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#classCarousel" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                            </div>
+                        </div>
+                        <div id="section22"
+                            style="background-color:rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 15%;">
+                            <h1>I want to be a...</h1>
+                            <form>
+                                <select name="cars" class="custom-select-lg" style="padding: 10px;">
+                                    <option value="Barbarian">Barbarian</option>
+                                    <option value="Bard">Bard</option>
+                                    <option value="Cleric">Cleric</option>
+                                    <option value="Druid">Druid</option>
+                                    <option value="Fighter">Fighter</option>
+                                    <option value="Paladin">Paladin</option>
+                                    <option value="Rogue">Rogue</option>
+                                    <option value="Sorcerer">Sorcerer</option>
+                                    <option value="Warlock">Warlock</option>
+                                    <option value="Wizard">Wizard</option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <div id="section31" style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;"> 
+                            	<form>
+							<h1>Let's pick your stats!</h1>
+							<h5>How strong would you like to be?</h5>
+							<select class="form-select form-select-md"
+								style="-webkit-text-fill-color: rgb(23, 15, 7);">
+								<option>8</option>
+								<option>10</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+							</select>
+							<h5>How dexterous would you like to be?</h5>
+							<select class="form-select form-select-md"
+								style="-webkit-text-fill-color: rgb(23, 15, 7);">
+								<option>8</option>
+								<option>10</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+							</select>
+							<h5>How much constitution would you like to have?</h5>
+							<select class="form-select form-select-md"
+								style="-webkit-text-fill-color: rgb(23, 15, 7);">
+								<option>8</option>
+								<option>10</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+							</select>
+
+							<h5>How smart would you like to be?</h5>
+							<select class="form-select form-select-md"
+								style="-webkit-text-fill-color: rgb(23, 15, 7);">
+								<option>8</option>
+								<option>10</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+							</select>
+							<h5>How wise would you like to be?</h5>
+							<select class="form-select form-select-md"
+								style="-webkit-text-fill-color: rgb(23, 15, 7);">
+								<option>8</option>
+								<option>10</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+							</select>
+							<h5>How charismatic would you like to be?</h5>
+							<select class="form-select form-select-md"
+								style="-webkit-text-fill-color: rgb(23, 15, 7);">
+								<option>8</option>
+								<option>10</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+							</select>
+						</form>
+                        </div>
+                        <div id="section32" style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
+                            <h1>Let's move on!</h1>
+                            <a class="btn btn-danger" href="\charcreator.html" type="submit" value="Submit Button" style="padding: 5%; margin: 30%;">Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</body>
+
+</html>
