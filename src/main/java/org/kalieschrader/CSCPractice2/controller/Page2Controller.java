@@ -46,22 +46,22 @@ public class Page2Controller {
 //		mav.addObject("spells", spellsRepo.findAll()); //We're adding "spells" to our model and view here so we will be able to reference it from within the HTML page
 //		return mav;
 //	}
-	
-	   @PostMapping("/spells")
-	   public ResponseEntity<Spells> createSpells(@RequestBody Spells spell){
-	       Spells savedSpell = spellsRepo.save(spell);
-	       return ResponseEntity.created(URI.create("/spells/" + savedSpell.getName())).body(savedSpell);
-	   }
-	   @PostMapping("/item")
-	   public ResponseEntity<Item> createItem(@RequestBody Item item){
-	       Item savedItem = itemRepo.save(item);
-	       return ResponseEntity.created(URI.create("/item/" + savedItem.getItemName())).body(savedItem);
-	   }
-	   @PostMapping("/weapon")
-	   public ResponseEntity<Weapon> createWeapon(@RequestBody Weapon weapon){
-	       Weapon savedWeapon = weaponRepo.save(weapon);
-	       return ResponseEntity.created(URI.create("/weapon/" + savedWeapon.getWeaponName())).body(savedWeapon);
-	   }
+//	
+//	   @PostMapping("/spells")
+//	   public ResponseEntity<Spells> createSpells(@RequestBody Spells spell){
+//	       Spells savedSpell = spellsRepo.save(spell);
+//	       return ResponseEntity.created(URI.create("/spells/" + savedSpell.getName())).body(savedSpell);
+//	   }
+//	   @PostMapping("/item")
+//	   public ResponseEntity<Item> createItem(@RequestBody Item item){
+//	       Item savedItem = itemRepo.save(item);
+//	       return ResponseEntity.created(URI.create("/item/" + savedItem.getItemName())).body(savedItem);
+//	   }
+//	   @PostMapping("/weapon")
+//	   public ResponseEntity<Weapon> createWeapon(@RequestBody Weapon weapon){
+//	       Weapon savedWeapon = weaponRepo.save(weapon);
+//	       return ResponseEntity.created(URI.create("/weapon/" + savedWeapon.getWeaponName())).body(savedWeapon);
+//	   }
 
 
 }

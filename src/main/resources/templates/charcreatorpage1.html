@@ -30,7 +30,7 @@
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
+<form th:action="@{/page1}" th:object="${characterSheet}" method="post">
     <div class="container-fluid">
         <div class="row">
             <nav class="col-sm-3 col-4" id="myScrollspy">
@@ -183,9 +183,9 @@
                     <div id="section12"
                         style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 15%;">
                         <h1>I want to be a...</h1>
-                        <form>
-                            <select name="cars" class="custom-select-lg"
-                                style="padding: 10px; -webkit-text-fill-color: black;">
+                        
+                            <select name="race" class="custom-select-lg"
+                                style="padding: 10px; -webkit-text-fill-color: black;" th:field="*{charRace}">
                                 <option value="Dragonborn">Dragonborn</option>
                                 <option value="Dwarf">Dwarf</option>
                                 <option value="Elf">Elf</option>
@@ -194,7 +194,7 @@
                                 <option value="Human">Human</option>
                                 <option value="Tiefling">Tiefling</option>
                             </select>
-                        </form>
+                        
                     </div>
 
                     <div id="section21"
@@ -322,96 +322,86 @@
                         <div id="section22"
                             style="background-color:rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 15%;">
                             <h1>I want to be a...</h1>
-                            <form>
-                                <select name="cars" class="custom-select-lg" style="padding: 10px;">
-                                    <option value="Barbarian">Barbarian</option>
-                                    <option value="Bard">Bard</option>
-                                    <option value="Cleric">Cleric</option>
-                                    <option value="Druid">Druid</option>
-                                    <option value="Fighter">Fighter</option>
-                                    <option value="Paladin">Paladin</option>
-                                    <option value="Rogue">Rogue</option>
-                                    <option value="Sorcerer">Sorcerer</option>
-                                    <option value="Warlock">Warlock</option>
-                                    <option value="Wizard">Wizard</option>
+                                <select name="class" class="custom-select-lg" style="padding: 10px;"th:field="*{charClass}">
+                                <option th:each="class:${classes}" th:value="${class}" th:text="${class.name}" value=""/>
                                 </select>
-                            </form>
+                            
                         </div>
 
                         <div id="section31" style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;"> 
-                            	<form>
+                            	
 							<h1>Let's pick your stats!</h1>
 							<h5>How strong would you like to be?</h5>
 							<select class="form-select form-select-md"
-								style="-webkit-text-fill-color: rgb(23, 15, 7);">
-								<option>8</option>
-								<option>10</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
+								style="-webkit-text-fill-color: rgb(23, 15, 7);"th:field="*{strength}" >
+								<option th:value="8">8</option>
+								<option th:value="10">10</option>
+								<option th:value="12">12</option>
+								<option th:value="13">13</option>
+								<option th:value="14">14</option>
+								<option th:value="15">15</option>
 							</select>
 							<h5>How dexterous would you like to be?</h5>
 							<select class="form-select form-select-md"
-								style="-webkit-text-fill-color: rgb(23, 15, 7);">
-								<option>8</option>
-								<option>10</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
+								style="-webkit-text-fill-color: rgb(23, 15, 7);"th:field="*{dex}">
+								<option th:value="8">8</option>
+								<option th:value="10">10</option>
+								<option th:value="12">12</option>
+								<option th:value="13">13</option>
+								<option th:value="14">14</option>
+								<option th:value="15">15</option>
 							</select>
 							<h5>How much constitution would you like to have?</h5>
 							<select class="form-select form-select-md"
-								style="-webkit-text-fill-color: rgb(23, 15, 7);">
-								<option>8</option>
-								<option>10</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
+								style="-webkit-text-fill-color: rgb(23, 15, 7);"th:field="*{con}">
+								<option th:value="8">8</option>
+								<option th:value="10">10</option>
+								<option th:value="12">12</option>
+								<option th:value="13">13</option>
+								<option th:value="14">14</option>
+								<option th:value="15">15</option>
 							</select>
 
 							<h5>How smart would you like to be?</h5>
 							<select class="form-select form-select-md"
-								style="-webkit-text-fill-color: rgb(23, 15, 7);">
-								<option>8</option>
-								<option>10</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
+								style="-webkit-text-fill-color: rgb(23, 15, 7);"th:field="*{intelligence}">
+								<option th:value="8">8</option>
+								<option th:value="10">10</option>
+								<option th:value="12">12</option>
+								<option th:value="13">13</option>
+								<option th:value="14">14</option>
+								<option th:value="15">15</option>
 							</select>
 							<h5>How wise would you like to be?</h5>
 							<select class="form-select form-select-md"
-								style="-webkit-text-fill-color: rgb(23, 15, 7);">
-								<option>8</option>
-								<option>10</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
+								style="-webkit-text-fill-color: rgb(23, 15, 7);"th:field="*{wisdom}">
+								<option th:value="8">8</option>
+								<option th:value="10">10</option>
+								<option th:value="12">12</option>
+								<option th:value="13">13</option>
+								<option th:value="14">14</option>
+								<option th:value="15">15</option>
 							</select>
 							<h5>How charismatic would you like to be?</h5>
 							<select class="form-select form-select-md"
-								style="-webkit-text-fill-color: rgb(23, 15, 7);">
-								<option>8</option>
-								<option>10</option>
-								<option>12</option>
-								<option>13</option>
-								<option>14</option>
-								<option>15</option>
+								style="-webkit-text-fill-color: rgb(23, 15, 7);"th:field="*{charisma}">
+								<option th:value="8">8</option>
+								<option th:value="10">10</option>
+								<option th:value="12">12</option>
+								<option th:value="13">13</option>
+								<option th:value="14">14</option>
+								<option th:value="15">15</option>
 							</select>
-						</form>
+						
                         </div>
                         <div id="section32" style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
                             <h1>Let's move on!</h1>
-                            <a class="btn btn-danger" href="\charcreator.html" type="submit" value="Submit Button" style="padding: 5%; margin: 30%;">Submit</a>
+                            <input type="submit" class="btn btn-danger" value="Submit" style="padding: 5%; margin: 30%;">
                         </div>
                     </div>
                 </div>
             </div>
-
+</form>
 </body>
 
 </html>

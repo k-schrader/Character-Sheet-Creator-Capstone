@@ -38,6 +38,8 @@ public class SpringSecurity{
                 .requestMatchers("/item/**").permitAll()
                 .requestMatchers("/races/**").permitAll()
                 .requestMatchers("/weapon/**").permitAll()
+                .requestMatchers("/armor/**").permitAll()
+                .requestMatchers("/classes/**").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/page2/**").permitAll()
                 .requestMatchers("/page1/**").permitAll()
