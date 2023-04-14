@@ -68,8 +68,8 @@ public CharacterSheet(Integer charId, String username, String charName, int hitP
 		this.spell4 = spell4;
 		this.spell5 = spell5;
 	}
-public CharacterSheet() {}
-
+public CharacterSheet() {
+}
 @ManyToOne
 CharacterRace charRace;
 @ManyToOne

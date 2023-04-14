@@ -16,12 +16,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity{
+	
+
 
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
@@ -38,11 +40,10 @@ public class SpringSecurity{
                 .requestMatchers("/item/**").permitAll()
                 .requestMatchers("/races/**").permitAll()
                 .requestMatchers("/weapon/**").permitAll()
-                .requestMatchers("/armor/**").permitAll()
+                .requestMatchers("/armors/**").permitAll()
                 .requestMatchers("/classes/**").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/page2/**").permitAll()
-                .requestMatchers("/page1/**").permitAll()
                 .requestMatchers("/images/**").permitAll()
                 .requestMatchers("/users").hasRole("ADMIN")
 //                .requestMatchers("/users").hasRole("USER")
@@ -50,9 +51,10 @@ public class SpringSecurity{
                 .formLogin(
                         form -> form
                                 .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/index")
+                                .defaultSuccessUrl("/index", true)
                                 .permitAll()
+                                .failureUrl("/login.html?error=true")
+                                
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
