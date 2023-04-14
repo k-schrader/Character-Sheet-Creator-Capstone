@@ -2,6 +2,7 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -21,11 +22,15 @@ public class CharacterClass {
 	Weapon weapon3;
 	@ManyToOne
 	Armor armor;
+	@Column(length = 800)
 	private String details;
 	private int numCantrips;
 	private int numSpells;
+	@Column(length = 800)
 	private String classFeat1;
+	@Column(length = 800)
 	private String classFeat2;
+	@Column(length = 800)
 	private String classFeat3;
 	private int spellSlots;
 	private String spellModifier;

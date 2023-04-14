@@ -2,6 +2,7 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,11 +16,15 @@ public class CharacterRace {
 	@Id
 	private String raceName;
 	private String abilityScoreIn;
+	@Column(length = 800)
 	private String raceFeat1;
+	@Column(length = 800)
 	private String raceFeat2;
+	@Column(length = 800)
 	private String raceFeat3;
 	private String lang;
 	private boolean darkVision;
+	@Column(length = 800)
 	private String details;
 	private int speed;
 

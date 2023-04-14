@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login Page</title>
-	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-	<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
 </head>
 
 <body>
@@ -25,29 +24,36 @@
 						<div class="container">
 							<h6 style="margin-top: 2%;">Please ask a parent to help you
 								log in</h6>
-							<form th:action="@{/login}" role="form" method="post">
-								<div class="form-group" style="margin: 5%;">
-									<label for="email">Parent's Email:</label> <input
-										type="text"
-										class="form-control"
-										id="username"
-										placeholder="Enter your parents email"
-										name="username"/>
+							<form th:action="@{/login}" method="post">
+								<div th:if="${param.error}">
+									<div class="alert alert-danger">Invalid username or
+										password.</div>
 								</div>
-								<div class="form-group" style="margin: 5%;">
-									<label for="pass">Password:</label> <input 
-										type="password"
-										class="form-control" 
-										id="password"
-										placeholder="Enter your password" 
-										name="password"/>
+								<div th:if="${param.logout}">
+									<div class="alert alert-info">You have been logged out.</div>
 								</div>
-								<label for="subbut">Sign up!</label><br> <input
-									type="submit" id="subbut" name="subbut"> <a
-									th:href="@{register.html}" class="btn btn-light btn-lg"
-									role="button"
-									style="-webkit-text-fill-color: black; margin: 5%;">I don't
-									have an account</a>
+								<div class="form-group">
+									<label for="username">Email</label>: <input type="text"
+										id="username" name="username" class="form-control"
+										autofocus="autofocus" placeholder="Username" />
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>: <input type="password"
+										id="password" name="password" class="form-control"
+										placeholder="Password" />
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3">
+											<input type="submit" name="login-submit" id="login-submit"
+												class="form-control btn btn-primary" value="Log In" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<span>New user? <a href="/" th:href="@{/register}">Register
+											here</a></span>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -58,4 +64,5 @@
 
 	</div>
 </body>
+
 </html>

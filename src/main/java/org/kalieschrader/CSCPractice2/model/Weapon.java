@@ -2,6 +2,7 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -13,6 +14,7 @@ public class Weapon {
 	private String skillMod;
 	private int damageDie;
 	private String weaponRange;
+	@Column(length = 800)
 	private String details;
 
 	public Weapon(String weaponName, String skillMod, int damageDie, String weaponRange, String details) {

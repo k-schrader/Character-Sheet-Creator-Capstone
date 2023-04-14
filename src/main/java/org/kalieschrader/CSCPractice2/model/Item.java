@@ -3,6 +3,7 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -11,6 +12,7 @@ public class Item {
 
 	@Id
 	private String itemName;
+	@Column(length = 800)
 	private String details;
 
 	public Item(String itemName, String details) {

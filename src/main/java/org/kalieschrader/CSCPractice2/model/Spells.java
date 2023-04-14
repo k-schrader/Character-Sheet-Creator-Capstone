@@ -2,6 +2,7 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -16,6 +17,7 @@ private String castingTime;
 private String castingRange;
 private String duration;
 private boolean concentraion;
+@Column(length = 800)
 private String details;
 
 public Spells(String name, String castingClasses, int castingLevel, String castingTime, String castingRange,

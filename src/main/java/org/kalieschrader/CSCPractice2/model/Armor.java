@@ -2,6 +2,7 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,7 @@ public class Armor {
 	@Id
 	private String armorName;
 	private int acBonus;
+	@Column(length = 800)
 	private String details;
 
 	public Armor(String armorName, int acBonus, String details) {

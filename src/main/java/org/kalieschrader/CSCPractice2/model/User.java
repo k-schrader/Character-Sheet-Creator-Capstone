@@ -1,8 +1,11 @@
 package org.kalieschrader.CSCPractice2.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,55 +22,53 @@ import jakarta.persistence.ManyToMany;
 public class User {
 
 	   @Id
-	   @GeneratedValue(strategy = GenerationType.AUTO)
+	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	   private Long id;
-private String username;
-private String userPass;
-private String playerName;
+@Column(unique = true, nullable = false)
+private String email;
+@Column(nullable = false)
+private String password;
+@Column(nullable = false)
+private String firstName;
 @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(
-                name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(
-                name = "role_id", referencedColumnName = "id"))
-private Collection<Role> roles;
+		  name = "users_roles",
+          joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
+          inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
+  )
+  private List<Role> roles = new ArrayList<>();
 
-public User(String username, String userPass, String playerName) {
-	super();
-	this.username = username;
-	this.userPass = userPass;
-	this.playerName = playerName;
+public User(String firstName, String email, String password) {
+    this.firstName = firstName;
+    this.email = email;
+    this.password = password;
+}
+public User(String firstName, String email, String password, Collection<Role> roles) {
+    this.firstName = firstName;
+    this.email = email;
+    this.password = password;
+    this.roles = (List<Role>) roles;
 }
 public User() {}
-public String getUsername() {
-	return username;
+
+public Long getId() {
+    return id;
 }
-public void setUsername(String username) {
-	this.username = username;
+
+public void setId(Long id) {
+    this.id = id;
 }
-public String getUserPass() {
-	return userPass;
-}
-public void setUserPass(String userPass) {
-	this.userPass = userPass;
-}
-public String getPlayerName() {
-	return playerName;
-}
-public void setPlayerName(String playerName) {
-	this.playerName = playerName;
-}
+
 public Collection<Role> getRoles() {
     return roles;
 }
 
 public void setRoles(Collection<Role> roles) {
-    this.roles = roles;
+    this.roles = (List<Role>) roles;
 }
 @Override
 public int hashCode() {
-	return Objects.hash(username, playerName, userPass);
+	return Objects.hash(email, firstName, password);
 }
 @Override
 public boolean equals(Object obj) {
@@ -78,12 +79,34 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	User other = (User) obj;
-	return Objects.equals(username, other.username) && Objects.equals(playerName, other.playerName)
-			&& Objects.equals(userPass, other.userPass);
+	return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+			&& Objects.equals(password, other.password);
 }
 @Override
 public String toString() {
-	return "User [username=" + username + ", userPass=" + userPass + ", playerName=" + playerName + "]";
+	return "User [username=" + email + ", userPass=" + password + ", playerName=" + firstName + "]";
+}
+public boolean isEnabled() {
+	// TODO Auto-generated method stub
+	return false;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
+}
+public String getFirstName() {
+	return firstName;
+}
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
 }
 
 }
