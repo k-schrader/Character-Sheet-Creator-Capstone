@@ -79,6 +79,34 @@ public class FormattingService {
 	
 public FormattingService(CharacterSheet charSheet) {
 	this.charSheet=charSheet;
+	setAbilityScores();
+	setSkillScores();
+	setHitPoints();
+	setArmorClass();
+	setSpellModifiers();
+	setHitDie();
+	setSpeed();
+	setWeapon1(); 
+	setWeapon2(); 
+	setItem1(); 
+	setItem2(); 
+	setItem3(); 
+	setSpell1(); 
+	setSpell2(); 
+	setSpell3(); 
+	setSpell4(); 
+	setSpell5(); 
+	setClassFeature1(); 
+	setClassFeature2();
+	setClassFeature3(); 
+	setRacialFeature1(); 
+	setRacialFeature2();
+	setRacialFeature3(); 
+	setCharRace();
+	setCharClass(); 
+	setArmor(); 
+	setCharName();
+	setPlayerName(); 
 }
 //logic to calculate skill scores 
 	 public void setAbilityScores() {

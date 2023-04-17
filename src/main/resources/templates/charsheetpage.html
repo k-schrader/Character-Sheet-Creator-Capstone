@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(113, 15, 15);
+            font-family: 'Varela Round', sans-serif;
+            font-size: large;
+        }
+
+        footer {
+            background-color: rgb(113, 15, 15);
+            color: white;
+            padding: 15px;
+        }
+        .nav-masthead .nav-link {
+            padding: .25rem 0;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+            background-color: transparent;
+            border-bottom: .25rem solid transparent;
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+            border-bottom-color: rgba(255, 255, 255, .25);
+        }
+
+        .nav-masthead .nav-link+.nav-link {
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="mb-auto">
+        <div>
+            
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="newcharacterstart.html">Create a new character</a>
+                <a class="nav-link" href="#">See your old characters</a>
+                <a class="nav-link" href="register.html">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-3 well">
+                <div class="well">
+                    <p>Strength</p>
+                    <p>strength</p>
+                    <p>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for jumping, climbing, or swimming!" span
+                            class="label label-danger">Athletics</span></a>
+                    </p>
+                </div>
+                <div class="well">
+                    <p>Dexterity</p>
+                    <p>Dex</p>
+                    <p>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for balancing or gymnastics!" span
+                            class="label label-info">Acrobatics</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for stealing or lockpicking" span
+                            class="label label-info">Sleight of Hand</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for sneaking or hiding" span
+                            class="label label-info">Stealth</span></a>
+                    </p>
+                </div>
+                <div class="well">
+                    <p>Constitution</p>
+                    <p>Con</p>
+                </div>
+                <div class="well">
+                    <p>Intelligence</p>
+                    <p>Int</p>
+                    <p>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for knowledge of magic!" span
+                            class="label label-warning">Arcana</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to remember things from the past!" span
+                            class="label label-warning">History</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to look for clues!" span
+                            class="label label-warning">Investigation</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to know things about plants and animals!"
+                            span class="label label-warning">Nature</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to remember things about Gods!" span
+                            class="label label-warning">Religion</span></a>
+                    </p>
+                </div>
+                <div class="well">
+                    <p>Wisdom</p>
+                    <p>Wis</p>
+                    <p>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to calm an animal!" span
+                            class="label label-success">Animal Handling</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to read someones intentions!" span
+                            class="label label-success">Insight</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to help an injured person!" span
+                            class="label label-success">Medicine</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for noticing details!" span
+                            class="label label-success">Perception</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to hunt, navigate, and track!" span
+                            class="label label-success">Survival</span></a>
+                    </p>
+                </div>
+                <div class="well">
+                    <p>Charisma</p>
+                    <p>Char</p>
+                    <p>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for lying!" span
+                            class="label label-primary">Deception</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to threaten someone!" span
+                            class="label label-primary">Intimidation</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me for playing music or dancing!" span
+                            class="label label-primary">Performance</span></a>
+                        <a href="#" data-mdb-toggle="tooltip" title="Use me to convince someone of something true!" span
+                            class="label label-primary">Persuasion</span></a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-7">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default text-center">
+                            <div class="panel-body">
+                                <p contenteditable="true">Name class race and stuff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <p>Weapon 1</p>
+                            <p>Weapon 2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <p>Spell 1</p>
+                            <p>Spell 2</p>
+                            <p>Spell 3</p>
+                            <p>Spell 4</p>
+                            <p>Spell 5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <p>Race feat 1</p>
+                            <p>Race feat 2</p>
+                            <p>Race feat 3</p>
+                            <p>Class feat 1</p>
+                            <p>Class feat 2</p>
+                            <p>Class feat 3</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <p>Item 1</p>
+                            <p>Item 2</p>
+                            <p>Item 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 well">
+                <div class="thumbnail">
+                    <a href="#" data-mdb-toggle="tooltip" title="Enemies have to hit this number to hurt you!"
+                        p><strong>Armor class:</strong></p></a>
+                    <p>Ac</p>
+                    <a href="#" data-mdb-toggle="tooltip"
+                        title="This is how much damage you can take without falling in battle!" p><strong>Hit
+                            points:</strong></p></a>
+                    <p>Hp</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center">
+        <p>Your Character</p>
+    </footer>
+
+</body>
+
+</html>

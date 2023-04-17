@@ -32,7 +32,7 @@ div.col-8 div {
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
+<form th:action="@{/page2}" th:object="${characterSheet}" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-sm-3 col-4" id="myScrollspy">
@@ -55,49 +55,33 @@ div.col-8 div {
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="#section31">Spells</a> <a
 										class="dropdown-item" href="#section32">Choose your spells</a>
-								</div></li>
+								
+								</div>
+								</li>
 				</ul>
 			</nav>
+			
 			<div class="col-sm-9 col-8">
 				<div id="section11"
 					style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue;">
 
 					<div id="section12"
 						style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 15%;">
-						<h1>I want to have a...</h1>
-									<table class="table table-bordered table-striped">
-			
-				<thead>
-					<tr>
-						
-						<th>Smart number</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td th:text="${characterSheet.intelligence}" />
-					</tr>
-				</tbody>
-				
-			</table>
-						<form>
-							<select name="weaponpick1" class="custom-select-lg"
+						<h1>Weapons</h1>
+						<h3>I want to have...</h3>
+							<select th:field="*{weapon1}" name="weaponpick1" class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="weapon: ${weapons}"
-									th:text="${weapon.weaponName}" value="weapon1">weapon1</option>
-
+								<option th:text="*{charClass.weapon1.weaponName}" th:value="*{charClass.weapon1.weaponName}"/>
+								<option th:text="*{charClass.weapon2.weaponName}" th:value="*{charClass.weapon2.weaponName}"/>
+								<option th:text="*{charClass.weapon3.weaponName}" th:value="*{charClass.weapon3.weaponName}"/>
 							</select>
-
-
-						</form>
 						<h1>And a...</h1>
-						<form>
-							<select name="weaponpick1" class="custom-select-lg"
+							<select th:field="*{weapon2}" name="weaponpick2" class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="weapon: ${weapons}"
-									th:text="${weapon.weaponName}" value="weapon1">weapon1</option>
+								<option th:text="*{charClass.weapon1.weaponName}" th:value="*{charClass.weapon1.weaponName}"/>
+								<option th:text="*{charClass.weapon2.weaponName}" th:value="*{charClass.weapon2.weaponName}"/>
+								<option th:text="*{charClass.weapon3.weaponName}" th:value="*{charClass.weapon3.weaponName}"/>
 							</select>
-						</form>
 					</div>
 
 					<div id="section21"
@@ -144,44 +128,49 @@ div.col-8 div {
 					</div>
 					<div id="section22"
 						style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 15%;">
-						<h1>I want to have...</h1>
-						<form>
-							<select name="itempick1" class="custom-select-lg"
+						<h1>Items</h1>
+						<h3>I want to have...</h3>
+							<select th:field="*{item1}" name="itempick1" class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
 								<option th:each="item: ${items}"
-									th:text="${item.itemName}" value="item1">weapon1</option>
+									th:text="${item.itemName}" th:value="${item.itemName}"/>
 							</select>
-						</form>
 						<h1>and...</h1>
-						<form>
-							<select name="itempick2" class="custom-select-lg"
+							<select th:field="*{item2}" name="itempick2" class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
 								<option th:each="item: ${items}"
-									th:text="${item.itemName}" value="item1">weapon1</option>
+									th:text="${item.itemName}" th:value="${item.itemName}"/>
 							</select>
-						</form>
 						<h1>and...</h1>
-						<form>
-							<select name="itempick3" class="custom-select-lg"
+							<select th:field="*{item3}" name="itempick3" class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
 								<option th:each="item: ${items}"
-									th:text="${item.itemName}" value="item1">weapon1</option>
+									th:text="${item.itemName}" th:value="${item.itemName}"/>
 							</select>
-						</form>
 					</div>
 					<div id="section31"
 						style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;">
-						
+						<h1>Spells</h1>
+						<h3>I want to have...</h3>
+							<select th:field="*{spell1}" name="spell1" class="custom-select-lg"
+								style="padding: 10px; -webkit-text-fill-color: black;">
+								<option th:each="spell: ${spells}"
+									th:text="${spell.name}" th:value="${spell.name}"/>
+							</select>
 					</div>
 					<div id="section32"
 						style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
 						<h1>Let's move on!</h1>
-						<a class="btn btn-danger" href="\charcreator.html" type="submit"
-							value="Submit Button" style="padding: 5%; margin: 30%;">Submit</a>
+					
+								<a th:href="@{/charsheetpage}"> <input type="submit" class="btn btn-danger" style="padding: 5%; margin: 30%;"/>
+								</a>
 					</div>
 				</div>
 			</div>
+			
 		</div>
+		</div>
+		</form>
 </body>
 
 </html>

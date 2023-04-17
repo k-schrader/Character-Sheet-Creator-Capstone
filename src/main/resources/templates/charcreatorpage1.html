@@ -185,10 +185,12 @@ div.col-8 div {
 						<div id="section12"
 							style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 15%;">
 							<h1>I want to be a...</h1>
+							<!-- We have to reference the race.raceName here, because we can't reference the object itself.
+							Thymeleaf will do the work for us on connecting the raceName to the actual race object. -->
 							<select name="race" class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;"
 								th:field="*{charRace}">
-								<option th:each="race:${races}" th:value="${race}"
+								<option th:each="race:${races}" th:value="${race.raceName}"
 									th:text="${race.raceName}" value="" />
 							</select>
 
@@ -356,7 +358,7 @@ div.col-8 div {
 								<h1>I want to be a...</h1>
 								<select name="class" class="custom-select-lg"
 									style="padding: 10px;" th:field="*{charClass}">
-									<option th:each="class:${classes}" th:value="${class}"
+									<option th:each="class:${classes}" th:value="${class.name}"
 										th:text="${class.name}" value="" />
 								</select>
 

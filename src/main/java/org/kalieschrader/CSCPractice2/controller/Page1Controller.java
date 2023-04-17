@@ -1,17 +1,20 @@
 package org.kalieschrader.CSCPractice2.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.kalieschrader.CSCPractice2.model.CharacterRace;
 import org.kalieschrader.CSCPractice2.model.CharacterSheet;
+import org.kalieschrader.CSCPractice2.model.Spells;
 import org.kalieschrader.CSCPractice2.repository.CharacterClassRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterRaceRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
 import org.kalieschrader.CSCPractice2.repository.ItemRepository;
 import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
 import org.kalieschrader.CSCPractice2.repository.WeaponRepository;
+import org.kalieschrader.CSCPractice2.service.FormattingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +56,7 @@ public class Page1Controller {
 	@Autowired
 	private SpellsRepository spellsRepo;
 	@Autowired
-	private WeaponRepository weaponRepo;
+	private FormattingService formatting;
 	
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
@@ -69,10 +72,28 @@ public class Page1Controller {
 		return "charcreatorpage1";
 	}
 	
-	  @PostMapping(value = "/page2")
-	    public String submit(@ModelAttribute("detail") CharacterSheet characterSheet) {
-	            return "charcreatorpage2";
+	  @GetMapping(value = "/page2/{charId}")
+	    public String submit(@PathVariable("charId") Integer charId, Model model) {
+		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
+		  model.addAttribute("characterSheet", characterSheet);
+		  model.addAttribute("items", itemRepo.findAll());
+		  List<Spells> spellsList = new ArrayList<Spells>();
+		  String className = characterSheet.getCharClass().getName();
+		  for (Spells spell : spellsRepo.findAll()) {
+			  if(spell.getCastingClasses().contains(className)) {
+				  spellsList.add(spell);
+			  }
+		  }
+		  model.addAttribute("spells", spellsList);
+	      return "charcreatorpage2";
 	    }
+	  @GetMapping(value = "/charsheetpage/{charId}")
+	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
+		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); 
+			model.addAttribute("characterSheet", characterSheet);
+			model.addAttribute("formatting", formatting);
+			return "charsheetpage";
+		}
 	
 //	@GetMapping("/page1")
 //	public ModelAndView getAllAttributes() {
@@ -111,20 +132,8 @@ public class Page1Controller {
 	@PostMapping("/page1")   
 	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
 	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
-	   model.addAttribute("charsheet", characterSheet);
-	   model.addAttribute(savedCharSheet.getCharClass());
-	   model.addAttribute(savedCharSheet.getCharRace());
-	   model.addAttribute(savedCharSheet.getCharisma());
-	   model.addAttribute(savedCharSheet.getCon());
-	   model.addAttribute(savedCharSheet.getDex());
-	   model.addAttribute(savedCharSheet.getIntelligence());
-	   model.addAttribute(savedCharSheet.getStrength());
-	   model.addAttribute(savedCharSheet.getWisdom());
-	   //request.getSession().setAttribute("characterSheet", savedCharSheet);
-	   String redirect = "redirect:page2/"+characterSheet.getCharId();
-	   
-	   //logger.info(request.getSession().getAttribute("characterSheet").toString());
-       return redirect;
+	   model.addAttribute("characterSheet", savedCharSheet);
+       return "redirect:page2/"+savedCharSheet.getCharId();
 	}
 	   
 	 
