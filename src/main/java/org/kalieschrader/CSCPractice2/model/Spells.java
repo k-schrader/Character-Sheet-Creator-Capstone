@@ -17,7 +17,7 @@ private String castingTime;
 private String castingRange;
 private String duration;
 private boolean concentraion;
-@Column(length = 800)
+@Column(length = 1000)
 private String details;
 
 public Spells(String name, String castingClasses, int castingLevel, String castingTime, String castingRange,
