@@ -60,6 +60,8 @@ div.col-8 div {
 				<div class="col-sm-9 col-8">
 					<div id="section11"
 						style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue;">
+						<label for="charName" style="text-align: center;">Name your character</label><br>
+						<input type="text" id="charName" name= "charName" th:field="*{charName}" style="-webkit-text-fill-color: black;"><br>
 						<div id="raceCarousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="carousel-item active">
@@ -183,7 +185,7 @@ div.col-8 div {
 							</div>
 						</div>
 						<div id="section12"
-							style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 15%;">
+							style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 5%;">
 							<h1>I want to be a...</h1>
 							<!-- We have to reference the race.raceName here, because we can't reference the object itself.
 							Thymeleaf will do the work for us on connecting the raceName to the actual race object. -->
@@ -204,7 +206,7 @@ div.col-8 div {
 									<div class="carousel-item active">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Barbarian</h1>
 												<img src="/images/barb2.png"
 													style="height: 200px; width: 200px;">
@@ -218,7 +220,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Bard</h1>
 												<img src="/images/bard2.png"
 													style="height: 200px; width: 200px;">
@@ -232,7 +234,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Cleric</h1>
 												<img src="/images/cleric2.png"
 													style="height: 200px; width: 200px;">
@@ -246,7 +248,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Druid</h1>
 												<img src="/images/druid2.png"
 													style="height: 200px; width: 200px;">
@@ -260,7 +262,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Fighter</h1>
 												<img src="/images/fighter2.png"
 													style="height: 200px; width: 200px;">
@@ -275,7 +277,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Paladin</h1>
 												<img src="/images/paladin2.png"
 													style="height: 200px; width: 200px;">
@@ -289,7 +291,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Rogue</h1>
 												<img src="/images/rogue2.png"
 													style="height: 200px; width: 200px;">
@@ -303,7 +305,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Sorcerer</h1>
 												<img src="/images/sorcerer2.png"
 													style="height: 200px; width: 200px;">
@@ -317,7 +319,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Warlock</h1>
 												<img src="/images/warlock2.png"
 													style="height: 200px; width: 200px;">
@@ -331,7 +333,7 @@ div.col-8 div {
 									<div class="carousel-item">
 										<div class="cards-wrapper">
 											<div class="card-body"
-												style="text-align: center; padding: 10%;">
+												style="text-align: center; padding: 5%;">
 												<h1 class="card-title">Wizard</h1>
 												<img src="/images/wizard2.png"
 													style="height: 200px; width: 200px;">
@@ -354,7 +356,7 @@ div.col-8 div {
 								</div>
 							</div>
 							<div id="section22"
-								style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 15%;">
+								style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 5%;">
 								<h1>I want to be a...</h1>
 								<select name="class" class="custom-select-lg"
 									style="padding: 10px;" th:field="*{charClass}">
@@ -440,7 +442,7 @@ div.col-8 div {
 							<div id="section32"
 								style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
 								<h1>Let's move on!</h1>
-								<a th:href="@{/page2}"> <input type="submit" class="btn btn-danger" style="padding: 5%; margin: 30%;"/>
+								<a th:href="@{/page2}"> <input type="submit" class="btn btn-danger" style="padding: 5%; margin: 10%;"/>
 								</a>
 							</div>
 						</div>

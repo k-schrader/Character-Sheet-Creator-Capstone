@@ -1,212 +1,352 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        body {
-            background-color: rgb(113, 15, 15);
-            font-family: 'Varela Round', sans-serif;
-            font-size: large;
-        }
+body {
+	background-color: rgb(113, 15, 15);
+	font-family: 'Varela Round', sans-serif;
+	font-size: large;
+}
 
-        footer {
-            background-color: rgb(113, 15, 15);
-            color: white;
-            padding: 15px;
-        }
-        .nav-masthead .nav-link {
-            padding: .25rem 0;
-            font-weight: 500;
-            color: rgba(255, 255, 255, .5);
-            background-color: transparent;
-            border-bottom: .25rem solid transparent;
-        }
+footer {
+	background-color: rgb(113, 15, 15);
+	color: white;
+	padding: 15px;
+}
 
-        .nav-masthead .nav-link:hover,
-        .nav-masthead .nav-link:focus {
-            border-bottom-color: rgba(255, 255, 255, .25);
-        }
+.nav-masthead .nav-link {
+	padding: .25rem 0;
+	font-weight: 500;
+	color: rgba(255, 255, 255, .5);
+	background-color: transparent;
+	border-bottom: .25rem solid transparent;
+}
 
-        .nav-masthead .nav-link+.nav-link {
-            margin-left: 1rem;
-        }
-    </style>
+.nav-masthead .nav-link:hover, .nav-masthead .nav-link:focus {
+	border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link+.nav-link {
+	margin-left: 1rem;
+}
+</style>
 </head>
 
 <body>
-    <header class="mb-auto">
-        <div>
-            
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link" href="index.html">Home</a>
-                <a class="nav-link" href="newcharacterstart.html">Create a new character</a>
-                <a class="nav-link" href="#">See your old characters</a>
-                <a class="nav-link" href="register.html">Logout</a>
-            </nav>
-        </div>
-    </header>
+	<header class="mb-auto">
+		<div>
 
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-sm-3 well">
-                <div class="well">
-                    <p>Strength</p>
-                    <p>strength</p>
-                    <p>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for jumping, climbing, or swimming!" span
-                            class="label label-danger">Athletics</span></a>
-                    </p>
-                </div>
-                <div class="well">
-                    <p>Dexterity</p>
-                    <p>Dex</p>
-                    <p>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for balancing or gymnastics!" span
-                            class="label label-info">Acrobatics</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for stealing or lockpicking" span
-                            class="label label-info">Sleight of Hand</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for sneaking or hiding" span
-                            class="label label-info">Stealth</span></a>
-                    </p>
-                </div>
-                <div class="well">
-                    <p>Constitution</p>
-                    <p>Con</p>
-                </div>
-                <div class="well">
-                    <p>Intelligence</p>
-                    <p>Int</p>
-                    <p>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for knowledge of magic!" span
-                            class="label label-warning">Arcana</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to remember things from the past!" span
-                            class="label label-warning">History</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to look for clues!" span
-                            class="label label-warning">Investigation</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to know things about plants and animals!"
-                            span class="label label-warning">Nature</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to remember things about Gods!" span
-                            class="label label-warning">Religion</span></a>
-                    </p>
-                </div>
-                <div class="well">
-                    <p>Wisdom</p>
-                    <p>Wis</p>
-                    <p>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to calm an animal!" span
-                            class="label label-success">Animal Handling</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to read someones intentions!" span
-                            class="label label-success">Insight</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to help an injured person!" span
-                            class="label label-success">Medicine</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for noticing details!" span
-                            class="label label-success">Perception</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to hunt, navigate, and track!" span
-                            class="label label-success">Survival</span></a>
-                    </p>
-                </div>
-                <div class="well">
-                    <p>Charisma</p>
-                    <p>Char</p>
-                    <p>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for lying!" span
-                            class="label label-primary">Deception</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to threaten someone!" span
-                            class="label label-primary">Intimidation</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me for playing music or dancing!" span
-                            class="label label-primary">Performance</span></a>
-                        <a href="#" data-mdb-toggle="tooltip" title="Use me to convince someone of something true!" span
-                            class="label label-primary">Persuasion</span></a>
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-7">
+			<nav class="nav nav-masthead justify-content-center float-md-end">
+				<a class="nav-link" href="index.html">Home</a> <a class="nav-link"
+					href="newcharacterstart.html">Create a new character</a> <a
+					class="nav-link" href="#">See your old characters</a> <a
+					class="nav-link" href="register.html">Logout</a>
+			</nav>
+		</div>
+	</header>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-default text-center">
-                            <div class="panel-body">
-                                <p contenteditable="true">Name class race and stuff</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-sm-3 well">
+<!-- 				<table class="table table-bordered table-striped"> -->
 
-                <div class="row">
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th>playerName</th> -->
+<!-- 							<th>modStrength</th> -->
+<!-- 							<th>modDexterity</th> -->
+<!-- 							<th>modCon</th> -->
+<!-- 							<th>modIntelligence</th> -->
+<!-- 							<th>modWisdom</th> -->
+<!-- 							<th>modCharisma</th> -->
+<!-- 							<th>modAcrobatics</th> -->
+<!-- 							<th>modAnimalHandling</th> -->
+<!-- 							<th>modArcana</th> -->
+<!-- 							<th>modAthletics</th> -->
+<!-- 							<th>modDeception</th> -->
+<!-- 							<th>modHistory</th> -->
+<!-- 							<th>modInsight</th> -->
+<!-- 							<th>modIntimidation</th> -->
+<!-- 							<th>modInvestigation</th> -->
+<!-- 							<th>modMedicine</th> -->
+<!-- 							<th>modNature</th> -->
+<!-- 							<th>modPerception</th> -->
+<!-- 							<th>modPerformance</th> -->
+<!-- 							<th>modPersuasion</th> -->
+<!-- 							<th>modReligion</th> -->
+<!-- 							<th>modSleightOfHand</th> -->
+<!-- 							<th>modStealth</th> -->
+<!-- 							<th>modSurvival</th> -->
+<!-- 							<th>hitdie</th> -->
+<!-- 							<th>speed</th> -->
+<!-- 							<th>weapon1</th> -->
+<!-- 							<th>weapon2</th> -->
+<!-- 							<th>item1</th> -->
+<!-- 							<th>item2</th> -->
+<!-- 							<th>item3</th> -->
+<!-- 							<th>languages</th> -->
+<!-- 							<th>spell1</th> -->
+<!-- 							<th>spell2</th> -->
+<!-- 							<th>spell3</th> -->
+<!-- 							<th>spell4</th> -->
+<!-- 							<th>spell5</th> -->
+<!-- 							<th>classFeature1</th> -->
+<!-- 							<th>classFeature2</th> -->
+<!-- 							<th>classFeature3</th> -->
+<!-- 							<th>racialFeature1</th> -->
+<!-- 							<th>racialFeature2</th> -->
+<!-- 							<th>racialFeature3</th> -->
+<!-- 							<th>charName</th> -->
+<!-- 							<th>charRace</th> -->
+<!-- 							<th>charClass</th> -->
+<!-- 							<th>armor</th> -->
+<!-- 							<th>hitPoints</th> -->
+<!-- 							<th>armorClass</th> -->
+<!-- 							<th>spellSaveDC</th> -->
+<!-- 							<th>spellAttack</th> -->
+<!-- 							<th>charSheet ID</th> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody> -->
+<!-- 						<tr> -->
+<!-- 							<td>playerName empty</td> -->
 
-                    <div class="col-sm-12">
-                        <div class="well">
-                            <p>Weapon 1</p>
-                            <p>Weapon 2</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+<!-- 							<td th:text="${formatting.charName}" /> -->
+<!-- 							<td th:text="${formatting.armor.armorName}" /> -->
+<!-- 							<td th:text="${formatting.spellSaveDC}" /> -->
+<!-- 							<td th:text="${formatting.spellAttack}" /> -->
+<!-- 							<td th:text="${formatting.charSheet.charId}" /> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
 
-                    <div class="col-sm-12">
-                        <div class="well">
-                            <p>Spell 1</p>
-                            <p>Spell 2</p>
-                            <p>Spell 3</p>
-                            <p>Spell 4</p>
-                            <p>Spell 5</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="well">
-                            <p>Race feat 1</p>
-                            <p>Race feat 2</p>
-                            <p>Race feat 3</p>
-                            <p>Class feat 1</p>
-                            <p>Class feat 2</p>
-                            <p>Class feat 3</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+<!-- 				</table> -->
 
-                    <div class="col-sm-12">
-                        <div class="well">
-                            <p>Item 1</p>
-                            <p>Item 2</p>
-                            <p>Item 3</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2 well">
+				<div class="well">
+					<p>Strength</p>
+					<p th:text="'+ ' +${formatting.modStrength}"></p>
+					<p>
+						<a href="#" data-mdb-toggle="tooltip"
+							title="Use me for jumping, climbing, or swimming!" 
+							class="label label-danger" th:text="'Athletics + ' +${formatting.modAthletics}"></a>
+					</p>
+				</div>
+				<div class="well">
+					<p>Dexterity</p>
+					<p th:text="'+ ' +${formatting.modDexterity}"></p>
+					<p>
+						<a href="#" data-mdb-toggle="tooltip"
+							title="Use me for balancing or gymnastics!" 
+							class="label label-info" th:text="'Acrobatics + ' + ${formatting.modAcrobatics}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me for stealing or lockpicking" 
+							class="label label-info" th:text="'Slight of Hand + ' + ${formatting.modSleightOfHand}"></a> <a href="#"
+							data-mdb-toggle="tooltip" title="Use me for sneaking or hiding"
+							class="label label-info" th:text="'Stealth + ' + ${formatting.modStealth}"></a>
+					</p>
+				</div>
+				<div class="well">
+					<p>Constitution</p>
+					<p th:text="'+ ' +${formatting.modCon}"></p>
+				</div>
+				<div class="well">
+					<p>Intelligence</p>
+					<p th:text="'+ ' +${formatting.modIntelligence}"></p>
+					<p>
+						<a href="#" data-mdb-toggle="tooltip"
+							title="Use me for knowledge of magic!" 
+							class="label label-warning" th:text="'Arcana + ' +${formatting.modArcana}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to remember things from the past!" 
+							class="label label-warning" th:text="'History + ' +${formatting.modHistory}"></a> <a href="#"
+							data-mdb-toggle="tooltip" title="Use me to look for clues!" 
+							class="label label-warning" th:text="'Investigation + ' +${formatting.modInvestigation}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to know things about plants and animals!" 
+							class="label label-warning" th:text="'Nature + ' +${formatting.modNature}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to remember things about Gods!" 
+							class="label label-warning" th:text="'Religion + ' +${formatting.modReligion}"></a>
+					</p>
+				</div>
+				<div class="well">
+					<p>Wisdom</p>
+					<p th:text="'+ ' +${formatting.modWisdom}"></p>
+					<p>
+						<a href="#" data-mdb-toggle="tooltip"
+							title="Use me to calm an animal!" 
+							class="label label-success"th:text="'Animal Handling + ' +${formatting.modAnimalHandling}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to read someones intentions!" 
+							class="label label-success"th:text="'Insight + ' +${formatting.modInsight}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to help an injured person!" 
+							class="label label-success"th:text="'Medicine + ' +${formatting.modMedicine}"></a> <a href="#"
+							data-mdb-toggle="tooltip" title="Use me for noticing details!"
+							 class="label label-success" th:text="'Perception + ' +${formatting.modPerception}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to hunt, navigate, and track!" 
+							class="label label-success" th:text="'Survival + ' +${formatting.modSurvival}"></a>
+					</p>
+				</div>
+				<div class="well">
+					<p>Charisma</p>
+					<p th:text="'+ ' +${formatting.modCharisma}"></p>
+					<p>
+						<a href="#" data-mdb-toggle="tooltip" title="Use me for lying!"
+							 class="label label-primary" th:text="'Deception + ' +${formatting.modDeception}"></a> <a href="#"
+							data-mdb-toggle="tooltip" title="Use me to threaten someone!"
+							 class="label label-primary" th:text="'Intimidation + ' +${formatting.modIntimidation}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me for playing music or dancing!" 
+							class="label label-primary" th:text="'Performance + ' +${formatting.modPerformance}"></a> <a href="#"
+							data-mdb-toggle="tooltip"
+							title="Use me to convince someone of something true!" 
+							class="label label-primary" th:text="'Persuassion + ' +${formatting.modPersuasion}"></a>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-7">
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default text-center">
+							<div class="panel-body">
+								<p contenteditable="true" th:text="'Character race: '+${formatting.charRace.raceName}+ ' Character class: '+${formatting.charClass.Name}" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-sm-12">
+						<div class="well">
+							<p th:text="'Weapon 1: '+${formatting.weapon1.weaponName}"/>
+							<p th:text="'Damage on hit: 1d'+ ${formatting.weapon1.damageDie}"/>
+							<p th:text="'Range: '+${formatting.weapon1.weaponRange}"/>
+							<p th:text="'Details: '+${formatting.weapon1.details}"/></p>
+							<p th:text="'Weapon 2: '+${formatting.weapon2.weaponName}"/>
+							<p th:text="'Damage on hit: 1d'+ ${formatting.weapon2.damageDie}"/>
+							<p th:text="'Range: '+${formatting.weapon2.weaponRange}"/>
+							<p th:text="'Details: '+${formatting.weapon2.details}"/></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col-sm-12">
+						<div class="well">
+						<h3 th:text="'Spell Save DC: '+${formatting.spellSaveDC}"></h3>
+							<h3 th:text="'Spell Attack Modifier: '+${formatting.spellAttack}"></h3>
+							<h4 th:text="${formatting.spell1.name}"></h4> 
+							<p th:text="'Time to cast: '+${formatting.spell1.castingTime}" /> 
+							<p th:text="'Casting range: '+${formatting.spell1.castingRange}" />
+							<p th:text="'Lasts for: '+${formatting.spell1.duration}" />  
+							<p th:text="'Concentration?: '+${formatting.spell1.concentraion}" /> 
+							<p th:text="'Details: '+${formatting.spell1.details}" /> 
+							<p th:text="${formatting.spell2.name}" />
+							<p th:text="'Time to cast: '+${formatting.spell2.castingTime}" /> 
+							<p th:text="'Casting range: '+${formatting.spell2.castingRange}" />
+							<p th:text="'Lasts for: '+${formatting.spell2.duration}" />  
+							<p th:text="'Concentration?: '+${formatting.spell2.concentraion}" /> 
+							<p th:text="'Details: '+${formatting.spell2.details}" /> 
+ 							<p th:text="${formatting.spell3.name}" /> 
+							<p th:text="'Time to cast: '+${formatting.spell3.castingTime}" /> 
+							<p th:text="'Casting range: '+${formatting.spell3.castingRange}" />
+							<p th:text="'Lasts for: '+${formatting.spell3.duration}" />  
+							<p th:text="'Concentration?: '+${formatting.spell3.concentraion}" /> 
+							<p th:text="'Details: '+${formatting.spell3.details}" /> 
+							<p th:text="${formatting.spell4.name}" />
+							<p th:text="'Time to cast: '+${formatting.spell4.castingTime}" /> 
+							<p th:text="'Casting range: '+${formatting.spell4.castingRange}" />
+							<p th:text="'Lasts for: '+${formatting.spell4.duration}" />  
+							<p th:text="'Concentration?: '+${formatting.spell4.concentraion}" /> 
+							<p th:text="'Details: '+${formatting.spell4.details}" /> 
+							<p th:text="${formatting.spell5.name}" />
+							<p th:text="'Time to cast: '+${formatting.spell5.castingTime}" /> 
+							<p th:text="'Casting range: '+${formatting.spell5.castingRange}" />
+							<p th:text="'Lasts for: '+${formatting.spell5.duration}" />  
+							<p th:text="'Concentration?: '+${formatting.spell5.concentraion}" /> 
+							<p th:text="'Details: '+${formatting.spell5.details}" /> 
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="well">
+							<h3 th:text="${formatting.charRace.raceName}+' Features:'" ></h3>
+							<p th:text="${formatting.racialFeature1}" />
+							<p th:text="${formatting.racialFeature2}" />
+							<p th:text="${formatting.racialFeature3}"/>
+							<h3 th:text="${formatting.charClass.Name}+' Fealtures:'" ></h3>
+							<p th:text="${formatting.classFeature1}" />
+							<p th:text="${formatting.classFeature2}" />
+							<p th:text="${formatting.classFeature3}" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col-sm-12">
+						<div class="well">
+							<h3 th:text="'Items:'" ></h3>
+							<p th:text="${formatting.item1.itemName}" />
+							<p th:text="${formatting.item1.details}" />
+							<p th:text="${formatting.item2.itemName}" />
+							<p th:text="${formatting.item2.details}" />
+							<p th:text="${formatting.item3.itemName}" />
+							<p th:text="${formatting.item3.details}" />
+						</div>
+					</div>
+				</div>
+			</div>
+		     <div class="col-sm-2 well">
                 <div class="thumbnail">
                     <a href="#" data-mdb-toggle="tooltip" title="Enemies have to hit this number to hurt you!"
-                        p><strong>Armor class:</strong></p></a>
-                    <p>Ac</p>
+                        ><strong>Armor class:</strong></a>
+                    <p th:text="${formatting.armorClass}"></p>
+                </div>
+                <div class="thumbnail">
                     <a href="#" data-mdb-toggle="tooltip"
-                        title="This is how much damage you can take without falling in battle!" p><strong>Hit
-                            points:</strong></p></a>
-                    <p>Hp</p>
+                    title="This is how much damage you can take without falling in battle!" ><strong>Hit
+                        points:</strong></a>
+                <p th:text="${formatting.hitPoints}"></p>
+                </div>
+                <div class="thumbnail">
+                    <a href="#" data-mdb-toggle="tooltip" title="Roll this die to heal on a short rest"
+                        ><strong>Hit Die:</strong></a>
+                    <p th:text="'1d'+${formatting.hitdie}"></p>
+                </div>
+                <div class="thumbnail">
+                    <a href="#" data-mdb-toggle="tooltip"
+                        title="This is how far you can move in ONE round of combat"><strong>Speed:</strong></a>
+                    <p th:text="${formatting.speed}+'ft'"></p>
+                </div>
+                <div class="thumbnail">
+                    <a href="#" data-mdb-toggle="tooltip"
+                        title="You can speak these languages"><strong>Languages:</strong></a>
+                    <p th:text="${formatting.languages}"></p>
+                    <p>Common</p>
                 </div>
 
             </div>
-        </div>
-    </div>
 
-    <footer class="container-fluid text-center">
-        <p>Your Character</p>
-    </footer>
+			</div>
+		</div>
+	</div>
+
+	<footer class="container-fluid text-center">
+		<p th:text="${formatting.playerName}+'s '+ 'Character'" ></p>
+	</footer>
 
 </body>
 

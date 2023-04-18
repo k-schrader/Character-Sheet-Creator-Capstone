@@ -3,6 +3,7 @@ package org.kalieschrader.CSCPractice2.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kalieschrader.CSCPractice2.controller.Page1Controller;
 import org.kalieschrader.CSCPractice2.model.Armor;
 import org.kalieschrader.CSCPractice2.model.CharacterClass;
 import org.kalieschrader.CSCPractice2.model.CharacterRace;
@@ -10,14 +11,10 @@ import org.kalieschrader.CSCPractice2.model.CharacterSheet;
 import org.kalieschrader.CSCPractice2.model.Item;
 import org.kalieschrader.CSCPractice2.model.Spells;
 import org.kalieschrader.CSCPractice2.model.Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Service
 public class FormattingService {
 
@@ -76,6 +73,10 @@ public class FormattingService {
 	 private int spellSaveDC;
 	 private int spellAttack;
 	 private CharacterSheet charSheet;
+	 
+	 public FormattingService() {}
+	 
+	 Logger logger = LoggerFactory.getLogger(FormattingService.class);
 	
 public FormattingService(CharacterSheet charSheet) {
 	this.charSheet=charSheet;
@@ -101,7 +102,8 @@ public FormattingService(CharacterSheet charSheet) {
 	setClassFeature3(); 
 	setRacialFeature1(); 
 	setRacialFeature2();
-	setRacialFeature3(); 
+	setRacialFeature3();
+	setLanguages();
 	setCharRace();
 	setCharClass(); 
 	setArmor(); 
@@ -152,7 +154,7 @@ public FormattingService(CharacterSheet charSheet) {
 		 hitPoints=charSheet.getCharClass().getHitDie()+modCon;
 	 }
 	 public void setArmorClass() {
-		 armorClass=charSheet.getArmor().getAcBonus()+modDexterity+10;
+		 armorClass=charSheet.getCharClass().getArmor().getAcBonus()+modDexterity+10;
 	 }
 
 	 public void setSpellModifiers() {
@@ -168,6 +170,10 @@ public FormattingService(CharacterSheet charSheet) {
 		 spellSaveDC=10+spellPlus;
 		 spellAttack=2+spellPlus;
 	 }
+	 
+	 public void setLanguages() {
+		 this.languages=charSheet.getCharRace().getLang();
+	 }
 	
 	 public void setHitDie() {
 		 this.hitdie=charSheet.getCharClass().getHitDie();
@@ -179,49 +185,49 @@ public FormattingService(CharacterSheet charSheet) {
 		 this.weapon1=charSheet.getCharClass().getWeapon1();
 	 }
 	 public void setWeapon2() {
-		 this.weapon1=charSheet.getCharClass().getWeapon2();
+		 this.weapon2=charSheet.getCharClass().getWeapon2();
 	 }
 	 public void setItem1() {
 		 this.item1=charSheet.getItem1();
 	 }
 	 public void setItem2() {
-		 this.item1=charSheet.getItem2();
+		 this.item2=charSheet.getItem2();
 	 }
 	 public void setItem3() {
-		 this.item1=charSheet.getItem3();
+		 this.item3=charSheet.getItem3();
 	 }
 	 public void setSpell1() {
 		 this.spell1=charSheet.getSpell1();
 	 }
 	 public void setSpell2() {
-		 this.spell1=charSheet.getSpell2();
+		 this.spell2=charSheet.getSpell2();
 	 }
 	 public void setSpell3() {
-		 this.spell1=charSheet.getSpell3();
+		 this.spell3=charSheet.getSpell3();
 	 }
 	 public void setSpell4() {
-		 this.spell1=charSheet.getSpell4();
+		 this.spell4=charSheet.getSpell4();
 	 }
 	 public void setSpell5() {
-		 this.spell1=charSheet.getSpell5();
+		 this.spell5=charSheet.getSpell5();
 	 }
 	 public void setClassFeature1() {
 		 this.classFeature1=charSheet.getCharClass().getClassFeat1();
 	 }
 	 public void setClassFeature2() {
-		 this.classFeature1=charSheet.getCharClass().getClassFeat2();
+		 this.classFeature2=charSheet.getCharClass().getClassFeat2();
 	 }
 	 public void setClassFeature3() {
-		 this.classFeature1=charSheet.getCharClass().getClassFeat3();
+		 this.classFeature3=charSheet.getCharClass().getClassFeat3();
 	 }
 	 public void setRacialFeature1() {
 		 this.racialFeature1=charSheet.getCharRace().getRaceFeat1();
 	 }
 	 public void setRacialFeature2() {
-		 this.racialFeature1=charSheet.getCharRace().getRaceFeat2();
+		 this.racialFeature2=charSheet.getCharRace().getRaceFeat2();
 	 }
 	 public void setRacialFeature3() {
-		 this.racialFeature1=charSheet.getCharRace().getRaceFeat3();
+		 this.racialFeature3=charSheet.getCharRace().getRaceFeat3();
 	 }
 	 public void setCharRace() {
 		 this.charRace=charSheet.getCharRace();
@@ -236,6 +242,165 @@ public FormattingService(CharacterSheet charSheet) {
 		 this.charName=charSheet.getCharName();
 	 }
 	 public void setPlayerName() {
-		 this.playerName=playerName;
+		 this.playerName=charSheet.getUsername();
 	 }
+	public String getPlayerName() {
+		return playerName;
+	}
+	public int getModStrength() {
+		return modStrength;
+	}
+	public int getModDexterity() {
+		return modDexterity;
+	}
+	public int getModCon() {
+		return modCon;
+	}
+	public int getModIntelligence() {
+		return modIntelligence;
+	}
+	public int getModWisdom() {
+		return modWisdom;
+	}
+	public int getModCharisma() {
+		return modCharisma;
+	}
+	public int getModAcrobatics() {
+		return modAcrobatics;
+	}
+	public int getModAnimalHandling() {
+		return modAnimalHandling;
+	}
+	public int getModArcana() {
+		return modArcana;
+	}
+	public int getModAthletics() {
+		return modAthletics;
+	}
+	public int getModDeception() {
+		return modDeception;
+	}
+	public int getModHistory() {
+		return modHistory;
+	}
+	public int getModInsight() {
+		return modInsight;
+	}
+	public int getModIntimidation() {
+		return modIntimidation;
+	}
+	public int getModInvestigation() {
+		return modInvestigation;
+	}
+	public int getModMedicine() {
+		return modMedicine;
+	}
+	public int getModNature() {
+		return modNature;
+	}
+	public int getModPerception() {
+		return modPerception;
+	}
+	public int getModPerformance() {
+		return modPerformance;
+	}
+	public int getModPersuasion() {
+		return modPersuasion;
+	}
+	public int getModReligion() {
+		return modReligion;
+	}
+	public int getModSleightOfHand() {
+		return modSleightOfHand;
+	}
+	public int getModStealth() {
+		return modStealth;
+	}
+	public int getModSurvival() {
+		return modSurvival;
+	}
+	public int getHitdie() {
+		return hitdie;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public Weapon getWeapon1() {
+		return weapon1;
+	}
+	public Weapon getWeapon2() {
+		return weapon2;
+	}
+	public Item getItem1() {
+		return item1;
+	}
+	public Item getItem2() {
+		return item2;
+	}
+	public Item getItem3() {
+		return item3;
+	}
+	public String getLanguages() {
+		return languages;
+	}
+	public Spells getSpell1() {
+		return spell1;
+	}
+	public Spells getSpell2() {
+		return spell2;
+	}
+	public Spells getSpell3() {
+		return spell3;
+	}
+	public Spells getSpell4() {
+		return spell4;
+	}
+	public Spells getSpell5() {
+		return spell5;
+	}
+	public String getClassFeature1() {
+		return classFeature1;
+	}
+	public String getClassFeature2() {
+		return classFeature2;
+	}
+	public String getClassFeature3() {
+		return classFeature3;
+	}
+	public String getRacialFeature1() {
+		return racialFeature1;
+	}
+	public String getRacialFeature2() {
+		return racialFeature2;
+	}
+	public String getRacialFeature3() {
+		return racialFeature3;
+	}
+	public String getCharName() {
+		return charName;
+	}
+	public CharacterRace getCharRace() {
+		return charRace;
+	}
+	public CharacterClass getCharClass() {
+		return charClass;
+	}
+	public Armor getArmor() {
+		return armor;
+	}
+	public int getHitPoints() {
+		return hitPoints;
+	}
+	public int getArmorClass() {
+		return armorClass;
+	}
+	public int getSpellSaveDC() {
+		return spellSaveDC;
+	}
+	public int getSpellAttack() {
+		return spellAttack;
+	}
+	public CharacterSheet getCharSheet() {
+		return charSheet;
+	}
 }

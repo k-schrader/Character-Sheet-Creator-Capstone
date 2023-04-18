@@ -77,6 +77,7 @@ public class Page1Controller {
 	@PostMapping("/page1")   
 	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
 	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
+	   //logger.info(savedCharSheet.toString());
 	   model.addAttribute("characterSheet", savedCharSheet);
        return "redirect:page2/"+savedCharSheet.getCharId();
 	}
@@ -84,7 +85,6 @@ public class Page1Controller {
 	    public String submit(@PathVariable("charId") Integer charId, Model model) {
 		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
 		  model.addAttribute("characterSheet", characterSheet);
-		  model.addAttribute("charId", charId);
 		  model.addAttribute("items", itemRepo.findAll());
 		  List<Spells> spellsList = new ArrayList<Spells>();
 		  String className = characterSheet.getCharClass().getName();
@@ -97,22 +97,28 @@ public class Page1Controller {
 	      return "charcreatorpage2";
 	    }
 	
+//	  @GetMapping(value = "/charsheetpage/{charId}")
+//	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
+//		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
+//		  logger.info(characterSheet.toString());
+//		  FormattingService formatting = new FormattingService(characterSheet);
+////			model.addAttribute("characterSheet", characterSheet);
+//			model.addAttribute("formatting", formatting);
+//			return "charsheetpage";
+//		}
+	  
+	  //TODO update schema to remove unnecessary columns from characterSheet, including: armor_class, spell_attack, spell_savedc, armor_armor_name, 
 	  @GetMapping(value = "/charsheetpage/{charId}")
-	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
-		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
-		  logger.info(characterSheet.toString());
+	    public String charSheetPage(@PathVariable("charId") Integer charId, Model model) {
+		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
 		  FormattingService formatting = new FormattingService(characterSheet);
-			//model.addAttribute("characterSheet", characterSheet);
-			model.addAttribute("formatting", formatting);
-			return "charsheetpage";
-		}
+		  model.addAttribute("formatting", formatting);
+	      return "charsheetpage";
+	    }
 	
-		@PostMapping("/page2/{charId}")   
-		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, @PathVariable Integer charId, Model model){
-			logger.info("character sheet = "+characterSheet.toString());
-			logger.info("char ID = "+charId);
+		@PostMapping("/page2")   
+		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
 		    CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
-		    logger.info("saved character sheet = "+savedCharSheet.toString());
 		    model.addAttribute("characterSheet", savedCharSheet);
 	        return "redirect:charsheetpage/"+characterSheet.getCharId();
 		}

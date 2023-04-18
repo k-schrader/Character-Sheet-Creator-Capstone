@@ -32,145 +32,250 @@ div.col-8 div {
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-<form th:action="@{/page2/{charId}(charId = ${charId})}" th:object="${characterSheet}" method="post">
-	<div class="container-fluid">
-		<div class="row">
-			<nav class="col-sm-3 col-4" id="myScrollspy">
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Weapons</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#section11">Weapons</a> <a
-								class="dropdown-item" href="#section12">Choose your weapons</a>
-						</div></li>
+	<form th:action="@{/page2}" th:object="${characterSheet}"
+		th:method="post">
+		<div class="container-fluid">
+			<div class="row">
+				<nav class="col-sm-3 col-4" id="myScrollspy">
+					<ul class="nav nav-pills flex-column">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Weapons</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#section11">Weapons</a> <a
+									class="dropdown-item" href="#section12">Choose your weapons</a>
+							</div></li>
 
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Items</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#section21">Items</a> <a
-								class="dropdown-item" href="#section22">Choose your items</a>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Items</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#section21">Items</a> <a
+									class="dropdown-item" href="#section22">Choose your items</a>
 
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Spells</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#section31">Spells</a> <a
-										class="dropdown-item" href="#section32">Choose your spells</a>
-								
-								</div>
-								</li>
-				</ul>
-			</nav>
-			
-			<div class="col-sm-9 col-8">
-				<div id="section11"
-					style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue;">
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" data-toggle="dropdown"
+									href="#">Spells</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#section31">Spells</a> <a
+											class="dropdown-item" href="#section32">Choose your
+											spells</a>
 
-					<div id="section12"
-						style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 15%;">
-						<h1>Weapons</h1>
-						<h3>I want to have...</h3>
-							<select th:field="*{weapon1}" name="weaponpick1" class="custom-select-lg"
+									</div>
+									</li>
+									<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" data-toggle="dropdown"
+									href="#"></a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#section4">Submit</a> 
+
+									</div>
+									</li>
+					</ul>
+				</nav>
+
+				<!-- We are using hidden values here to pass the information from the existing character sheet onto the next one.
+			They are basically just input fields except we've selected them already and hidden them so the user can't change them. -->
+				<input type="hidden" th:field="*{charId}" th:value="*{charId}" /> <input
+					type="hidden" th:field="*{charRace.raceName}"
+					th:value="*{charRace.raceName}" /> <input type="hidden"
+					th:field="*{charClass.name}" th:value="*{charClass.name}" /> <input
+					type="hidden" th:field="*{strength}" th:value="*{strength}" /> <input
+					type="hidden" th:field="*{con}" th:value="*{con}" /> <input
+					type="hidden" th:field="*{dex}" th:value="*{dex}" /> <input
+					type="hidden" th:field="*{intelligence}" th:value="*{intelligence}" />
+				<input type="hidden" th:field="*{wisdom}" th:value="*{wisdom}" /> <input
+					type="hidden" th:field="*{charisma}" th:value="*{charisma}" />
+
+				<div class="col-sm-9 col-8">
+					<div id="section11"
+						style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue;">
+
+						<div id="section12"
+							style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center; padding: 5%;">
+							<h1>Weapons</h1>
+							<h3>I want to have...</h3>
+							<select th:field="*{weapon1}" name="weaponpick1"
+								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:text="*{charClass.weapon1.weaponName}" th:value="*{charClass.weapon1.weaponName}"/>
-								<option th:text="*{charClass.weapon2.weaponName}" th:value="*{charClass.weapon2.weaponName}"/>
-								<option th:text="*{charClass.weapon3.weaponName}" th:value="*{charClass.weapon3.weaponName}"/>
+								<option th:text="*{charClass.weapon1.weaponName}"
+									th:value="*{charClass.weapon1.weaponName}" />
+								<option th:text="*{charClass.weapon2.weaponName}"
+									th:value="*{charClass.weapon2.weaponName}" />
+								<option th:text="*{charClass.weapon3.weaponName}"
+									th:value="*{charClass.weapon3.weaponName}" />
 							</select>
-						<h1>And a...</h1>
-							<select th:field="*{weapon2}" name="weaponpick2" class="custom-select-lg"
+							<h1>And a...</h1>
+							<select th:field="*{weapon2}" name="weaponpick2"
+								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:text="*{charClass.weapon1.weaponName}" th:value="*{charClass.weapon1.weaponName}"/>
-								<option th:text="*{charClass.weapon2.weaponName}" th:value="*{charClass.weapon2.weaponName}"/>
-								<option th:text="*{charClass.weapon3.weaponName}" th:value="*{charClass.weapon3.weaponName}"/>
+								<option th:text="*{charClass.weapon1.weaponName}"
+									th:value="*{charClass.weapon1.weaponName}" />
+								<option th:text="*{charClass.weapon2.weaponName}"
+									th:value="*{charClass.weapon2.weaponName}" />
+								<option th:text="*{charClass.weapon3.weaponName}"
+									th:value="*{charClass.weapon3.weaponName}" />
 							</select>
-					</div>
+						</div>
 
-					<div id="section21"
-						style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7);">
-						<div id="itemCarousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<div class="cards-wrapper">
-										<div class="col-sm-12">
-											<div class="card-body"
-												style="text-align: center; padding: 10%;">
-												<h1 class="card-title">Items</h1>
-												<p class="card-text"
-													style="margin: 10px; font-size: large;">Some handy items
-													that you might find good use for</p>
+						<div id="section21"
+							style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7);">
+							<div id="itemCarousel" class="carousel slide"
+								data-ride="carousel">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<div class="cards-wrapper">
+											<div class="col-sm-12">
+												<div class="card-body"
+													style="text-align: center; padding: 5%;">
+													<h1 class="card-title">Items</h1>
+													<p class="card-text"
+														style="margin: 10px; font-size: large;">Some handy
+														items that you might find good use for</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div th:each="item: ${items}" class="carousel-item">
-									<div class="cards-wrapper">
-										<div class="col-sm-12">
-											<div class="card-body"
-												style="text-align: center; padding: 10%;">
-												<h5 class="card-title" th:text="${item.itemName}">Product
-													name</h5>
-												<p class="card-text" th:text="${item.details}"
-													style="margin: 10px; font-size: x-large;">Price</p>
+									<div th:each="item: ${items}" class="carousel-item">
+										<div class="cards-wrapper">
+											<div class="col-sm-12">
+												<div class="card-body"
+													style="text-align: center; padding: 5%;">
+													<h5 class="card-title" th:text="${item.itemName}"></h5>
+													<p class="card-text" th:text="${item.details}"
+														style="margin: 10px; font-size: x-large;"></p>
+												</div>
 											</div>
 										</div>
 									</div>
+									<a class="carousel-control-prev" href="#itemCarousel"
+										role="button" data-slide="prev"> <span
+										class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next" href="#itemCarousel"
+										role="button" data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
 								</div>
-								<a class="carousel-control-prev" href="#itemCarousel"
-									role="button" data-slide="prev"> <span
-									class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-									class="sr-only">Previous</span>
-								</a> <a class="carousel-control-next" href="#itemCarousel"
-									role="button" data-slide="next"> <span
-									class="carousel-control-next-icon" aria-hidden="true"></span> <span
-									class="sr-only">Next</span>
-								</a>
 							</div>
 						</div>
-					</div>
-					<div id="section22"
-						style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 15%;">
-						<h1>Items</h1>
-						<h3>I want to have...</h3>
-							<select th:field="*{item1}" name="itempick1" class="custom-select-lg"
+						<div id="section22"
+							style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 5%;">
+							<h1>Items</h1>
+							<h3>I want to have...</h3>
+							<select th:field="*{item1}" name="itempick1"
+								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="item: ${items}"
-									th:text="${item.itemName}" th:value="${item.itemName}"/>
+								<option th:each="item: ${items}" th:text="${item.itemName}"
+									th:value="${item.itemName}" />
 							</select>
-						<h1>and...</h1>
-							<select th:field="*{item2}" name="itempick2" class="custom-select-lg"
+							<h1>and...</h1>
+							<select th:field="*{item2}" name="itempick2"
+								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="item: ${items}"
-									th:text="${item.itemName}" th:value="${item.itemName}"/>
+								<option th:each="item: ${items}" th:text="${item.itemName}"
+									th:value="${item.itemName}" />
 							</select>
-						<h1>and...</h1>
-							<select th:field="*{item3}" name="itempick3" class="custom-select-lg"
+							<h1>and...</h1>
+							<select th:field="*{item3}" name="itempick3"
+								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="item: ${items}"
-									th:text="${item.itemName}" th:value="${item.itemName}"/>
+								<option th:each="item: ${items}" th:text="${item.itemName}"
+									th:value="${item.itemName}" />
 							</select>
-					</div>
-					<div id="section31"
-						style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;">
-						<h1>Spells</h1>
-						<h3>I want to have...</h3>
-							<select th:field="*{spell1}" name="spell1" class="custom-select-lg"
+						</div>
+							<div id="section31" style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;">
+							<div id="spellCarousel" class="carousel slide"
+								data-ride="carousel">
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<div class="cards-wrapper">
+											<div class="col-sm-12">
+												<div class="card-body"
+													style="text-align: center; padding: 5%;">
+													<h1 class="card-title">Spells</h1>
+													<p class="card-text"
+														style="margin: 10px; font-size: large;">Select the magic spells you want to have!</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div th:each="spell: ${spells}" class="carousel-item">
+										<div class="cards-wrapper">
+											<div class="col-sm-12">
+												<div class="card-body"
+													style="text-align: center; padding: 5%;">
+													<h5 class="card-title" th:text="${spell.name}"></h5>
+													<p class="card-text" th:text="${spell.details}"
+														style="margin: 10px; font-size: x-large;"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<a class="carousel-control-prev" href="#spellCarousel"
+										role="button" data-slide="prev"> <span
+										class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next" href="#spellCarousel"
+										role="button" data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div id="section32"
+							style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;">
+							<h1>Spells</h1>
+							<h3>I want to have...</h3>
+							<select th:field="*{spell1}" name="spell1"
+								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="spell: ${spells}"
-									th:text="${spell.name}" th:value="${spell.name}"/>
+								<option th:each="spell: ${spells}" th:text="${spell.name}"
+									th:value="${spell.name}" />
 							</select>
-					</div>
-					<div id="section32"
-						style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
-						<h1>Let's move on!</h1>
-					
-								<a th:href="@{/charsheetpage}"> <input type="submit" class="btn btn-danger" style="padding: 5%; margin: 30%;"/>
-								</a>
+							<h3>I want to have...</h3>
+							<select th:field="*{spell2}" name="spell2"
+								class="custom-select-lg"
+								style="padding: 10px; -webkit-text-fill-color: black;">
+								<option th:each="spell: ${spells}" th:text="${spell.name}"
+									th:value="${spell.name}" />
+							</select>
+							<h3>I want to have...</h3>
+							<select th:field="*{spell3}" name="spell3"
+								class="custom-select-lg"
+								style="padding: 10px; -webkit-text-fill-color: black;">
+								<option th:each="spell: ${spells}" th:text="${spell.name}"
+									th:value="${spell.name}" />
+							</select>
+							<h3>I want to have...</h3>
+							<select th:field="*{spell4}" name="spell4"
+								class="custom-select-lg"
+								style="padding: 10px; -webkit-text-fill-color: black;">
+								<option th:each="spell: ${spells}" th:text="${spell.name}"
+									th:value="${spell.name}" />
+							</select>
+							<h3>I want to have...</h3>
+							<select th:field="*{spell5}" name="spell5"
+								class="custom-select-lg"
+								style="padding: 10px; -webkit-text-fill-color: black;">
+								<option th:each="spell: ${spells}" th:text="${spell.name}"
+									th:value="${spell.name}" />
+							</select>
+						</div>
+						<div id="section4"
+							style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
+							<h1>Let's move on!</h1>
+
+							<a th:href="@{/charsheetpage}"> <input type="submit"
+								class="btn btn-danger" style="padding: 5%; margin: 10%;" />
+							</a>
+						</div>
 					</div>
 				</div>
+
 			</div>
-			
 		</div>
-		</div>
-		</form>
+	</form>
 </body>
 
 </html>
