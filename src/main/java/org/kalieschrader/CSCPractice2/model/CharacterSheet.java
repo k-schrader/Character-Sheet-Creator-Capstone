@@ -3,6 +3,12 @@ package org.kalieschrader.CSCPractice2.model;
 
 import java.util.Objects;
 
+import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,6 +39,7 @@ private int dex;
 private int intelligence;
 private int wisdom;
 private int charisma;
+
 
 
 public CharacterSheet(Integer charId, String username, String charName, int hitPoints, int armorClass,
@@ -293,7 +300,8 @@ public String toString() {
 			+ ", spell4=" + spell4 + ", spell5=" + spell5 + "]";
 }
 
+    }
 
-}
+
 
 

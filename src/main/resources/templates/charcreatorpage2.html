@@ -32,7 +32,7 @@ div.col-8 div {
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-<form th:action="@{/page2}" th:object="${characterSheet}" method="post">
+<form th:action="@{/page2/{charId}(charId = ${charId})}" th:object="${characterSheet}" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-sm-3 col-4" id="myScrollspy">

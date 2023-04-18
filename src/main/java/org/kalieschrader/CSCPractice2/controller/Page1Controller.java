@@ -25,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,7 +58,7 @@ public class Page1Controller {
 	@Autowired
 	private SpellsRepository spellsRepo;
 	@Autowired
-	public ModelController modelController;
+	private ModelController modelController;
 
 	
 	@ModelAttribute("characterSheet")
@@ -72,11 +74,17 @@ public class Page1Controller {
 		model.addAttribute("classes", charClassRepo.findAll());
 		return "charcreatorpage1";
 	}
-	
+	@PostMapping("/page1")   
+	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
+	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
+	   model.addAttribute("characterSheet", savedCharSheet);
+       return "redirect:page2/"+savedCharSheet.getCharId();
+	}
 	  @GetMapping(value = "/page2/{charId}")
 	    public String submit(@PathVariable("charId") Integer charId, Model model) {
 		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
 		  model.addAttribute("characterSheet", characterSheet);
+		  model.addAttribute("charId", charId);
 		  model.addAttribute("items", itemRepo.findAll());
 		  List<Spells> spellsList = new ArrayList<Spells>();
 		  String className = characterSheet.getCharClass().getName();
@@ -88,16 +96,7 @@ public class Page1Controller {
 		  model.addAttribute("spells", spellsList);
 	      return "charcreatorpage2";
 	    }
-	  
-		@PostMapping("/page2/{charId}")   
-		public String updateCharacterSheet2(@PathVariable("charId") Integer charId, Model model){
-		  // ResponseEntity<CharacterSheet> savedCharSheet = modelController.updateCharacterSheet(charSheet.getCharId(), charSheet);
-		   
-			   CharacterSheet existingCharSheet = charSheetRepo.findByCharId(charId);
-			   CharacterSheet savedCharSheet = modelController.updateCharacterSheet(charId, existingCharSheet);
-			   model.addAttribute("characterSheet", savedCharSheet);
-			return "redirect:charsheetpage/"+charId;
-		} 
+	
 	  @GetMapping(value = "/charsheetpage/{charId}")
 	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
 		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
@@ -108,6 +107,28 @@ public class Page1Controller {
 			return "charsheetpage";
 		}
 	
+		@PostMapping("/page2/{charId}")   
+		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, @PathVariable Integer charId, Model model){
+			logger.info("character sheet = "+characterSheet.toString());
+			logger.info("char ID = "+charId);
+		    CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
+		    logger.info("saved character sheet = "+savedCharSheet.toString());
+		    model.addAttribute("characterSheet", savedCharSheet);
+	        return "redirect:charsheetpage/"+characterSheet.getCharId();
+		}
+	  
+//		@PostMapping("/page2")  
+//		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
+//		  // ResponseEntity<CharacterSheet> savedCharSheet = modelController.updateCharacterSheet(charSheet.getCharId(), charSheet);
+//		   logger.info(characterSheet.toString());
+//			   CharacterSheet existingCharSheet = charSheetRepo.findByCharId(characterSheet.getCharId());
+//			  // CharacterSheet savedCharSheet = modelController.updateCharacterSheet(characterSheet.getCharId(), existingCharSheet);
+//			  charSheetRepo.save(existingCharSheet);
+////			   model.addAttribute("characterSheet", existingCharSheet);
+//			return "redirect:charsheetpage/"+characterSheet.getCharId();
+////			   return (ResponseEntity<CharacterSheet>) ResponseEntity.created(URI.create("/charsheetpage/" + existingCharSheet.getCharId()));
+//			} 
+
 //	@GetMapping("/page1")
 //	public ModelAndView getAllAttributes() {
 //		ModelAndView mav = new ModelAndView("charcreatorpage1"); //This is the page referenced, so the HTML file. It can match what's passed in above, but doesn't always
@@ -142,12 +163,6 @@ public class Page1Controller {
 //	}
 	
 
-	@PostMapping("/page1")   
-	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
-	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
-	   model.addAttribute("characterSheet", savedCharSheet);
-       return "redirect:page2/"+savedCharSheet.getCharId();
-	}
 	   
 	 
 }

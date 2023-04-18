@@ -10,4 +10,8 @@ public interface CharacterSheetRepository extends JpaRepository<CharacterSheet, 
 
 	void deleteByCharId(Integer charId);
 
+	
+	
+	
+
 }

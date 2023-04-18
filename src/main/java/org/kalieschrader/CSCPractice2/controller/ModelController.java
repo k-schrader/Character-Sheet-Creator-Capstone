@@ -223,7 +223,6 @@ public CharacterSheet updateCharacterSheet(@PathVariable Integer charId, @Reques
 			 }
 	   CharacterSheet savedCharSheet = charSheetRepo.save(existingCharSheet);
         return savedCharSheet;
-    }
 }
-
+}
 
