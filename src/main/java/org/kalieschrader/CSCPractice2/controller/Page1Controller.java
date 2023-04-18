@@ -56,7 +56,8 @@ public class Page1Controller {
 	@Autowired
 	private SpellsRepository spellsRepo;
 	@Autowired
-	private FormattingService formatting;
+	public ModelController modelController;
+
 	
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
@@ -87,10 +88,22 @@ public class Page1Controller {
 		  model.addAttribute("spells", spellsList);
 	      return "charcreatorpage2";
 	    }
+	  
+		@PostMapping("/page2/{charId}")   
+		public String updateCharacterSheet2(@PathVariable("charId") Integer charId, Model model){
+		  // ResponseEntity<CharacterSheet> savedCharSheet = modelController.updateCharacterSheet(charSheet.getCharId(), charSheet);
+		   
+			   CharacterSheet existingCharSheet = charSheetRepo.findByCharId(charId);
+			   CharacterSheet savedCharSheet = modelController.updateCharacterSheet(charId, existingCharSheet);
+			   model.addAttribute("characterSheet", savedCharSheet);
+			return "redirect:charsheetpage/"+charId;
+		} 
 	  @GetMapping(value = "/charsheetpage/{charId}")
 	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
-		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); 
-			model.addAttribute("characterSheet", characterSheet);
+		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
+		  logger.info(characterSheet.toString());
+		  FormattingService formatting = new FormattingService(characterSheet);
+			//model.addAttribute("characterSheet", characterSheet);
 			model.addAttribute("formatting", formatting);
 			return "charsheetpage";
 		}

@@ -293,4 +293,7 @@ public String toString() {
 			+ ", spell4=" + spell4 + ", spell5=" + spell5 + "]";
 }
 
+
 }
+
+

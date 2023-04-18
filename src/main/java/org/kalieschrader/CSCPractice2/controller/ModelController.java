@@ -7,12 +7,14 @@ import java.util.Optional;
 import org.kalieschrader.CSCPractice2.model.Armor;
 import org.kalieschrader.CSCPractice2.model.CharacterClass;
 import org.kalieschrader.CSCPractice2.model.CharacterRace;
+import org.kalieschrader.CSCPractice2.model.CharacterSheet;
 import org.kalieschrader.CSCPractice2.model.Item;
 import org.kalieschrader.CSCPractice2.model.Spells;
 import org.kalieschrader.CSCPractice2.model.Weapon;
 import org.kalieschrader.CSCPractice2.repository.ArmorRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterClassRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterRaceRepository;
+import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
 import org.kalieschrader.CSCPractice2.repository.ItemRepository;
 import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
 import org.kalieschrader.CSCPractice2.repository.WeaponRepository;
@@ -45,6 +47,8 @@ public class ModelController {
 	private WeaponRepository weaponRepo;
 	@Autowired
 	private ArmorRepository armorRepo;
+	@Autowired
+	private CharacterSheetRepository charSheetRepo;
 	
 	//CLASSES
    @GetMapping("/class")
@@ -191,6 +195,35 @@ public ResponseEntity<Armor> createArmor(@RequestBody Armor armor){
     return ResponseEntity.created(URI.create("/armor/" + savedArmor.getArmorName())).body(savedArmor);
 
 }
+@PutMapping("/charsheet/{charId}")
+public CharacterSheet updateCharacterSheet(@PathVariable Integer charId, @RequestBody CharacterSheet charSheet){
+	   CharacterSheet existingCharSheet = charSheetRepo.findByCharId(charId);
+		 if(!(charSheet.getCharName().isEmpty())) {
+			   existingCharSheet.setCharName(charSheet.getCharName());
+			 }if(!(charSheet.getHitPoints() == 0)){
+			   existingCharSheet.setHitPoints(charSheet.getHitPoints());
+			 }if(!(charSheet.getArmorClass() == 0)){
+			   existingCharSheet.setArmorClass(charSheet.getArmorClass());
+			 }if(!(charSheet.getSpellSaveDC().isEmpty())){
+			   existingCharSheet.setSpellSaveDC(charSheet.getSpellSaveDC());
+			 }if(!(charSheet.getSpellAttack().isEmpty())){
+			   existingCharSheet.setSpellAttack(charSheet.getSpellAttack());
+			 }if(!(charSheet.getStrength() == 0)){
+			   existingCharSheet.setStrength(charSheet.getStrength());
+			 }if(!(charSheet.getCon() == 0)){
+			   existingCharSheet.setCon(charSheet.getCon());
+			 }if(!(charSheet.getDex() == 0)){
+			   existingCharSheet.setDex(charSheet.getDex());
+			 }if(!(charSheet.getIntelligence() == 0)){
+			   existingCharSheet.setIntelligence(charSheet.getIntelligence());
+			 }if(!(charSheet.getWisdom() == 0)){
+			   existingCharSheet.setWisdom(charSheet.getWisdom());
+			 }if(!(charSheet.getWisdom() == 0)){
+			   existingCharSheet.setCharisma(charSheet.getCharisma());
+			 }
+	   CharacterSheet savedCharSheet = charSheetRepo.save(existingCharSheet);
+        return savedCharSheet;
+    }
 }
 
 
