@@ -46,10 +46,10 @@ footer {
 		<div>
 
 			<nav class="nav nav-masthead justify-content-center float-md-end">
-				<a class="nav-link" href="index.html">Home</a> <a class="nav-link"
-					href="newcharacterstart.html">Create a new character</a> <a
+				<a class="nav-link" th:href="@{/index}">Home</a> <a class="nav-link"
+					th:href="@{/newcharacterstart}">Create a new character</a> <a
 					class="nav-link" href="#">See your old characters</a> <a
-					class="nav-link" href="register.html">Logout</a>
+					class="nav-link" th:href="@{/register}">Logout</a>
 			</nav>
 		</div>
 	</header>
@@ -57,79 +57,6 @@ footer {
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-sm-3 well">
-<!-- 				<table class="table table-bordered table-striped"> -->
-
-<!-- 					<thead> -->
-<!-- 						<tr> -->
-<!-- 							<th>playerName</th> -->
-<!-- 							<th>modStrength</th> -->
-<!-- 							<th>modDexterity</th> -->
-<!-- 							<th>modCon</th> -->
-<!-- 							<th>modIntelligence</th> -->
-<!-- 							<th>modWisdom</th> -->
-<!-- 							<th>modCharisma</th> -->
-<!-- 							<th>modAcrobatics</th> -->
-<!-- 							<th>modAnimalHandling</th> -->
-<!-- 							<th>modArcana</th> -->
-<!-- 							<th>modAthletics</th> -->
-<!-- 							<th>modDeception</th> -->
-<!-- 							<th>modHistory</th> -->
-<!-- 							<th>modInsight</th> -->
-<!-- 							<th>modIntimidation</th> -->
-<!-- 							<th>modInvestigation</th> -->
-<!-- 							<th>modMedicine</th> -->
-<!-- 							<th>modNature</th> -->
-<!-- 							<th>modPerception</th> -->
-<!-- 							<th>modPerformance</th> -->
-<!-- 							<th>modPersuasion</th> -->
-<!-- 							<th>modReligion</th> -->
-<!-- 							<th>modSleightOfHand</th> -->
-<!-- 							<th>modStealth</th> -->
-<!-- 							<th>modSurvival</th> -->
-<!-- 							<th>hitdie</th> -->
-<!-- 							<th>speed</th> -->
-<!-- 							<th>weapon1</th> -->
-<!-- 							<th>weapon2</th> -->
-<!-- 							<th>item1</th> -->
-<!-- 							<th>item2</th> -->
-<!-- 							<th>item3</th> -->
-<!-- 							<th>languages</th> -->
-<!-- 							<th>spell1</th> -->
-<!-- 							<th>spell2</th> -->
-<!-- 							<th>spell3</th> -->
-<!-- 							<th>spell4</th> -->
-<!-- 							<th>spell5</th> -->
-<!-- 							<th>classFeature1</th> -->
-<!-- 							<th>classFeature2</th> -->
-<!-- 							<th>classFeature3</th> -->
-<!-- 							<th>racialFeature1</th> -->
-<!-- 							<th>racialFeature2</th> -->
-<!-- 							<th>racialFeature3</th> -->
-<!-- 							<th>charName</th> -->
-<!-- 							<th>charRace</th> -->
-<!-- 							<th>charClass</th> -->
-<!-- 							<th>armor</th> -->
-<!-- 							<th>hitPoints</th> -->
-<!-- 							<th>armorClass</th> -->
-<!-- 							<th>spellSaveDC</th> -->
-<!-- 							<th>spellAttack</th> -->
-<!-- 							<th>charSheet ID</th> -->
-<!-- 						</tr> -->
-<!-- 					</thead> -->
-<!-- 					<tbody> -->
-<!-- 						<tr> -->
-<!-- 							<td>playerName empty</td> -->
-
-<!-- 							<td th:text="${formatting.charName}" /> -->
-<!-- 							<td th:text="${formatting.armor.armorName}" /> -->
-<!-- 							<td th:text="${formatting.spellSaveDC}" /> -->
-<!-- 							<td th:text="${formatting.spellAttack}" /> -->
-<!-- 							<td th:text="${formatting.charSheet.charId}" /> -->
-<!-- 						</tr> -->
-<!-- 					</tbody> -->
-
-<!-- 				</table> -->
-
 				<div class="well">
 					<p>Strength</p>
 					<p th:text="'+ ' +${formatting.modStrength}"></p>
@@ -230,12 +157,14 @@ footer {
 
 					<div class="col-sm-12">
 						<div class="well">
-							<p th:text="'Weapon 1: '+${formatting.weapon1.weaponName}"/>
-							<p th:text="'Damage on hit: 1d'+ ${formatting.weapon1.damageDie}"/>
+							<h3 th:text="'Weapon 1: '+${formatting.weapon1.weaponName}"/></h3>
+							<p th:text="'To hit: 1d20 + '+${formatting.toHit1}"/>
+							<p th:text="'Damage on hit: 1d'+ ${formatting.weapon1.damageDie} +'+'+ ${formatting.toHit1}"/>
 							<p th:text="'Range: '+${formatting.weapon1.weaponRange}"/>
 							<p th:text="'Details: '+${formatting.weapon1.details}"/></p>
-							<p th:text="'Weapon 2: '+${formatting.weapon2.weaponName}"/>
-							<p th:text="'Damage on hit: 1d'+ ${formatting.weapon2.damageDie}"/>
+							<h3 th:text="'Weapon 2: '+${formatting.weapon2.weaponName}"/></h3>
+							<p th:text="'To hit: 1d20 + '+${formatting.toHit2}"/>
+							<p th:text="'Damage on hit: 1d'+ ${formatting.weapon2.damageDie} +'+'+ ${formatting.toHit2}"/>
 							<p th:text="'Range: '+${formatting.weapon2.weaponRange}"/>
 							<p th:text="'Details: '+${formatting.weapon2.details}"/></p>
 						</div>
@@ -243,35 +172,50 @@ footer {
 				</div>
 				<div class="row">
 
-					<div class="col-sm-12">
+					<div class="col-sm-12" th:unless = '${formatting.spell1 == null}'>
 						<div class="well">
-						<h3 th:text="'Spell Save DC: '+${formatting.spellSaveDC}"></h3>
-							<h3 th:text="'Spell Attack Modifier: '+${formatting.spellAttack}"></h3>
-							<h4 th:text="${formatting.spell1.name}"></h4> 
+						<a href="#" data-mdb-toggle="tooltip"
+							title="You can cast this many level 1 spells before resting!" 
+							class="label label-info" th:text="'Spell Slots: '+${formatting.spellSlots}"></a>
+							<a href="#" data-mdb-toggle="tooltip"
+							title="If a spell is level 0, you can cast it as many times as you want without using a spell slot!" 
+							class="label label-info" th:text="'Cantrips'"></a>
+								<a href="#" data-mdb-toggle="tooltip"
+							title="This is the number enemies have to roll on a saving throw!" 
+							class="label label-info" th:text="'Spell Save DC: '+${formatting.spellSaveDC}"></a>
+							<a href="#" data-mdb-toggle="tooltip"
+							title="Add this number when you roll to attack with a spell!" 
+							class="label label-info" th:text="'Spell Attack Modifier: +'+${formatting.spellAttack}"></a>
+							<h3 th:text="${formatting.spell1.name}"></h3> 
+							<p th:text="'Spell level: '+${formatting.spell1.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell1.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell1.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell1.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell1.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell1.details}" /> 
-							<p th:text="${formatting.spell2.name}" />
+							<h3 th:text="${formatting.spell2.name}"></h3> 
+							<p th:text="'Spell level: '+${formatting.spell2.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell2.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell2.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell2.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell2.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell2.details}" /> 
- 							<p th:text="${formatting.spell3.name}" /> 
+ 							<h3 th:text="${formatting.spell3.name}"></h3> 
+ 							<p th:text="'Spell level: '+${formatting.spell3.castingLevel}" /> 
 							<p th:text="'Time to cast: '+${formatting.spell3.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell3.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell3.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell3.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell3.details}" /> 
-							<p th:text="${formatting.spell4.name}" />
+							<h3 th:text="${formatting.spell4.name}"></h3> 
+							<p th:text="'Spell level: '+${formatting.spell4.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell4.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell4.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell4.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell4.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell4.details}" /> 
-							<p th:text="${formatting.spell5.name}" />
+							<h3 th:text="${formatting.spell5.name}"></h3> 
+							<p th:text="'Spell level: '+${formatting.spell5.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell5.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell5.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell5.duration}" />  
@@ -336,6 +280,10 @@ footer {
                         title="You can speak these languages"><strong>Languages:</strong></a>
                     <p th:text="${formatting.languages}"></p>
                     <p>Common</p>
+                </div>
+                 <div class="thumbnail">
+                    <p th:text="${formatting.charClass.name} + 's wear '+${formatting.charClass.armor.armorName}+' armor'"></p>
+                    <p th:text="${formatting.charClass.armor.details}"></p>
                 </div>
 
             </div>

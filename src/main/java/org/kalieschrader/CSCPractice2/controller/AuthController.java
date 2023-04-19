@@ -41,6 +41,11 @@ public class AuthController {
 	    public String login(){
 	        return "login";
 	    }
+	    
+	    @GetMapping("/newcharacterstart")
+	    public String start(){
+	        return "newcharacterstart";
+	    }
 
 	    // handler method to handle user registration form request
 	    @GetMapping("/register")

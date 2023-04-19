@@ -11,6 +11,7 @@ import org.kalieschrader.CSCPractice2.model.CharacterSheet;
 import org.kalieschrader.CSCPractice2.model.Item;
 import org.kalieschrader.CSCPractice2.model.Spells;
 import org.kalieschrader.CSCPractice2.model.Weapon;
+import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,9 @@ public class FormattingService {
 	 private int modSurvival;
 	 private int hitdie;
 	 private int speed;
+	 private int toHit1;
+	 private int toHit2;
+	 private int spellSlots;
 	 private Weapon weapon1;
 	 private Weapon weapon2;
 	 private Item item1;
@@ -77,6 +81,8 @@ public class FormattingService {
 	 public FormattingService() {}
 	 
 	 Logger logger = LoggerFactory.getLogger(FormattingService.class);
+	 
+	 SpellsRepository spellRepo;
 	
 public FormattingService(CharacterSheet charSheet) {
 	this.charSheet=charSheet;
@@ -84,8 +90,11 @@ public FormattingService(CharacterSheet charSheet) {
 	setSkillScores();
 	setHitPoints();
 	setArmorClass();
+	setWeapon1Modifier();
+	setWeapon2Modifier();
 	setSpellModifiers();
 	setHitDie();
+	setSpellSlots();
 	setSpeed();
 	setWeapon1(); 
 	setWeapon2(); 
@@ -156,6 +165,9 @@ public FormattingService(CharacterSheet charSheet) {
 	 public void setArmorClass() {
 		 armorClass=charSheet.getCharClass().getArmor().getAcBonus()+modDexterity+10;
 	 }
+	 public void setSpellSlots() {
+		 spellSlots=charSheet.getCharClass().getSpellSlots();
+	 }
 
 	 public void setSpellModifiers() {
 		 String spellModifier = charSheet.getCharClass().getSpellModifier();
@@ -169,6 +181,26 @@ public FormattingService(CharacterSheet charSheet) {
 		 }
 		 spellSaveDC=10+spellPlus;
 		 spellAttack=2+spellPlus;
+	 }
+	 public void setWeapon1Modifier() {
+		 String weaponModifier = charSheet.getWeapon1().getSkillMod();
+		 int weaponPlus = 0;
+		 if(("Strength").equals(weaponModifier)) {
+			 weaponPlus=modStrength;
+		 }else if (("Dexterity").equals(weaponModifier)) {
+			 weaponPlus=modDexterity;
+		 }
+		 toHit1=weaponPlus;
+	 }
+	 public void setWeapon2Modifier() {
+		 String weaponModifier = charSheet.getWeapon2().getSkillMod();
+		 int weaponPlus = 0;
+		 if(("Strength").equals(weaponModifier)) {
+			 weaponPlus=modStrength;
+		 }else if (("Dexterity").equals(weaponModifier)) {
+			 weaponPlus=modDexterity;
+		 }
+		 toHit2=weaponPlus;
 	 }
 	 
 	 public void setLanguages() {
@@ -211,6 +243,7 @@ public FormattingService(CharacterSheet charSheet) {
 	 public void setSpell5() {
 		 this.spell5=charSheet.getSpell5();
 	 }
+	
 	 public void setClassFeature1() {
 		 this.classFeature1=charSheet.getCharClass().getClassFeat1();
 	 }
@@ -247,6 +280,16 @@ public FormattingService(CharacterSheet charSheet) {
 	public String getPlayerName() {
 		return playerName;
 	}
+	public int getToHit1() {
+		return toHit1;
+	}
+	public int getToHit2() {
+		return toHit2;
+	}
+	public int getSpellSlots() {
+		return spellSlots;
+	}
+	
 	public int getModStrength() {
 		return modStrength;
 	}

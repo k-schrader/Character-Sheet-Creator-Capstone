@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="background-image: url('../Images/fantasyHome.jpg'); height: 100%;background-repeat: no-repeat;background-attachment: fixed;
+    <div class="container-fluid" style="background-image: url('images/fantasyHome.jpg'); height: 100%;background-repeat: no-repeat;background-attachment: fixed;
     background-size: cover; text-align: center;">
         <div class="row" style="height: 1500px;">
             <div class="col-sm-6 col-md-6"
@@ -32,16 +32,19 @@
                             imagined.</li>
                         <li>Dungeons and Dragons is a great exercise in creativity and group problem solving for your
                             child!</li>
-                        <li>The calculation of dice rolls is a fun and enganging math practice.</li>
+                        <li>The calculation of dice rolls is a fun and engaging math practice.</li>
                         <li> <strong>Though violence is not a necessary part of the game, mixing swords and monsters usually
                             results in sword fighting. 
                             Parents should be aware of this and advise/monitor younger children as they see fit!</strong></li>
                     </ul>
                 </form>
 
-                <a href="register.html" class="btn btn-light btn-lg" role="button"
+                <a th:href="@{/register}" class="btn btn-light btn-lg" role="button"
                     style="-webkit-text-fill-color: black;">Back to Register!</a>
             </div>
+            </div>
+            </div>
+            
 </body>
 
 </html>

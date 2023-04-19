@@ -1,40 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+<meta charset="ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Home Page</title>
 
-</head>
-<body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Character Sheet Creator</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="#">See past characters</a>
-                    <a class="nav-link" th:href="@{newcharacterstart.html}">Make a new character</a>
+    <style>
+        .nav-masthead .nav-link {
+            padding: .25rem 0;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .5);
+            background-color: transparent;
+            border-bottom: .25rem solid transparent;
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+            border-bottom-color: rgba(255, 255, 255, .25);
+        }
+
+        .nav-masthead .nav-link+.nav-link {
+            margin-left: 1rem;
+        }
+    </style>
+    </head>
+    <body class="d-flex h-100 text-center text-white bg-dark">
+        <div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column"
+            style="background-image: url('/images/fantasyHome.jpg');">
+            <header class="mb-auto">
+                <div>
+                    <h3 class="float-md-start mb-0">Welcome Adventurer</h3>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" th:href="@{newcharacterstart.html}">Create a new character</a>
+                        <a class="nav-link" href="#">See your old characters</a>
+                        <a class="nav-link" th:href="@{register.html}">Logout</a>
+                    </nav>
                 </div>
-            </div>
+            </header>
+            <div class="px-3" style="padding: 15%;">
+                <h1>Bring your character to life</h1>
+                <p class="lead">With this website, you can create your own character for Dungeons and Dragons 5th edition.<br> 
+                    Select their race, class, magical abilites, weapons, and more!<br>
+                    With the character sheet you make here, you can gather with friends and play your very own D&D game.
+                </p>
+                </div>
+
+            
         </div>
-    </nav>
-            <div id="navbar" class="collapse navbar-collapse">
-           <ul class="nav navbar-nav">
-              <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-           </ul>
-        </div>
-    <div class="container-fluid" style="background-color: rgb(245, 222, 222);">
-        <h3>Right Aligned Navbar</h3>
-         
-    </div>
-   </body>
+    </body>
+
 </html>
