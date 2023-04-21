@@ -47,7 +47,7 @@ public CharacterSheet(Integer charId, String username, String charName, int hitP
 			Spells spell5) {
 		super();
 		this.charId = charId;
-		setUsername();
+		this.username = username;
 		this.charName = charName;
 		this.hitPoints = hitPoints;
 		this.armorClass = armorClass;
@@ -107,9 +107,8 @@ public void setCharId(Integer charId) {
 public String getUsername() {
 	return username;
 }
-public void setUsername() {
-	User user = new User();
-	this.username = user.getEmail();
+public void setUsername(String username) {
+	this.username = username;
 }
 public String getCharName() {
 	return charName;

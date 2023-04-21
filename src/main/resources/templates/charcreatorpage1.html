@@ -359,9 +359,8 @@ div.col-8 div {
 								style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 5%;">
 								<h1>I want to be a...</h1>
 <!-- 								Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> -->
-								<div th:text="${#authentication.principal.username}"></div>
+<!-- 								<div th:text="${#authentication.principal.username}"></div> -->
 <!-- 								<input type="hidden" th:field="*{username}" th:value="${#authentication.principal.username}" />  -->
-								<input type="hidden" th:field="${characterSheet.username}" th:value="VALERIER" /> 
 								<select name="class" class="custom-select-lg"
 									style="padding: 10px;" th:field="*{charClass}">
 									<option th:each="class:${classes}" th:value="${class.name}"

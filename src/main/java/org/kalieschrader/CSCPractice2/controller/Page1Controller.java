@@ -73,13 +73,16 @@ public class Page1Controller {
 	@GetMapping(value = "/page1")
 	public String viewPage(Model model) {
 		CharacterSheet charsheet = new CharacterSheet();
+		String charSheetUsername = "";
+		model.addAttribute("charSheetUsername", charSheetUsername);
 		model.addAttribute("characterSheet", charsheet);
 		model.addAttribute("races", characterRaceRepo.findAll());
 		model.addAttribute("classes", charClassRepo.findAll());
 		return "charcreatorpage1";
 	}
 	@PostMapping("/page1")   
-	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
+	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, @ModelAttribute("charSheetUsername") String charSheetUsername, Model model){
+		characterSheet.setUsername(charSheetUsername);
 	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
 	   model.addAttribute("characterSheet", savedCharSheet);
        return "redirect:page2/"+savedCharSheet.getCharId();
