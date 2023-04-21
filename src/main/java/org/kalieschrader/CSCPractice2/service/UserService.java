@@ -15,4 +15,6 @@ public interface UserService{
     User findUserByEmail(String email);
 
     List<UserDto> findAllUsers();
+
+	UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
 }

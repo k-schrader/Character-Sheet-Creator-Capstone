@@ -50,7 +50,7 @@ public class SpringSecurity{
           .requestMatchers("/newcharacterstart/**").permitAll()
           .requestMatchers("/images/**").permitAll()
           .requestMatchers("/characterSheet/**").permitAll()
-          .requestMatchers("/users").hasRole("ADMIN")
+          .requestMatchers("/users").hasRole("USER")
 //          .requestMatchers("/users").hasRole("USER")
 	                .and()
 	                .formLogin(

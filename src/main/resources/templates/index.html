@@ -43,7 +43,7 @@
                     <h3 class="float-md-start mb-0">Welcome Adventurer</h3>
                     <nav class="nav nav-masthead justify-content-center float-md-end">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" th:href="@{newcharacterstart.html}">Create a new character</a>
+                        <a class="nav-link" th:href="@{newcharacterstart}">Create a new character</a>
                         <a class="nav-link" href="#">See your old characters</a>
                         <a class="nav-link" th:href="@{register.html}">Logout</a>
                     </nav>
@@ -51,6 +51,8 @@
             </header>
             <div class="px-3" style="padding: 15%;">
                 <h1>Bring your character to life</h1>
+<!--                 Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>  -->
+                Logged user: <span sec:authentication="name">Bob</span>
                 <p class="lead">With this website, you can create your own character for Dungeons and Dragons 5th edition.<br> 
                     Select their race, class, magical abilites, weapons, and more!<br>
                     With the character sheet you make here, you can gather with friends and play your very own D&D game.

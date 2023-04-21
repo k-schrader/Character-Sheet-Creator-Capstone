@@ -17,9 +17,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+
 @Entity
 public class CharacterSheet {
 
@@ -43,18 +41,16 @@ private int charisma;
 
 
 public CharacterSheet(Integer charId, String username, String charName, int hitPoints, int armorClass,
-			String spellSaveDC, String spellAttack, int strength, int con, int dex, int intelligence, int wisdom,
-			int charisma, CharacterRace charRace, CharacterClass charClass, Weapon weapon1, Weapon weapon2, Armor armor,
+			int strength, int con, int dex, int intelligence, int wisdom,
+			int charisma, CharacterRace charRace, CharacterClass charClass, Weapon weapon1, Weapon weapon2,
 			Item item1, Item item2, Item item3, Spells spell1, Spells spell2, Spells spell3, Spells spell4,
 			Spells spell5) {
 		super();
 		this.charId = charId;
-		this.username = username;
+		setUsername();
 		this.charName = charName;
 		this.hitPoints = hitPoints;
 		this.armorClass = armorClass;
-		this.spellSaveDC = spellSaveDC;
-		this.spellAttack = spellAttack;
 		this.strength = strength;
 		this.con = con;
 		this.dex = dex;
@@ -65,7 +61,6 @@ public CharacterSheet(Integer charId, String username, String charName, int hitP
 		this.charClass = charClass;
 		this.weapon1 = weapon1;
 		this.weapon2 = weapon2;
-		this.armor = armor;
 		this.item1 = item1;
 		this.item2 = item2;
 		this.item3 = item3;
@@ -85,8 +80,6 @@ CharacterClass charClass;
 Weapon weapon1;
 @ManyToOne
 Weapon weapon2;
-@ManyToOne
-Armor armor;
 @ManyToOne
 Item item1;
 @ManyToOne
@@ -114,8 +107,9 @@ public void setCharId(Integer charId) {
 public String getUsername() {
 	return username;
 }
-public void setUsername(String username) {
-	this.username = username;
+public void setUsername() {
+	User user = new User();
+	this.username = user.getEmail();
 }
 public String getCharName() {
 	return charName;
@@ -207,12 +201,7 @@ public Weapon getWeapon2() {
 public void setWeapon2(Weapon weapon2) {
 	this.weapon2 = weapon2;
 }
-public Armor getArmor() {
-	return armor;
-}
-public void setArmor(Armor armor) {
-	this.armor = armor;
-}
+
 public Item getItem1() {
 	return item1;
 }
@@ -263,8 +252,8 @@ public void setSpell5(Spells spell5) {
 }
 @Override
 public int hashCode() {
-	return Objects.hash(armor, armorClass, charClass, charId, charName, charRace, charisma, con, dex, hitPoints,
-			intelligence, item1, item2, item3, spell1, spell2, spell3, spell4, spell5, spellAttack, spellSaveDC,
+	return Objects.hash(armorClass, charClass, charId, charName, charRace, charisma, con, dex, hitPoints,
+			intelligence, item1, item2, item3, spell1, spell2, spell3, spell4, spell5,
 			strength, username, weapon1, weapon2, wisdom);
 }
 @Override
@@ -276,16 +265,14 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	CharacterSheet other = (CharacterSheet) obj;
-	return Objects.equals(armor, other.armor) && armorClass == other.armorClass
-			&& Objects.equals(charClass, other.charClass) && Objects.equals(charId, other.charId)
+	return  Objects.equals(charClass, other.charClass) && Objects.equals(charId, other.charId)
 			&& Objects.equals(charName, other.charName) && Objects.equals(charRace, other.charRace)
 			&& charisma == other.charisma && con == other.con && dex == other.dex && hitPoints == other.hitPoints
 			&& intelligence == other.intelligence && Objects.equals(item1, other.item1)
 			&& Objects.equals(item2, other.item2) && Objects.equals(item3, other.item3)
 			&& Objects.equals(spell1, other.spell1) && Objects.equals(spell2, other.spell2)
 			&& Objects.equals(spell3, other.spell3) && Objects.equals(spell4, other.spell4)
-			&& Objects.equals(spell5, other.spell5) && Objects.equals(spellAttack, other.spellAttack)
-			&& Objects.equals(spellSaveDC, other.spellSaveDC) && strength == other.strength
+			&& Objects.equals(spell5, other.spell5) && strength == other.strength
 			&& Objects.equals(username, other.username) && Objects.equals(weapon1, other.weapon1)
 			&& Objects.equals(weapon2, other.weapon2) && wisdom == other.wisdom;
 }
@@ -295,7 +282,7 @@ public String toString() {
 			+ hitPoints + ", armorClass=" + armorClass + ", spellSaveDC=" + spellSaveDC + ", spellAttack=" + spellAttack
 			+ ", strength=" + strength + ", con=" + con + ", dex=" + dex + ", intelligence=" + intelligence
 			+ ", wisdom=" + wisdom + ", charisma=" + charisma + ", charRace=" + charRace + ", charClass=" + charClass
-			+ ", weapon1=" + weapon1 + ", weapon2=" + weapon2 + ", armor=" + armor + ", item1=" + item1 + ", item2="
+			+ ", weapon1=" + weapon1 + ", weapon2=" + weapon2 + ",  item1=" + item1 + ", item2="
 			+ item2 + ", item3=" + item3 + ", spell1=" + spell1 + ", spell2=" + spell2 + ", spell3=" + spell3
 			+ ", spell4=" + spell4 + ", spell5=" + spell5 + "]";
 }

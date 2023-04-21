@@ -25,6 +25,11 @@ import java.util.List;
 public class AuthController {
 
 	  private UserService userService;
+	  
+	  @ModelAttribute("user")
+	   public UserDto userDto() {
+	       return new UserDto();
+	   }
 
 	    public AuthController(UserService userService) {
 	        this.userService = userService;

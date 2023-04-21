@@ -1,6 +1,7 @@
 package org.kalieschrader.CSCPractice2.controller;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -77,7 +81,6 @@ public class Page1Controller {
 	@PostMapping("/page1")   
 	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
 	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
-	   //logger.info(savedCharSheet.toString());
 	   model.addAttribute("characterSheet", savedCharSheet);
        return "redirect:page2/"+savedCharSheet.getCharId();
 	}
@@ -96,6 +99,14 @@ public class Page1Controller {
 		  model.addAttribute("spells", spellsList);
 	      return "charcreatorpage2";
 	    }
+	  
+
+
+@GetMapping("/principal")
+public String getPrincipal(@CurrentSecurityContext(expression = "authentication.principal") 
+  Principal principal) { 
+    return principal.getName(); 
+}
 	
 //	  @GetMapping(value = "/charsheetpage/{charId}")
 //	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
@@ -122,6 +133,8 @@ public class Page1Controller {
 		    model.addAttribute("characterSheet", savedCharSheet);
 	        return "redirect:charsheetpage/"+characterSheet.getCharId();
 		}
+		
+		
 	  
 //		@PostMapping("/page2")  
 //		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){

@@ -1,3 +1,4 @@
+
 package org.kalieschrader.CSCPractice2.model;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ private String firstName;
           joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
           inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") }
   )
-  private List<Role> roles = new ArrayList<>();
+  private Collection<Role> roles;
 
 public User(String firstName, String email, String password) {
     this.firstName = firstName;
@@ -47,7 +48,7 @@ public User(String firstName, String email, String password, Collection<Role> ro
     this.firstName = firstName;
     this.email = email;
     this.password = password;
-    this.roles = (List<Role>) roles;
+    this.roles = roles;
 }
 public User() {}
 
@@ -63,8 +64,8 @@ public Collection<Role> getRoles() {
     return roles;
 }
 
-public void setRoles(Collection<Role> roles) {
-    this.roles = (List<Role>) roles;
+public void setRoles(Collection<Role> role) {
+    this.roles = role;
 }
 @Override
 public int hashCode() {
@@ -108,5 +109,6 @@ public String getFirstName() {
 public void setFirstName(String firstName) {
 	this.firstName = firstName;
 }
+
 
 }
