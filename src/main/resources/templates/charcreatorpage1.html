@@ -31,6 +31,12 @@ div.col-8 div {
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 	<form th:action="@{/page1}" th:object="${characterSheet}" method="post">
+	
+	
+
+		<!-- For some reason, we need to do "name" instead of "th:field" here. Don't ask me why, it's confusing -->
+		<input type="hidden" th:value="${#authentication.principal.username}" name="username" /> 
+		
 		<div class="container-fluid">
 			<div class="row">
 				<nav class="col-sm-3 col-4" id="myScrollspy">
@@ -358,9 +364,6 @@ div.col-8 div {
 							<div id="section22"
 								style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 5%;">
 								<h1>I want to be a...</h1>
-<!-- 								Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> -->
-<!-- 								<div th:text="${#authentication.principal.username}"></div> -->
-<!-- 								<input type="hidden" th:field="*{username}" th:value="${#authentication.principal.username}" />  -->
 								<select name="class" class="custom-select-lg"
 									style="padding: 10px;" th:field="*{charClass}">
 									<option th:each="class:${classes}" th:value="${class.name}"

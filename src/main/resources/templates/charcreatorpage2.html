@@ -34,6 +34,20 @@ div.col-8 div {
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 	<form th:action="@{/page2}" th:object="${characterSheet}"
 		th:method="post">
+		
+		<!-- We are using hidden values here to pass the information from the existing character sheet onto the next one.
+		They are basically just input fields except we've selected them already and hidden them so the user can't change them. -->
+		<input type="hidden" th:field-value="*{charId}" /> 
+		<input type="hidden" th:field-value="*{username}" /> 
+		<input type="hidden" th:field-value="*{charRace.raceName}" /> 
+		<input type="hidden" th:field-value="*{charClass.name}" /> 
+		<input type="hidden" th:field-value="*{strength}" /> 
+		<input type="hidden" th:field-value="*{con}" /> 
+		<input type="hidden" th:field-value="*{dex}" /> 
+		<input type="hidden" th:field-value="*{intelligence}" /> 
+		<input type="hidden" th:field-value="*{wisdom}" /> 
+		<input type="hidden" th:field-value="*{charisma}" />
+
 		<div class="container-fluid">
 			<div class="row">
 				<nav class="col-sm-3 col-4" id="myScrollspy">
@@ -71,19 +85,6 @@ div.col-8 div {
 									</li>
 					</ul>
 				</nav>
-
-				<!-- We are using hidden values here to pass the information from the existing character sheet onto the next one.
-			They are basically just input fields except we've selected them already and hidden them so the user can't change them. -->
-				<input type="hidden" th:field="*{charId}" th:value="*{charId}" /> <input type="hidden" th:field="*{username}" th:value="*{username}" /> <input
-					type="hidden" th:field="*{charRace.raceName}"
-					th:value="*{charRace.raceName}" /> <input type="hidden"
-					th:field="*{charClass.name}" th:value="*{charClass.name}" /> <input
-					type="hidden" th:field="*{strength}" th:value="*{strength}" /> <input
-					type="hidden" th:field="*{con}" th:value="*{con}" /> <input
-					type="hidden" th:field="*{dex}" th:value="*{dex}" /> <input
-					type="hidden" th:field="*{intelligence}" th:value="*{intelligence}" />
-				<input type="hidden" th:field="*{wisdom}" th:value="*{wisdom}" /> <input
-					type="hidden" th:field="*{charisma}" th:value="*{charisma}" />
 
 				<div class="col-sm-9 col-8">
 					<div id="section11"
@@ -226,41 +227,72 @@ div.col-8 div {
 						<div id="section32" th:unless = '*{charClass.spellSlots == 0}'
 							style="background-color: rgb(113, 15, 15); -webkit-text-fill-color: aliceblue; text-align: center;">
 							<h1>Spells</h1>
-							<h3>I want to have...</h3>
-							<select th:field="*{spell1}" name="spell1"
+							
+							<!-- Here, we do a th:each for each cantrip the character has available. First we:
+							
+							Create a th:block to enclose the thing we want to have a variable number of, in this case a select box of available cantrips.
+							Next, we create a th:each. Thymeleaf has a built-in method called numbers.sequence, and it just returns a list of numbers.
+							So, we use that to create a list of numbers to iterate through. It works like this:
+								${#numbers.sequence(firstNumber, lastNumber)}
+							In this case, we set firstNumber to equal 1, and we set lastNumber to equal numCantrips.
+							 	(note we called with #object instead of *{}, that's because it's inside another variable so we can't use the ${} syntax)
+							Let's say numCantrips is 3. In that case, we've just created a list of numbers from 1-3, and made a th:each that will repeat for each of those numbers.
+							This is essentially the same as a for(int i=1; i <= numCantrips; i++) loop in Java. 
+							Inside the th:each loop, we set the field name. In order to set a field name with a variable inside it, we have to do pre-processing.
+							This means we surround the variable with a symbol that will tell Thymeleaf "process this first and then treat it as a string".
+							In this case, that's two underscores, so we have th:field="*{spell__${i}__}". 
+							Once pre-processing is complete, this will be the same as if we put th:field="*{spell1}" on the first loop, th:field=*{spell2} on the second, etc.-->
+							<th:block th:each="i : ${#numbers.sequence(1, #object.charClass.numCantrips)}">
+							<h3>I want to have the cantrip...</h3>
+							<select th:field="*{spell__${i}__}" name="spell__${i}__"
+								class="custom-select-lg"
+								style="padding: 10px; -webkit-text-fill-color: black;">
+								<option th:each="cantrip: ${cantrips}" th:text="${cantrip.name}"
+									th:value="${cantrip.name}" />
+							</select>
+							</th:block>
+							
+							<!-- Here, we're doing much the same as above, except with spells, and we're adding numCantrips to each side of the numbers.sequence.
+							This is because we want to put our first level 1 spell in the lowest unused spell column on the sheet. 
+							E.g., if numCantrips = 3, and numSpells = 2, we want the first level 1 spell to be in the spell4 column, since spell1-spell3 will be taken.
+							Otherwise, the logic is the exact same, except it uses the "spells" list instead of "cantrips" so that we only see level 1 spells in the selection boxes. -->
+							<th:block th:each="i : ${#numbers.sequence(#object.charClass.numCantrips+1, #object.charClass.numSpells+#object.charClass.numCantrips)}">
+							<h3>I want to have the spell...</h3>
+							<select th:field="*{spell__${i}__}" name="spell__${i}__"
 								class="custom-select-lg"
 								style="padding: 10px; -webkit-text-fill-color: black;">
 								<option th:each="spell: ${spells}" th:text="${spell.name}"
 									th:value="${spell.name}" />
 							</select>
-							<h3>I want to have...</h3>
-							<select th:field="*{spell2}" name="spell2"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="spell: ${spells}" th:text="${spell.name}"
-									th:value="${spell.name}" />
-							</select>
-							<h3>I want to have...</h3>
-							<select th:field="*{spell3}" name="spell3"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="spell: ${spells}" th:text="${spell.name}"
-									th:value="${spell.name}" />
-							</select>
-							<h3>I want to have...</h3>
-							<select th:field="*{spell4}" name="spell4"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="spell: ${spells}" th:text="${spell.name}"
-									th:value="${spell.name}" />
-							</select>
-							<h3>I want to have...</h3>
-							<select th:field="*{spell5}" name="spell5"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black;">
-								<option th:each="spell: ${spells}" th:text="${spell.name}"
-									th:value="${spell.name}" />
-							</select>
+							</th:block>
+<!-- 							<h3>I want to have...</h3> -->
+<!-- 							<select th:field="*{spell2}" name="spell2" -->
+<!-- 								class="custom-select-lg" -->
+<!-- 								style="padding: 10px; -webkit-text-fill-color: black;"> -->
+<!-- 								<option th:each="spell: ${spells}" th:text="${spell.name}" -->
+<!-- 									th:value="${spell.name}" /> -->
+<!-- 							</select> -->
+<!-- 							<h3>I want to have...</h3> -->
+<!-- 							<select th:field="*{spell3}" name="spell3" -->
+<!-- 								class="custom-select-lg" -->
+<!-- 								style="padding: 10px; -webkit-text-fill-color: black;"> -->
+<!-- 								<option th:each="spell: ${spells}" th:text="${spell.name}" -->
+<!-- 									th:value="${spell.name}" /> -->
+<!-- 							</select> -->
+<!-- 							<h3>I want to have...</h3> -->
+<!-- 							<select th:field="*{spell4}" name="spell4" -->
+<!-- 								class="custom-select-lg" -->
+<!-- 								style="padding: 10px; -webkit-text-fill-color: black;"> -->
+<!-- 								<option th:each="spell: ${spells}" th:text="${spell.name}" -->
+<!-- 									th:value="${spell.name}" /> -->
+<!-- 							</select> -->
+<!-- 							<h3>I want to have...</h3> -->
+<!-- 							<select th:field="*{spell5}" name="spell5" -->
+<!-- 								class="custom-select-lg" -->
+<!-- 								style="padding: 10px; -webkit-text-fill-color: black;"> -->
+<!-- 								<option th:each="spell: ${spells}" th:text="${spell.name}" -->
+<!-- 									th:value="${spell.name}" /> -->
+<!-- 							</select> -->
 						</div>
 						<div id="section4"
 							style="background-color: rgb(206, 155, 35); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">

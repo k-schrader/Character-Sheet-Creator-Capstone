@@ -48,15 +48,15 @@ import jakarta.websocket.server.PathParam;
 @SessionAttributes("characterSheet")
 @Controller
 public class Page1Controller {
-	
+
 	Logger logger = LoggerFactory.getLogger(Page1Controller.class);
-	
+
 	@Autowired
 	public CharacterRaceRepository characterRaceRepo;
 	@Autowired
 	private CharacterClassRepository charClassRepo;
 	@Autowired
-	private CharacterSheetRepository charSheetRepo;		
+	private CharacterSheetRepository charSheetRepo;
 	@Autowired
 	public ItemRepository itemRepo;
 	@Autowired
@@ -64,53 +64,56 @@ public class Page1Controller {
 	@Autowired
 	private ModelController modelController;
 
-	
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
 		return new CharacterSheet();
 	}
-	
+
 	@GetMapping(value = "/page1")
 	public String viewPage(Model model) {
 		CharacterSheet charsheet = new CharacterSheet();
-		String charSheetUsername = "";
-		model.addAttribute("charSheetUsername", charSheetUsername);
 		model.addAttribute("characterSheet", charsheet);
 		model.addAttribute("races", characterRaceRepo.findAll());
 		model.addAttribute("classes", charClassRepo.findAll());
 		return "charcreatorpage1";
 	}
-	@PostMapping("/page1")   
-	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, @ModelAttribute("charSheetUsername") String charSheetUsername, Model model){
-		characterSheet.setUsername(charSheetUsername);
-	   CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
-	   model.addAttribute("characterSheet", savedCharSheet);
-       return "redirect:page2/"+savedCharSheet.getCharId();
+
+	@PostMapping("/page1")
+	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model) {
+		CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
+		model.addAttribute("characterSheet", savedCharSheet);
+		return "redirect:page2/" + savedCharSheet.getCharId();
 	}
-	  @GetMapping(value = "/page2/{charId}")
-	    public String submit(@PathVariable("charId") Integer charId, Model model) {
-		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
-		  model.addAttribute("characterSheet", characterSheet);
-		  model.addAttribute("items", itemRepo.findAll());
-		  List<Spells> spellsList = new ArrayList<Spells>();
-		  String className = characterSheet.getCharClass().getName();
-		  for (Spells spell : spellsRepo.findAll()) {
-			  if(spell.getCastingClasses().contains(className)) {
-				  spellsList.add(spell);
-			  }
-		  }
-		  model.addAttribute("spells", spellsList);
-	      return "charcreatorpage2";
-	    }
-	  
 
+	@GetMapping(value = "/page2/{charId}")
+	public String submit(@PathVariable("charId") Integer charId, Model model) {
+		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
+		model.addAttribute("characterSheet", characterSheet);
+		model.addAttribute("items", itemRepo.findAll());
+		List<Spells> spellsList = new ArrayList<Spells>();
+		List<Spells> cantripsList = new ArrayList<Spells>(); // Here, I'm creating another list of spells but this one will only have cantrips in it
+		String className = characterSheet.getCharClass().getName();
+		for (Spells spell : spellsRepo.findAll()) {
+			if (spell.getCastingClasses().contains(className)) {
+				switch (spell.getCastingLevel()) { // Here, we read in the spell's casting level and put it in one of the lists accordingly.
+				case 0:
+					cantripsList.add(spell);
+					break;
+				case 1:
+					spellsList.add(spell);
+				}
+			}
+		} // This can be expanded in the future by creating a list for each level of spell the same way we did for cantrips.
+		model.addAttribute("cantrips", cantripsList);
+		model.addAttribute("spells", spellsList);
+		return "charcreatorpage2";
+	}
 
-@GetMapping("/principal")
-public String getPrincipal(@CurrentSecurityContext(expression = "authentication.principal") 
-  Principal principal) { 
-    return principal.getName(); 
-}
-	
+	@GetMapping("/principal")
+	public String getPrincipal(@CurrentSecurityContext(expression = "authentication.principal") Principal principal) {
+		return principal.getName();
+	}
+
 //	  @GetMapping(value = "/charsheetpage/{charId}")
 //	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
 //		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
@@ -120,25 +123,25 @@ public String getPrincipal(@CurrentSecurityContext(expression = "authentication.
 //			model.addAttribute("formatting", formatting);
 //			return "charsheetpage";
 //		}
-	  
-	  //TODO update schema to remove unnecessary columns from characterSheet, including: armor_class, spell_attack, spell_savedc, armor_armor_name, 
-	  @GetMapping(value = "/charsheetpage/{charId}")
-	    public String charSheetPage(@PathVariable("charId") Integer charId, Model model) {
-		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
-		  FormattingService formatting = new FormattingService(characterSheet);
-		  model.addAttribute("formatting", formatting);
-	      return "charsheetpage";
-	    }
-	
-		@PostMapping("/page2")   
-		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
-		    CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
-		    model.addAttribute("characterSheet", savedCharSheet);
-	        return "redirect:charsheetpage/"+characterSheet.getCharId();
-		}
-		
-		
-	  
+
+	// TODO update schema to remove unnecessary columns from characterSheet,
+	// including: armor_class, spell_attack, spell_savedc, armor_armor_name,
+	@GetMapping(value = "/charsheetpage/{charId}")
+	public String charSheetPage(@PathVariable("charId") Integer charId, Model model) {
+		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by
+																			// page1 controller's redirect
+		FormattingService formatting = new FormattingService(characterSheet);
+		model.addAttribute("formatting", formatting);
+		return "charsheetpage";
+	}
+
+	@PostMapping("/page2")
+	public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model) {
+		CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
+		model.addAttribute("characterSheet", savedCharSheet);
+		return "redirect:charsheetpage/" + characterSheet.getCharId();
+	}
+
 //		@PostMapping("/page2")  
 //		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
 //		  // ResponseEntity<CharacterSheet> savedCharSheet = modelController.updateCharacterSheet(charSheet.getCharId(), charSheet);
@@ -159,17 +162,16 @@ public String getPrincipal(@CurrentSecurityContext(expression = "authentication.
 //		mav.addObject("characterSheet", new CharacterSheet());
 //		return mav;
 //	}
-	
-	
-   
 
 //	@GetMapping("/page2/{charId}")
 //	public String charSheetInfo(@ModelAttribute("characterSheet") CharacterSheet charSheet, Model model) {
-		//ModelAndView mav = new ModelAndView("charcreatorpage2"); //This is the page referenced, so the HTML file. It can match what's passed in above, but doesn't always
-		//model.addAttribute(CharacterSheet)
-		//charSheet1 = charSheetRepo.findByCharId(charSheet1.getCharId());
-		//model.addAttribute("charSheet1", charSheetInfo(charSheet, model));
-		
+	// ModelAndView mav = new ModelAndView("charcreatorpage2"); //This is the page
+	// referenced, so the HTML file. It can match what's passed in above, but
+	// doesn't always
+	// model.addAttribute(CharacterSheet)
+	// charSheet1 = charSheetRepo.findByCharId(charSheet1.getCharId());
+	// model.addAttribute("charSheet1", charSheetInfo(charSheet, model));
+
 //		//logger.info(request.getSession().getAttribute("characterSheet").toString());
 ////		mav.addObject("spells", spellsRepo.findAll());
 ////				for (spell : spells) {
@@ -183,8 +185,5 @@ public String getPrincipal(@CurrentSecurityContext(expression = "authentication.
 //		model.addAttribute("weapon3", weaponRepo.findByWeaponName(charSheet.getCharClass().getWeapon3().getWeaponName()));
 //		return "charcreatorpage2";
 //	}
-	
 
-	   
-	 
 }
