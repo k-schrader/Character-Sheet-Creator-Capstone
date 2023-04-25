@@ -9,11 +9,13 @@ import java.util.Optional;
 import org.kalieschrader.CSCPractice2.model.CharacterRace;
 import org.kalieschrader.CSCPractice2.model.CharacterSheet;
 import org.kalieschrader.CSCPractice2.model.Spells;
+import org.kalieschrader.CSCPractice2.model.User;
 import org.kalieschrader.CSCPractice2.repository.CharacterClassRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterRaceRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
 import org.kalieschrader.CSCPractice2.repository.ItemRepository;
 import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
+import org.kalieschrader.CSCPractice2.repository.UserRepository;
 import org.kalieschrader.CSCPractice2.repository.WeaponRepository;
 import org.kalieschrader.CSCPractice2.service.FormattingService;
 import org.slf4j.Logger;
@@ -63,6 +65,8 @@ public class Page1Controller {
 	private SpellsRepository spellsRepo;
 	@Autowired
 	private ModelController modelController;
+	@Autowired
+	private UserRepository userRepo;
 
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
@@ -140,6 +144,23 @@ public class Page1Controller {
 		CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
 		model.addAttribute("characterSheet", savedCharSheet);
 		return "redirect:charsheetpage/" + characterSheet.getCharId();
+	}
+	
+	
+//	@PostMapping("/charsheetpage")
+//	public String saveCharSheet(@ModelAttribute("user") User user, Model model) {
+//		User savedUser = userRepo.findByEmail(user.getEmail());
+//		model.addAttribute("user", savedUser);
+//		return "redirect:/oldcharacterview/" + savedUser.getEmail();
+//	}
+
+	@GetMapping(value = "/oldcharacterview/{email}")
+	public String oldCharSheet(@PathVariable("email") String email, Model model) {
+		//User user = userRepo.findByEmail(username); 
+		List<CharacterSheet> userChar = charSheetRepo.findAllByUsername(email);
+		//model.addAttribute("user", user);
+		model.addAttribute("userChar", userChar);
+		return "oldcharacterview";
 	}
 
 //		@PostMapping("/page2")  

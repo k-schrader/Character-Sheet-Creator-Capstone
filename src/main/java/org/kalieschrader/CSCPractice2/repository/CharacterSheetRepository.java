@@ -1,5 +1,6 @@
 package org.kalieschrader.CSCPractice2.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.kalieschrader.CSCPractice2.model.CharacterSheet;
@@ -9,6 +10,8 @@ public interface CharacterSheetRepository extends JpaRepository<CharacterSheet, 
 	CharacterSheet findByCharId(Integer charId);
 
 	void deleteByCharId(Integer charId);
+	 
+	List<CharacterSheet> findAllByUsername(String username);
 
 	
 	

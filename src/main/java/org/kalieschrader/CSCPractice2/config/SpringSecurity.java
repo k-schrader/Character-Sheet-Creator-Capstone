@@ -48,6 +48,7 @@ public class SpringSecurity{
           .requestMatchers("/page1/**").permitAll()
           .requestMatchers("/charsheetpage/**").permitAll()
           .requestMatchers("/newcharacterstart/**").permitAll()
+          .requestMatchers("/oldcharacterview/**").permitAll()
           .requestMatchers("/images/**").permitAll()
           .requestMatchers("/characterSheet/**").permitAll()
           .requestMatchers("/users").hasRole("USER")

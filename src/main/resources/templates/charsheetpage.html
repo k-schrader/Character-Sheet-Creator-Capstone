@@ -46,10 +46,11 @@ footer {
 		<div>
 
 			<nav class="nav nav-masthead justify-content-center float-md-end">
-				<a class="nav-link" th:href="@{/index}">Home</a> <a class="nav-link"
-					th:href="@{/newcharacterstart}">Create a new character</a> <a
-					class="nav-link" href="#">See your old characters</a> <a
-					class="nav-link" th:href="@{/register}">Logout</a>
+				<a class="nav-link" th:href="@{/index}">Home</a> 
+				<a class="nav-link" th:href="@{/newcharacterstart}">Create a new character</a> 
+				
+				<a class="nav-link" th:href ="@{/oldcharacterview/__${#authentication.principal.username}__}">See your old characters</a> 
+				<a class="nav-link" th:href="@{/register}">Logout</a>
 			</nav>
 		</div>
 	</header>
@@ -147,7 +148,7 @@ footer {
 					<div class="col-sm-12">
 						<div class="panel panel-default text-center">
 							<div class="panel-body">
-								<p contenteditable="true" th:text="'Character race: '+${formatting.charRace.raceName}+ ' Character class: '+${formatting.charClass.Name}" />
+								<p contenteditable="true" th:text="${formatting.charName}+' is a '+${formatting.charRace.raceName}+ ' '+${formatting.charClass.Name}" />
 							</div>
 						</div>
 					</div>
@@ -193,6 +194,7 @@ footer {
 							<p th:text="'Lasts for: '+${formatting.spell1.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell1.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell1.details}" /> 
+							<th:block th:unless = '${formatting.spell2 == null}'>
 							<h3 th:text="${formatting.spell2.name}"></h3> 
 							<p th:text="'Spell level: '+${formatting.spell2.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell2.castingTime}" /> 
@@ -200,6 +202,8 @@ footer {
 							<p th:text="'Lasts for: '+${formatting.spell2.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell2.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell2.details}" /> 
+ 								</th:block>
+ 								<th:block th:unless = '${formatting.spell3 == null}'>
  							<h3 th:text="${formatting.spell3.name}"></h3> 
  							<p th:text="'Spell level: '+${formatting.spell3.castingLevel}" /> 
 							<p th:text="'Time to cast: '+${formatting.spell3.castingTime}" /> 
@@ -207,6 +211,8 @@ footer {
 							<p th:text="'Lasts for: '+${formatting.spell3.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell3.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell3.details}" /> 
+							</th:block>
+							<th:block th:unless = '${formatting.spell4 == null}'>
 							<h3 th:text="${formatting.spell4.name}"></h3> 
 							<p th:text="'Spell level: '+${formatting.spell4.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell4.castingTime}" /> 
@@ -214,6 +220,8 @@ footer {
 							<p th:text="'Lasts for: '+${formatting.spell4.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell4.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell4.details}" /> 
+							</th:block>
+							<th:block th:unless = '${formatting.spell5 == null}'>
 							<h3 th:text="${formatting.spell5.name}"></h3> 
 							<p th:text="'Spell level: '+${formatting.spell5.castingLevel}" />
 							<p th:text="'Time to cast: '+${formatting.spell5.castingTime}" /> 
@@ -221,6 +229,7 @@ footer {
 							<p th:text="'Lasts for: '+${formatting.spell5.duration}" />  
 							<p th:text="'Concentration?: '+${formatting.spell5.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell5.details}" /> 
+							</th:block>
 						</div>
 					</div>
 				</div>
