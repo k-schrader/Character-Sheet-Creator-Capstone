@@ -12,13 +12,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
 body {
-	background-color: rgb(113, 15, 15);
+	background-color: rgb(74,78,105);
 	font-family: 'Varela Round', sans-serif;
 	font-size: large;
 }
 
 footer {
-	background-color: rgb(113, 15, 15);
+	background-color: rgb(74,78,105);
 	color: white;
 	padding: 15px;
 }
@@ -293,6 +293,11 @@ footer {
                  <div class="thumbnail">
                     <p th:text="${formatting.charClass.name} + 's wear '+${formatting.charClass.armor.armorName}+' armor'"></p>
                     <p th:text="${formatting.charClass.armor.details}"></p>
+                </div>
+                    <div class="thumbnail">
+                    <a href="#" data-mdb-toggle="tooltip"
+                        title="Can you see in the dark?"><strong>Darkvision:</strong></a>
+                    <p th:text="${formatting.charRace.darkVision}"></p>
                 </div>
 
             </div>

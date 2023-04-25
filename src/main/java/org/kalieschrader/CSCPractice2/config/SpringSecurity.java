@@ -46,6 +46,7 @@ public class SpringSecurity{
           .requestMatchers("/js/**").permitAll()
           .requestMatchers("/page2/**").permitAll()
           .requestMatchers("/page1/**").permitAll()
+          .requestMatchers("/parentInfo/**").permitAll()
           .requestMatchers("/charsheetpage/**").permitAll()
           .requestMatchers("/newcharacterstart/**").permitAll()
           .requestMatchers("/oldcharacterview/**").permitAll()

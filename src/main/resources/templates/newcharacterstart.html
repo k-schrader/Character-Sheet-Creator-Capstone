@@ -42,7 +42,7 @@
                     <nav class="nav nav-masthead justify-content-center float-md-end">
                         <a class="nav-link active" aria-current="page" th:href="@{/index}">Home</a>
                         <a class="nav-link active" aria-current="page"  href="#">Create a new character</a>
-                        <a class="nav-link" href="#">See your old characters</a>
+                        <a class="nav-link" th:href ="@{/oldcharacterview/__${#authentication.principal.username}__}">See your old characters</a>
                         <a class="nav-link" th:href="@{/register}">Logout</a>
                     </nav>
                 </div>

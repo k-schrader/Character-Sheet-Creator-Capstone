@@ -40,6 +40,10 @@ public class AuthController {
 	    public String home(){
 	        return "index";
 	    }
+	    @GetMapping("/parentInfo")
+	    public String parentInfo(){
+	        return "parentInfo";
+	    }
 
 	    // handler method to handle login request
 	    @GetMapping("/login")

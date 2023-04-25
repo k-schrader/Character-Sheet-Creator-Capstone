@@ -54,10 +54,10 @@
 			<div>
 				<h3 class="float-md-start mb-0">Welcome Adventurer</h3>
 				<nav class="nav nav-masthead justify-content-center float-md-end">
-					<a class="nav-link active" aria-current="page" href="#">Home</a> <a
-						class="nav-link" th:href="@{newcharacterstart}">Create a new
+					<a class="nav-link" th:href="@{/index}">Home</a> <a
+						class="nav-link" th:href="@{/newcharacterstart}">Create a new
 						character</a> <a class="nav-link active" aria-current="page" href="#">See
-						your old characters</a> <a class="nav-link" th:href="@{register.html}">Logout</a>
+						your old characters</a> <a class="nav-link" th:href="@{/register}">Logout</a>
 				</nav>
 			</div>
 		</header>
@@ -78,7 +78,7 @@
 						<td th:text="${userChar.charRace.raceName}"></td>
 						<td th:text="${userChar.charClass.name}"></td>
 						<td><a th:href="@{/charsheetpage/__${userChar.charId}__}"
-							th:text="${userChar.charName}"></a></td>
+							th:text="'View this one!'"></a></td>
 					</tr>
 				</tbody>
 			</table>
