@@ -90,8 +90,9 @@ public class Page1Controller {
 	}
 
 	@GetMapping(value = "/page2/{charId}")
-	public String submit(@PathVariable("charId") Integer charId, Model model) {
+	public String submit(@PathVariable("charId") Integer charId, Model model, Authentication authentication) {
 		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
+		if(authentication.getName().equals(characterSheet.getUsername())) {
 		model.addAttribute("characterSheet", characterSheet);
 		model.addAttribute("items", itemRepo.findAll());
 		List<Spells> spellsList = new ArrayList<Spells>();
@@ -111,6 +112,9 @@ public class Page1Controller {
 		model.addAttribute("cantrips", cantripsList);
 		model.addAttribute("spells", spellsList);
 		return "charcreatorpage2";
+	}else {
+		return "unauthorized";
+	}
 	}
 
 	@GetMapping("/principal")
@@ -131,12 +135,15 @@ public class Page1Controller {
 	// TODO update schema to remove unnecessary columns from characterSheet,
 	// including: armor_class, spell_attack, spell_savedc, armor_armor_name,
 	@GetMapping(value = "/charsheetpage/{charId}")
-	public String charSheetPage(@PathVariable("charId") Integer charId, Model model) {
+	public String charSheetPage(@PathVariable("charId") Integer charId, Model model, Authentication authentication) {
 		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by
-																			// page1 controller's redirect
+		if(authentication.getName().equals(characterSheet.getUsername())) {																// page1 controller's redirect
 		FormattingService formatting = new FormattingService(characterSheet);
 		model.addAttribute("formatting", formatting);
 		return "charsheetpage";
+	}else {
+		return "unauthorized";
+	}
 	}
 
 	@PostMapping("/page2")
@@ -155,14 +162,17 @@ public class Page1Controller {
 //	}
 
 	@GetMapping(value = "/oldcharacterview/{email}")
-	public String oldCharSheet(@PathVariable("email") String email, Model model) {
-		//User user = userRepo.findByEmail(username); 
+	public String oldCharSheet(@PathVariable("email") String email, Model model, Authentication authentication) {
+		User user = userRepo.findByEmail(email); 
+		if(authentication.getName().equals(email)){
 		List<CharacterSheet> userChar = charSheetRepo.findAllByUsername(email);
-		//model.addAttribute("user", user);
+		model.addAttribute("user", user);
 		model.addAttribute("userChar", userChar);
-		return "oldcharacterview";
+			return "oldcharacterview";
+	}else {
+		return "unauthorized";
+}
 	}
-
 //		@PostMapping("/page2")  
 //		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
 //		  // ResponseEntity<CharacterSheet> savedCharSheet = modelController.updateCharacterSheet(charSheet.getCharId(), charSheet);

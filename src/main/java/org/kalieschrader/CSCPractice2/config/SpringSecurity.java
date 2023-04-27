@@ -1,20 +1,14 @@
 package org.kalieschrader.CSCPractice2.config;
 
-
-import org.kalieschrader.CSCPractice2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -22,6 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SpringSecurity{
 	  @Autowired
 	    private UserDetailsService userDetailsService;
+
 
 	    @Bean
 	    public static BCryptPasswordEncoder passwordEncoder(){
@@ -46,6 +41,7 @@ public class SpringSecurity{
           .requestMatchers("/js/**").permitAll()
           .requestMatchers("/page2/**").permitAll()
           .requestMatchers("/page1/**").permitAll()
+          .requestMatchers("/userview").hasRole("ADMIN")
           .requestMatchers("/parentInfo/**").permitAll()
           .requestMatchers("/charsheetpage/**").permitAll()
           .requestMatchers("/newcharacterstart/**").permitAll()

@@ -148,7 +148,7 @@ footer {
 					<div class="col-sm-12">
 						<div class="panel panel-default text-center">
 							<div class="panel-body">
-								<p contenteditable="true" th:text="${formatting.charName}+' is a '+${formatting.charRace.raceName}+ ' '+${formatting.charClass.Name}" />
+								<p th:text="${formatting.charName}+' is a '+${formatting.charRace.raceName}+ ' '+${formatting.charClass.Name}" />
 							</div>
 						</div>
 					</div>
@@ -192,7 +192,7 @@ footer {
 							<p th:text="'Time to cast: '+${formatting.spell1.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell1.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell1.duration}" />  
-							<p th:text="'Concentration?: '+${formatting.spell1.concentraion}" /> 
+							<p th:text="'Concentration: '+${formatting.spell1.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell1.details}" /> 
 							<th:block th:unless = '${formatting.spell2 == null}'>
 							<h3 th:text="${formatting.spell2.name}"></h3> 
@@ -200,7 +200,7 @@ footer {
 							<p th:text="'Time to cast: '+${formatting.spell2.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell2.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell2.duration}" />  
-							<p th:text="'Concentration?: '+${formatting.spell2.concentraion}" /> 
+							<p th:text="'Concentration: '+${formatting.spell2.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell2.details}" /> 
  								</th:block>
  								<th:block th:unless = '${formatting.spell3 == null}'>
@@ -209,7 +209,7 @@ footer {
 							<p th:text="'Time to cast: '+${formatting.spell3.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell3.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell3.duration}" />  
-							<p th:text="'Concentration?: '+${formatting.spell3.concentraion}" /> 
+							<p th:text="'Concentration: '+${formatting.spell3.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell3.details}" /> 
 							</th:block>
 							<th:block th:unless = '${formatting.spell4 == null}'>
@@ -218,7 +218,7 @@ footer {
 							<p th:text="'Time to cast: '+${formatting.spell4.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell4.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell4.duration}" />  
-							<p th:text="'Concentration?: '+${formatting.spell4.concentraion}" /> 
+							<p th:text="'Concentration: '+${formatting.spell4.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell4.details}" /> 
 							</th:block>
 							<th:block th:unless = '${formatting.spell5 == null}'>
@@ -227,7 +227,7 @@ footer {
 							<p th:text="'Time to cast: '+${formatting.spell5.castingTime}" /> 
 							<p th:text="'Casting range: '+${formatting.spell5.castingRange}" />
 							<p th:text="'Lasts for: '+${formatting.spell5.duration}" />  
-							<p th:text="'Concentration?: '+${formatting.spell5.concentraion}" /> 
+							<p th:text="'Concentration: '+${formatting.spell5.concentraion}" /> 
 							<p th:text="'Details: '+${formatting.spell5.details}" /> 
 							</th:block>
 						</div>

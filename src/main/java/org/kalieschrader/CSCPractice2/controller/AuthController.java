@@ -44,6 +44,14 @@ public class AuthController {
 	    public String parentInfo(){
 	        return "parentInfo";
 	    }
+	    @GetMapping("/userview")
+	    public String userview(){
+	        return "userview";
+	    }
+	    @GetMapping("/unauthorized")
+	    public String unauthorized(){
+	        return "unauthorized";
+	    }
 
 	    // handler method to handle login request
 	    @GetMapping("/login")
