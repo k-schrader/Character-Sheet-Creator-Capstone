@@ -24,13 +24,12 @@ public class CharacterSheet {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Integer charId;
-//TODO link userEmail to characterSheet table 
 private String username;
 private String charName;
 private int hitPoints;
-private int armorClass;
-private String spellSaveDC;
-private String spellAttack;
+//private int armorClass;
+//private String spellSaveDC;
+//private String spellAttack;
 private int strength;
 private int con;
 private int dex;
@@ -40,7 +39,7 @@ private int charisma;
 
 
 
-public CharacterSheet(Integer charId, String username, String charName, int hitPoints, int armorClass,
+public CharacterSheet(Integer charId, String username, String charName, int hitPoints, 
 			int strength, int con, int dex, int intelligence, int wisdom,
 			int charisma, CharacterRace charRace, CharacterClass charClass, Weapon weapon1, Weapon weapon2,
 			Item item1, Item item2, Item item3, Spells spell1, Spells spell2, Spells spell3, Spells spell4,
@@ -50,7 +49,6 @@ public CharacterSheet(Integer charId, String username, String charName, int hitP
 		this.username = username;
 		this.charName = charName;
 		this.hitPoints = hitPoints;
-		this.armorClass = armorClass;
 		this.strength = strength;
 		this.con = con;
 		this.dex = dex;
@@ -122,24 +120,24 @@ public int getHitPoints() {
 public void setHitPoints(int hitPoints) {
 	this.hitPoints = hitPoints;
 }
-public int getArmorClass() {
-	return armorClass;
-}
-public void setArmorClass(int armorClass) {
-	this.armorClass = armorClass;
-}
-public String getSpellSaveDC() {
-	return spellSaveDC;
-}
-public void setSpellSaveDC(String spellSaveDC) {
-	this.spellSaveDC = spellSaveDC;
-}
-public String getSpellAttack() {
-	return spellAttack;
-}
-public void setSpellAttack(String spellAttack) {
-	this.spellAttack = spellAttack;
-}
+//public int getArmorClass() {
+//	return armorClass;
+//}
+//public void setArmorClass(int armorClass) {
+//	this.armorClass = armorClass;
+//}
+//public String getSpellSaveDC() {
+//	return spellSaveDC;
+//}
+//public void setSpellSaveDC(String spellSaveDC) {
+//	this.spellSaveDC = spellSaveDC;
+//}
+//public String getSpellAttack() {
+//	return spellAttack;
+//}
+//public void setSpellAttack(String spellAttack) {
+//	this.spellAttack = spellAttack;
+//}
 public int getStrength() {
 	return strength;
 }
@@ -251,7 +249,7 @@ public void setSpell5(Spells spell5) {
 }
 @Override
 public int hashCode() {
-	return Objects.hash(armorClass, charClass, charId, charName, charRace, charisma, con, dex, hitPoints,
+	return Objects.hash(charClass, charId, charName, charRace, charisma, con, dex, hitPoints,
 			intelligence, item1, item2, item3, spell1, spell2, spell3, spell4, spell5,
 			strength, username, weapon1, weapon2, wisdom);
 }
@@ -278,8 +276,7 @@ public boolean equals(Object obj) {
 @Override
 public String toString() {
 	return "CharacterSheet [charId=" + charId + ", username=" + username + ", charName=" + charName + ", hitPoints="
-			+ hitPoints + ", armorClass=" + armorClass + ", spellSaveDC=" + spellSaveDC + ", spellAttack=" + spellAttack
-			+ ", strength=" + strength + ", con=" + con + ", dex=" + dex + ", intelligence=" + intelligence
+			+ hitPoints + ", strength=" + strength + ", con=" + con + ", dex=" + dex + ", intelligence=" + intelligence
 			+ ", wisdom=" + wisdom + ", charisma=" + charisma + ", charRace=" + charRace + ", charClass=" + charClass
 			+ ", weapon1=" + weapon1 + ", weapon2=" + weapon2 + ",  item1=" + item1 + ", item2="
 			+ item2 + ", item3=" + item3 + ", spell1=" + spell1 + ", spell2=" + spell2 + ", spell3=" + spell3

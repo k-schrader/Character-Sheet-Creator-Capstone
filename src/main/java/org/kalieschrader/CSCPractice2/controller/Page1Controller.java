@@ -14,6 +14,7 @@ import org.kalieschrader.CSCPractice2.repository.CharacterClassRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterRaceRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
 import org.kalieschrader.CSCPractice2.repository.ItemRepository;
+import org.kalieschrader.CSCPractice2.repository.RoleRepository;
 import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
 import org.kalieschrader.CSCPractice2.repository.UserRepository;
 import org.kalieschrader.CSCPractice2.repository.WeaponRepository;
@@ -67,6 +68,8 @@ public class Page1Controller {
 	private ModelController modelController;
 	@Autowired
 	private UserRepository userRepo;
+	@Autowired
+	private RoleRepository roleRepo;
 
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
@@ -121,6 +124,13 @@ public class Page1Controller {
 	public String getPrincipal(@CurrentSecurityContext(expression = "authentication.principal") Principal principal) {
 		return principal.getName();
 	}
+	
+	@GetMapping("/userview")
+	public String viewUsers(Model model) {
+		model.addAttribute("users", userRepo.findAll());
+		return "userview";
+	}
+	
 
 //	  @GetMapping(value = "/charsheetpage/{charId}")
 //	  public String submit2(@PathVariable("charId") Integer charId, Model model) {

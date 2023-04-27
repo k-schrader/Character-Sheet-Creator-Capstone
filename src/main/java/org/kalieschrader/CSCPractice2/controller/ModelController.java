@@ -202,12 +202,6 @@ public CharacterSheet updateCharacterSheet(@PathVariable Integer charId, @Reques
 			   existingCharSheet.setCharName(charSheet.getCharName());
 			 }if(!(charSheet.getHitPoints() == 0)){
 			   existingCharSheet.setHitPoints(charSheet.getHitPoints());
-			 }if(!(charSheet.getArmorClass() == 0)){
-			   existingCharSheet.setArmorClass(charSheet.getArmorClass());
-			 }if(!(charSheet.getSpellSaveDC().isEmpty())){
-			   existingCharSheet.setSpellSaveDC(charSheet.getSpellSaveDC());
-			 }if(!(charSheet.getSpellAttack().isEmpty())){
-			   existingCharSheet.setSpellAttack(charSheet.getSpellAttack());
 			 }if(!(charSheet.getStrength() == 0)){
 			   existingCharSheet.setStrength(charSheet.getStrength());
 			 }if(!(charSheet.getCon() == 0)){

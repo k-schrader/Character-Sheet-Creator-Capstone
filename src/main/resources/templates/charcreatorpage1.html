@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
 <script
@@ -26,7 +27,9 @@ ul.nav-pills {
 div.col-8 div {
 	height: 500px;
 }
-
+.select2 option:disabled, .select3 option:disabled .select4 option:disabled .select5 option:disabled .select6 option:disabled {
+        color: #999;
+      }
  
 </style>
 </head>
@@ -380,9 +383,10 @@ div.col-8 div {
 
 								<h1>Let's pick your stats!</h1>
 								<h5>How strong would you like to be?</h5>
-								<select class="custom-select-lg"
+								<select class="number-select" id="select1" name="select1"  onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select5', 'select6')"
 									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px; "
 									th:field="*{strength}" >
+									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
 									<option th:value="12">12</option>
@@ -391,9 +395,10 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How dexterous would you like to be?</h5>
-								<select class="custom-select-lg"
+								<select class="number-select" id="select2" name="select2" onchange="disableOption(this.value, 'select1', 'select3', 'select4', 'select5', 'select6')"
 									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
 									th:field="*{dex}">
+									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
 									<option th:value="12">12</option>
@@ -402,9 +407,10 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How much constitution would you like to have?</h5>
-								<select class="custom-select-lg"
+								<select class="number-select" id="select3" name="select3" onchange="disableOption(this.value, 'select2', 'select1', 'select4', 'select5', 'select6')"
 									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
 									th:field="*{con}">
+									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
 									<option th:value="12">12</option>
@@ -414,9 +420,10 @@ div.col-8 div {
 								</select>
 
 								<h5>How smart would you like to be?</h5>
-								<select class="custom-select-lg"
+								<select class="number-select" id="select4" name="select4" onchange="disableOption(this.value, 'select2', 'select3', 'select1', 'select5', 'select6')"
 									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
 									th:field="*{intelligence}">
+									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
 									<option th:value="12">12</option>
@@ -425,9 +432,10 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How wise would you like to be?</h5>
-								<select class="custom-select-lg"
+								<select class="number-select" id="select5" name="select5" onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select1', 'select6')"
 									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
 									th:field="*{wisdom}">
+									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
 									<option th:value="12">12</option>
@@ -436,17 +444,18 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How charismatic would you like to be?</h5>
-								<select class="custom-select-lg"
+								<select class="number-select" id="select6" name="select6" onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select5', 'select1')"
 									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
 									th:field="*{charisma}">
+									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
 									<option th:value="12">12</option>
 									<option th:value="13">13</option>
 									<option th:value="14">14</option>
 									<option th:value="15">15</option>
-								</select>
-
+								</select><br>
+							 <button type="button" id="resetBtn" class="btn btn-primary" style="margin:20px;" onclick="clearDisabled()">Pick different values</button>
 							</div>
 							<div id="section32"
 								style="background-color: rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; opacity:60%;">
@@ -460,6 +469,30 @@ div.col-8 div {
 				</div>
 				</div>
 	</form>
+	   <script>
+      function disableOption(value, select1, select2, select3, select4, select5, select6) {
+        $('#' + select1 + ' option[value="' + value + '"]').prop('disabled', true);
+        $('#' + select2 + ' option[value="' + value + '"]').prop('disabled', true);
+        $('#' + select3 + ' option[value="' + value + '"]').prop('disabled', true);
+        $('#' + select4 + ' option[value="' + value + '"]').prop('disabled', true);
+        $('#' + select5 + ' option[value="' + value + '"]').prop('disabled', true);
+        $('#' + select6 + ' option[value="' + value + '"]').prop('disabled', true);
+      }
+      function enableAll() {
+    	    $("select option").prop("disabled", false);
+    	}
+
+    	$(document).ready(function() {
+    	    $("select.select1").change(function() {
+    	        var selectedVal = $(this).val();
+    	        $("select:not(.select1) option").prop("disabled", false);
+    	        $("select:not(.select1) option[value='" + selectedVal + "']").prop("disabled", true);
+    	    });
+    	    $("#resetBtn").click(function() {
+    	        enableAll();
+    	    });
+    	});
+    </script>
 </body>
 
 </html>
