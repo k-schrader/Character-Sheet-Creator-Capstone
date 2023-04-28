@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
                            RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        //this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -48,14 +47,8 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setEmail(userDto.getEmail());
-        // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//        user.setRoles(Arrays.asList(getRoleByName("ROLE_USER")));
         user.setRoles(roleRepository.findByName("ROLE_USER"));
-//        if(role == null){
-//            role = checkRoleExist();
-        
-//        user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
@@ -80,13 +73,6 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-//    private Role checkRoleExist(){
-//        Role role = new Role();
-//        role.setName("ROLE_USER");
-//        return roleRepository.save(role);
-//    }
-
- 
 @Override
 public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     User user = userRepository.findByEmail(email);
@@ -105,102 +91,3 @@ private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<
 }
 }
 
-	
-	//@Autowired
-// private UserRepository userRepository;
-////@Autowired
-//// private RoleRepository roleRepository;
-//@Autowired
-//    private PasswordEncoder passwordEncoder;
-//
-////    public UserServiceImpl(UserRepository userRepository,
-////                           
-////                           PasswordEncoder passwordEncoder) {
-////        this.userRepository = userRepository;
-////      
-////        this.passwordEncoder = passwordEncoder;
-////    }
-//    @Override
-//    public void register(UserData user) throws UserAlreadyExistException {
-//
-//        //Let's check if user already registered with us
-//        if(checkIfUserExist(user.getUsername())){
-//            throw new UserAlreadyExistException("User already exists for this email");
-//        }
-//        User userEntity = new User();
-//        BeanUtils.copyProperties(user, userEntity);
-//        encodePassword(userEntity, user);
-//        userRepository.save(userEntity);
-//    }
-//
-//    
-//    @Override
-//    public boolean checkIfUserExist(String email) {
-//        return userRepository.findByUsername(email) !=null ? true : false;
-//    }
-//
-//    private void encodePassword( User userEntity, UserData user){
-//        userEntity.setUserPass(passwordEncoder.encode(user.getUserPass()));
-//    }
-//}
-
-//    @Override
-//    public void saveUser(User user) {
-//        User userNew = new User();
-//        userNew.setPlayerName(user.getPlayerName());
-//        userNew.setUsername(user.getUsername());
-//        // encrypt the password using spring security
-//        userNew.setUserPass(passwordEncoder.encode(user.getUserPass()));
-//
-//        Role role = roleRepository.findByName("ROLE_ADMIN");
-//        if(role == null){
-//            role = checkRoleExist();
-//        }
-//        userNew.setRoles(Arrays.asList(role));
-//        userRepository.save(userNew);
-//    }
-//
-//    @Override
-//    public User findUserByUsername(String username) {
-//        return userRepository.findByUsername(username);
-//    }
-//
-//    @Override
-//    public List<User> findAllUsers() {
-//        List<User> users = userRepository.findAll();
-//        return users.stream()
-//                .map((user) -> mapToUser(user))
-//                .collect(Collectors.toList());
-//    }
-//
-//    private User mapToUser(User user){
-//        User userNew = new User();
-//        userNew.setPlayerName(user.getPlayerName());
-//        userNew.setUsername(user.getUsername());
-//        return userNew;
-//    }
-//
-//    private Role checkRoleExist(){
-//        Role role = new Role();
-//        role.setName("ROLE_ADMIN");
-//        return roleRepository.save(role);
-//    }
-//
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		User user = userRepository.findByUsername(username);
-//		UserBuilder builder = null;
-//		if (user !=null) {
-//			builder = org.springframework.security.core.userdetails.User.withUsername(username);
-//			builder.disabled(!user.isEnabled());
-//			builder.password(user.getUserPass());
-//			String [] authorities = user.getAuthorities().stream().map(a->a.getAuthority()).toArray(String[]::new);
-//			builder.authorities(authorities);
-//		} else {
-//			throw new UsernameNotFoundException("User not found.");
-//		}
-//		return builder.build();                    
-//	}
-//
-//
-//}

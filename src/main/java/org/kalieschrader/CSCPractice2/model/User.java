@@ -1,9 +1,7 @@
 
 package org.kalieschrader.CSCPractice2.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,9 +14,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 @Entity
 public class User {
 
@@ -88,7 +83,6 @@ public String toString() {
 	return "User [username=" + email + ", userPass=" + password + ", playerName=" + firstName + "]";
 }
 public boolean isEnabled() {
-	// TODO Auto-generated method stub
 	return false;
 }
 public String getEmail() {

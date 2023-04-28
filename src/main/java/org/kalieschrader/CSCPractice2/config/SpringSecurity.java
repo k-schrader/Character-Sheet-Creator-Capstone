@@ -59,7 +59,10 @@ public class SpringSecurity{
 	                                .permitAll()
 	                ).logout(
 	                        logout -> logout
-	                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	                                .logoutRequestMatcher(new AntPathRequestMatcher("/register"))
+	                                .logoutSuccessUrl("/login")
+	                                .invalidateHttpSession(true)
+	                                .deleteCookies("JSESSIONID")
 	                                .permitAll()
 
 	                );
@@ -73,55 +76,3 @@ public class SpringSecurity{
 	    }
 	}
 
-
-//@Autowired
-//private UserService userService;
-//
-//@Bean
-//public BCryptPasswordEncoder passwordEncoder(){
-// return new BCryptPasswordEncoder();
-//}
-//
-//    // configure SecurityFilterChain
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/register/**").permitAll()
-//                .requestMatchers("/login/**").permitAll()
-//                .requestMatchers("/index**").permitAll()
-//                .requestMatchers("/spells/**").permitAll()
-//                .requestMatchers("/css/**").permitAll()
-//                .requestMatchers("/item/**").permitAll()
-//                .requestMatchers("/races/**").permitAll()
-//                .requestMatchers("/weapon/**").permitAll()
-//                .requestMatchers("/armors/**").permitAll()
-//                .requestMatchers("/classes/**").permitAll()
-//                .requestMatchers("/js/**").permitAll()
-//                .requestMatchers("/page2/**").permitAll()
-//                .requestMatchers("/images/**").permitAll()
-//                .requestMatchers("/users").hasRole("ADMIN")
-////                .requestMatchers("/users").hasRole("USER")
-//                .and()
-//                .formLogin(
-//                        form -> form
-//                                .loginPage("/login")
-//                                .defaultSuccessUrl("/index", true)
-//                                .permitAll()
-//                                .failureUrl("/login.html?error=true")
-////                                
-//                ).logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                                .permitAll()
-//
-//                );
-//        return http.build();
-//    }
-
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
-//        builder.userDetailsService(userDetailsService)
-//                .passwordEncoder(passwordEncoder());
-//    }
-//}

@@ -5,8 +5,10 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link th:href="@{/css/page1.css}" rel="stylesheet" />
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+
 
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
@@ -15,36 +17,21 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-body {
-	position: relative;
-}
-
-ul.nav-pills {
-	top: 20px;
-	position: fixed;
-}
-
-div.col-8 div {
-	height: 500px;
-}
-.select2 option:disabled, .select3 option:disabled .select4 option:disabled .select5 option:disabled .select6 option:disabled {
-        color: #999;
-      }
- 
+ .card-body { 
+ 	text-align: center; 
+ 	padding: 5%; 
+ } 
 </style>
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 	<form th:action="@{/page1}" th:object="${characterSheet}" method="post">
-	
-	
-
 		<!-- For some reason, we need to do "name" instead of "th:field" here. Don't ask me why, it's confusing -->
-		<input type="hidden" th:value="${#authentication.principal.username}" name="username" /> 
-		
+		<input type="hidden" th:value="${#authentication.principal.username}"
+			name="username" />
+
 		<div class="container-fluid">
 			<div class="row">
-			
 				<nav hidden="hidden" class="col-sm-0 col-0" id="myScrollspy">
 					<ul class="nav nav-pills flex-column">
 						<li class="nav-item dropdown"><a
@@ -53,7 +40,6 @@ div.col-8 div {
 								<a class="dropdown-item" href="#section11">Race</a> <a
 									class="dropdown-item" href="#section12">Choose your race</a>
 							</div></li>
-
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Class</a>
 							<div class="dropdown-menu">
@@ -70,118 +56,103 @@ div.col-8 div {
 					</ul>
 				</nav>
 				<div class="col-sm-12 col-12">
-					<div id="section11"
-						style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue; text-align: center; text-shadow: 1px 1px;">
-						<label for="charName" style="text-align: center; font-size:26px;">Name your character</label><br>
-						<input type="text" id="charName" name= "charName" th:field="*{charName}" style="-webkit-text-fill-color: black;border-radius:25px; box-shadow: 5px 5px; opacity: 80%;"><br>
+					<div id="section11">
+						<label for="charName" style="text-align: center; font-size: 26px;">Name
+							your character</label><br> <input type="text" id="charName"
+							name="charName" th:field="*{charName}"><br>
 						<div id="raceCarousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Dragonborn</h1>
-											<img src="/images/dragonborn.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Covered
-												in scales, claws sprouting from their hands, and the pride
-												of the dragons within their souls. Either born from a dragon
-												parent or blessed by a Draconic God, being half dragon has
-												its perks.</p>
+											<img src="/images/dragonborn.PNG">
+											<p class="card-text">Covered in scales, claws sprouting
+												from their hands, and the pride of the dragons within their
+												souls. Either born from a dragon parent or blessed by a
+												Draconic God, being half dragon has its perks.</p>
 										</div>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Dwarf</h1>
-											<img src="/images/dwarf.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Short,
-												bold, proud, and courageous! Dwarves are excellent warriors
-												and even better craftsmen. They live up to 400 years old and
-												can hold a grudge the whole time.</p>
+											<img src="/images/dwarf.PNG">
+											<p class="card-text">Short, bold, proud, and courageous!
+												Dwarves are excellent warriors and even better craftsmen.
+												They live up to 400 years old and can hold a grudge the
+												whole time.</p>
 										</div>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Elf</h1>
-											<img src="/images/elf.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Beautiful,
-												graceful, and magical. Elves love nature and magic and are
-												thought to be descended from fairies. They live long lives
-												(more than 700 years!) and they fill their time meditating
-												in the tall trees of ancient forests</p>
+											<img src="/images/elf.PNG">
+											<p class="card-text">Beautiful, graceful, and magical.
+												Elves love nature and magic and are thought to be descended
+												from fairies. They live long lives (more than 700 years!)
+												and they fill their time meditating in the tall trees of
+												ancient forests</p>
 										</div>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Orc</h1>
-											<img src="/images/orc.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Strong,
-												ambitious, and proud. The very first Orcs were created by
-												the God of war and fury! Some Orcs embrace this history and
-												LOVE to fight, while others reject this history and prefer
-												to use their strength in different ways. Orcs feel their
-												emotions very strongly. They laugh loudly when happy, cry
-												hard when sad, and sometimes they rage when they’re mad</p>
+											<img src="/images/orc.PNG">
+											<p class="card-text">Strong, ambitious, and proud. The
+												very first Orcs were created by the God of war and fury!
+												Some Orcs embrace this history and LOVE to fight, while
+												others reject this history and prefer to use their strength
+												in different ways. Orcs feel their emotions very strongly.
+												They laugh loudly when happy, cry hard when sad, and
+												sometimes they rage when they’re mad</p>
 										</div>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Halfling</h1>
-											<img src="/images/halfling.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Cheerful,
-												peace-loving, and loyal. Halfings are very small, standing
-												only 3 feet tall! Friends and family are very important, and
-												a Halfling will go to great lengths to protect those
-												important to them. They are generous and will share anything
-												they have. They love to discover new things</p>
+											<img src="/images/halfling.PNG">
+											<p class="card-text">Cheerful, peace-loving, and loyal.
+												Halfings are very small, standing only 3 feet tall! Friends
+												and family are very important, and a Halfling will go to
+												great lengths to protect those important to them. They are
+												generous and will share anything they have. They love to
+												discover new things</p>
 										</div>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Human</h1>
-											<img src="/images/human.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Adaptable,
-												ambitious, and adventure-seeking. If you’re reading this,
-												you probably know what a human is! They strive to achieve
-												great things in their lives and long to make fantastic
-												discoveries. Humans are innovative and smart and get along
-												well with all other races</p>
+											<img src="/images/human.PNG">
+											<p class="card-text">Adaptable, ambitious, and
+												adventure-seeking. If you’re reading this, you probably know
+												what a human is! They strive to achieve great things in
+												their lives and long to make fantastic discoveries. Humans
+												are innovative and smart and get along well with all other
+												races</p>
 										</div>
 									</div>
 								</div>
 								<div class="carousel-item">
-									<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-										<div class="card-body"
-											style="text-align: center; padding: 5%;">
+									<div class="cards-wrapper">
+										<div class="card-body">
 											<h1 class="card-title">Tiefling</h1>
-											<img src="/images/tiefling.PNG"
-												style="height: 170px; width: 170px;">
-											<p class="card-text" style="margin: 10px; font-size: large;">Self-reliant,
-												suspicious and cursed. Tieflings are born half demon, with
-												large horns, red skin, and blackened eyes. This however does
-												not make them evil! Some tieflings work very hard to be good
-												and surprise the people who doubt them. Other tieflings
-												submit to their origins and let the evil take over.</p>
+											<img src="/images/tiefling.PNG">
+											<p class="card-text">Self-reliant, suspicious and cursed.
+												Tieflings are born half demon, with large horns, red skin,
+												and blackened eyes. This however does not make them evil!
+												Some tieflings work very hard to be good and surprise the
+												people who doubt them. Other tieflings submit to their
+												origins and let the evil take over.</p>
 										</div>
 									</div>
 								</div>
@@ -196,13 +167,11 @@ div.col-8 div {
 								</a>
 							</div>
 						</div>
-						<div id="section12"
-							style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue; text-shadow: 2px 2px; text-align: center; padding: 5%; opacity: 80%;">
+						<div id="section12">
 							<h1>I want to be a...</h1>
 							<!-- We have to reference the race.raceName here, because we can't reference the object itself.
 							Thymeleaf will do the work for us on connecting the raceName to the actual race object. -->
 							<select name="race" class="custom-select-lg"
-								style="padding: 10px; box-shadow: 5px 5px; -webkit-text-fill-color: black; border-radius:25px;"
 								th:field="*{charRace}">
 								<option th:each="race:${races}" th:value="${race.raceName}"
 									th:text="${race.raceName}" value="" />
@@ -210,149 +179,124 @@ div.col-8 div {
 
 						</div>
 
-						<div id="section21"
-							style="background-color: rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-shadow: 1px 1px;">
+						<div id="section21">
 							<div id="classCarousel" class="carousel slide"
 								data-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Barbarian</h1>
 												<img src="/images/barb2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Flex your
-													muscles and RAGE! Barbarians know how to take a hit, and
-													they know how to deal them even better.</p>
+												<p class="card-text">Flex your muscles and RAGE!
+													Barbarians know how to take a hit, and they know how to
+													deal them even better.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Bard</h1>
 												<img src="/images/bard2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Strum your
-													lute and charm your enemies! Bards support their team with
-													a magical song and a charming smile.</p>
+												<p class="card-text">Strum your lute and charm your
+													enemies! Bards support their team with a magical song and a
+													charming smile.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Cleric</h1>
 												<img src="/images/cleric2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Granted
-													healing powers by the Gods themselves, a Cleric is a
-													blessed magical addition to your team.</p>
+												<p class="card-text">Granted healing powers by the Gods
+													themselves, a Cleric is a blessed magical addition to your
+													team.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Druid</h1>
 												<img src="/images/druid2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">One with
-													nature and friend to all animals! A Druid channels magic of
-													plants and animals.</p>
+												<p class="card-text">One with nature and friend to all
+													animals! A Druid channels magic of plants and animals.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Fighter</h1>
 												<img src="/images/fighter2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Brave knights
-													take up swords and shields and leap into batttle! Masters
-													of weapons and of battles.</p>
+												<p class="card-text">Brave knights take up swords and
+													shields and leap into batttle! Masters of weapons and of
+													battles.</p>
 												</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Paladin</h1>
 												<img src="/images/paladin2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">A holy
-													protector! Blessed with both magic from the Gods and great
-													strength in battle, a paladin is the best of both worlds.</p>
+												<p class="card-text">A holy protector! Blessed with both
+													magic from the Gods and great strength in battle, a paladin
+													is the best of both worlds.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Rogue</h1>
 												<img src="/images/rogue2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Slip into
-													shadow and disappear. Rogues pick locks just as well as
-													they pick pockets.</p>
+												<p class="card-text">Slip into shadow and disappear.
+													Rogues pick locks just as well as they pick pockets.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Sorcerer</h1>
 												<img src="/images/sorcerer2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Born with
-													magic in their blood, a Sorcerer is a very powerful mage
-													since childhood.</p>
+												<p class="card-text">Born with magic in their blood, a
+													Sorcerer is a very powerful mage since childhood.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Warlock</h1>
 												<img src="/images/warlock2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Locked in a
-													deal with a dark God, Warlocks are granted magic power from
-													somewhere beyond.</p>
+												<p class="card-text">Locked in a deal with a dark God,
+													Warlocks are granted magic power from somewhere beyond.</p>
 											</div>
 										</div>
 									</div>
 									<div class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px;  box-shadow: 5px 10px;">
-											<div class="card-body"
-												style="text-align: center; padding: 5%;">
+										<div class="cards-wrapper">
+											<div class="card-body">
 												<h1 class="card-title">Wizard</h1>
 												<img src="/images/wizard2.png"
 													style="height: 200px; width: 200px;">
-												<p class="card-text"
-													style="margin: 10px; font-size: x-large;">Filled with a
-													desire to gain magical knowledge, Wizrads have learned the
-													secrets to magic all by themselves.</p>
+												<p class="card-text">Filled with a desire to gain
+													magical knowledge, Wizrads have learned the secrets to
+													magic all by themselves.</p>
 											</div>
 										</div>
 									</div>
@@ -367,25 +311,23 @@ div.col-8 div {
 									</a>
 								</div>
 							</div>
-							<div id="section22"
-								style="background-color: rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-shadow: 1px 1px; text-align: center; padding: 5%;">
+							<div id="section22">
 								<h1>I want to be a...</h1>
 								<select name="class" class="custom-select-lg"
-									style="padding: 10px; border-radius:25px; box-shadow: 5px 5px; opacity:80%;" th:field="*{charClass}">
+									th:field="*{charClass}">
 									<option th:each="class:${classes}" th:value="${class.name}"
 										th:text="${class.name}" value="" />
 								</select>
 
 							</div>
 
-							<div id="section31"
-								style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue; text-shadow: 1px 1px; text-align: center; opacity:80%; margin-bottom: 5px">
+							<div id="section31">
 
 								<h1>Let's pick your stats!</h1>
 								<h5>How strong would you like to be?</h5>
-								<select class="number-select" id="select1" name="select1"  onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select5', 'select6')"
-									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px; "
-									th:field="*{strength}" >
+								<select class="number-select" id="select1" name="select1"
+									onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select5', 'select6')"
+									th:field="*{strength}">
 									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
 									<option th:value="10">10</option>
@@ -395,8 +337,8 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How dexterous would you like to be?</h5>
-								<select class="number-select" id="select2" name="select2" onchange="disableOption(this.value, 'select1', 'select3', 'select4', 'select5', 'select6')"
-									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
+								<select class="number-select" id="select2" name="select2"
+									onchange="disableOption(this.value, 'select1', 'select3', 'select4', 'select5', 'select6')"
 									th:field="*{dex}">
 									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
@@ -407,8 +349,8 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How much constitution would you like to have?</h5>
-								<select class="number-select" id="select3" name="select3" onchange="disableOption(this.value, 'select2', 'select1', 'select4', 'select5', 'select6')"
-									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
+								<select class="number-select" id="select3" name="select3"
+									onchange="disableOption(this.value, 'select2', 'select1', 'select4', 'select5', 'select6')"
 									th:field="*{con}">
 									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
@@ -420,8 +362,8 @@ div.col-8 div {
 								</select>
 
 								<h5>How smart would you like to be?</h5>
-								<select class="number-select" id="select4" name="select4" onchange="disableOption(this.value, 'select2', 'select3', 'select1', 'select5', 'select6')"
-									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
+								<select class="number-select" id="select4" name="select4"
+									onchange="disableOption(this.value, 'select2', 'select3', 'select1', 'select5', 'select6')"
 									th:field="*{intelligence}">
 									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
@@ -432,8 +374,8 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How wise would you like to be?</h5>
-								<select class="number-select" id="select5" name="select5" onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select1', 'select6')"
-									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
+								<select class="number-select" id="select5" name="select5"
+									onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select1', 'select6')"
 									th:field="*{wisdom}">
 									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
@@ -444,8 +386,8 @@ div.col-8 div {
 									<option th:value="15">15</option>
 								</select>
 								<h5>How charismatic would you like to be?</h5>
-								<select class="number-select" id="select6" name="select6" onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select5', 'select1')"
-									style="-webkit-text-fill-color: rgb(23, 15, 7); width:25%; font-size: 24px; text-align: center; border-radius:25px; box-shadow: 2px 2px;"
+								<select class="number-select" id="select6" name="select6"
+									onchange="disableOption(this.value, 'select2', 'select3', 'select4', 'select5', 'select1')"
 									th:field="*{charisma}">
 									<option value="0" selected disabled>Please select</option>
 									<option th:value="8">8</option>
@@ -455,44 +397,23 @@ div.col-8 div {
 									<option th:value="14">14</option>
 									<option th:value="15">15</option>
 								</select><br>
-							 <button type="button" id="resetBtn" class="btn btn-primary" style="margin:20px;" onclick="clearDisabled()">Pick different values</button>
+								<button type="button" id="resetBtn" class="btn btn-primary"
+									style="margin: 20px; box-shadow: 1px 2px" onclick="clearDisabled()">Pick
+									different values</button>
 							</div>
-							<div id="section32"
-								style="background-color: rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; opacity:60%;">
+							<div id="section32">
 								<h1 style="margin: 5%;">Let's move on!</h1>
-								<a th:href="@{/page2}"> <input type="submit" class="btn btn-info" style="padding: 5%; margin: 10%;"/>
+								<a th:href="@{/page2}"> <input type="submit"
+									class="btn btn-primary btn-lg" style="margin: 10%; box-shadow: 1px 2px" />
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				</div>
-				</div>
+			</div>
+		</div>
 	</form>
-	   <script>
-      function disableOption(value, select1, select2, select3, select4, select5, select6) {
-        $('#' + select1 + ' option[value="' + value + '"]').prop('disabled', true);
-        $('#' + select2 + ' option[value="' + value + '"]').prop('disabled', true);
-        $('#' + select3 + ' option[value="' + value + '"]').prop('disabled', true);
-        $('#' + select4 + ' option[value="' + value + '"]').prop('disabled', true);
-        $('#' + select5 + ' option[value="' + value + '"]').prop('disabled', true);
-        $('#' + select6 + ' option[value="' + value + '"]').prop('disabled', true);
-      }
-      function enableAll() {
-    	    $("select option").prop("disabled", false);
-    	}
-
-    	$(document).ready(function() {
-    	    $("select.select1").change(function() {
-    	        var selectedVal = $(this).val();
-    	        $("select:not(.select1) option").prop("disabled", false);
-    	        $("select:not(.select1) option[value='" + selectedVal + "']").prop("disabled", true);
-    	    });
-    	    $("#resetBtn").click(function() {
-    	        enableAll();
-    	    });
-    	});
-    </script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
 
 </html>

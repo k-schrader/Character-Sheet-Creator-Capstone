@@ -12,7 +12,6 @@ public class CharacterClass {
 	@Id
 	private String name;
 	private int hitDie;
-	//TODO method to separate the delimited list
 	private String skills; 
 	@ManyToOne
 	Weapon weapon1;

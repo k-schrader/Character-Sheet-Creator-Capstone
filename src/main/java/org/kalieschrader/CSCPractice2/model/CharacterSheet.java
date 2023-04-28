@@ -27,9 +27,6 @@ private Integer charId;
 private String username;
 private String charName;
 private int hitPoints;
-//private int armorClass;
-//private String spellSaveDC;
-//private String spellAttack;
 private int strength;
 private int con;
 private int dex;
@@ -120,24 +117,6 @@ public int getHitPoints() {
 public void setHitPoints(int hitPoints) {
 	this.hitPoints = hitPoints;
 }
-//public int getArmorClass() {
-//	return armorClass;
-//}
-//public void setArmorClass(int armorClass) {
-//	this.armorClass = armorClass;
-//}
-//public String getSpellSaveDC() {
-//	return spellSaveDC;
-//}
-//public void setSpellSaveDC(String spellSaveDC) {
-//	this.spellSaveDC = spellSaveDC;
-//}
-//public String getSpellAttack() {
-//	return spellAttack;
-//}
-//public void setSpellAttack(String spellAttack) {
-//	this.spellAttack = spellAttack;
-//}
 public int getStrength() {
 	return strength;
 }

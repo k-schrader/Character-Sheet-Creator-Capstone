@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
+//This class is the controller for all of our model classes
+//Each method here allows us to create new instances of our model objects, or read/edit/delete them
 @Controller
 public class ModelController {
 
@@ -54,57 +56,58 @@ public class ModelController {
    @GetMapping("/class")
    public String classes(){
        return "classes";
-   }
+   }//Retrieves all existing classes
 	@GetMapping("/classes")
 	public List<CharacterClass> getAllCharacterClasses() {
 		return characterClassRepo.findAll();
-	}
+	}//Retrieves classes by name
 	@GetMapping("/classes/{name}")
 	public Optional<CharacterClass> getCharacterClassByClassName(@PathVariable("name") String name) {
 		return characterClassRepo.findByName(name);
-	}
-	@PostMapping("/edit")
-	public ModelAndView edit(@ModelAttribute CharacterClass charClass,
-			@RequestParam(value = "action", required = true) String action) {
-
-		if (action.equals("barbarian")) {
-			charClass.setName("Barbarian");
-		}
-		if (action.equals("bard")) {
-			charClass.setName("Bard");
-		}
-		if (action.equals("cleric")) {
-			charClass.setName("Cleric");
-		}
-		if (action.equals("druid")) {
-			charClass.setName("Druid");
-		}
-		if (action.equals("fighter")) {
-			charClass.setName("Fighter");
-		}
-		if (action.equals("paladin")) {
-			charClass.setName("Paladin");
-		}
-		if (action.equals("rogue")) {
-			charClass.setName("Rogue");
-		}
-		if (action.equals("sorcerer")) {
-			charClass.setName("Sorcer");
-		}
-		if (action.equals("warlock")) {
-			charClass.setName("Warlock");
-		}
-		if (action.equals("wizard")) {
-			charClass.setName("Wizard");
-		}
-		return edit(charClass, action);
-	
-	}
+	}//Edit an existing class
+//	@PostMapping("/edit")
+//	public ModelAndView edit(@ModelAttribute CharacterClass charClass,
+//			@RequestParam(value = "action", required = true) String action) {
+//
+//		if (action.equals("barbarian")) {
+//			charClass.setName("Barbarian");
+//		}
+//		if (action.equals("bard")) {
+//			charClass.setName("Bard");
+//		}
+//		if (action.equals("cleric")) {
+//			charClass.setName("Cleric");
+//		}
+//		if (action.equals("druid")) {
+//			charClass.setName("Druid");
+//		}
+//		if (action.equals("fighter")) {
+//			charClass.setName("Fighter");
+//		}
+//		if (action.equals("paladin")) {
+//			charClass.setName("Paladin");
+//		}
+//		if (action.equals("rogue")) {
+//			charClass.setName("Rogue");
+//		}
+//		if (action.equals("sorcerer")) {
+//			charClass.setName("Sorcer");
+//		}
+//		if (action.equals("warlock")) {
+//			charClass.setName("Warlock");
+//		}
+//		if (action.equals("wizard")) {
+//			charClass.setName("Wizard");
+//		}
+//		return edit(charClass, action);
+//	
+//	}
+	//Creates a new class
 	@PostMapping("/classes")
 	   public ResponseEntity<CharacterClass> createCharacterClass(@RequestBody CharacterClass characterClass){
 	       CharacterClass savedCharacterClass = characterClassRepo.save(characterClass);
 	       return ResponseEntity.created(URI.create("/characterClass/" + savedCharacterClass.getName())).body(savedCharacterClass);
-	   }
+	   }//Edits an existing class
 	@PutMapping("/classes/{name}")
 	public ResponseEntity<CharacterClass> updateCharacterClass(@PathVariable String name,
 			@RequestBody CharacterClass charClass) {
@@ -127,7 +130,7 @@ public class ModelController {
 		existingCharacterClass.setSpellModifier(charClass.getSpellModifier());
 		CharacterClass savedClass = characterClassRepo.save(existingCharacterClass);
 		return ResponseEntity.ok(savedClass);
-	}
+	}//Deletes an existing class
 	@DeleteMapping("/classes/{name}")
 	public ResponseEntity<Void> deleteCharacterClass(@PathVariable String name) {
 		characterClassRepo.deleteByName(name);
@@ -135,20 +138,23 @@ public class ModelController {
 	}
       
 	//RACES
+	//Returns all existing races
 @GetMapping("/races")
 public List<CharacterRace> getAllCharacterRaces(){
    return characterRaceRepo.findAll();
 }
+//Returns race selected by name
 @GetMapping("/races/{raceName}")
 public Optional<CharacterRace> getCharacterRaceByRaceName(@PathVariable("name") String raceName) {
    return characterRaceRepo.findByRaceName(raceName);
 }
-
+//Creates a new race
 @PostMapping("/races")
 public ResponseEntity<CharacterRace> createCharacterRace(@RequestBody CharacterRace race){
    CharacterRace savedRace = characterRaceRepo.save(race);
    return ResponseEntity.created(URI.create("/races/" + savedRace.getRaceName())).body(savedRace);
 }
+//Edits an existing race
 @PutMapping("/races/{raceName}")
 public ResponseEntity<CharacterRace> updateCharacterRace(@PathVariable String name, @RequestBody CharacterRace race){
    CharacterRace existingCharacterRace = characterRaceRepo.findByRaceName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -165,36 +171,43 @@ public ResponseEntity<CharacterRace> updateCharacterRace(@PathVariable String na
 	   CharacterRace savedRace = characterRaceRepo.save(existingCharacterRace);
        return ResponseEntity.ok(savedRace);
    }
+//Deletes an existing race
 @DeleteMapping("/races/{raceName}")
 public ResponseEntity<Void> deleteCharacterRace(@PathVariable String name) {
    characterRaceRepo.deleteByRaceName(name);
    return ResponseEntity.noContent().build();
 }
 //SPELLS
+//Creates new spells
 @PostMapping("/spells")
 public ResponseEntity<Spells> createSpells(@RequestBody Spells spell){
     Spells savedSpell = spellsRepo.save(spell);
     return ResponseEntity.created(URI.create("/spells/" + savedSpell.getName())).body(savedSpell);
 }
 //ITEMS
+//Creates new items
 @PostMapping("/item")
 public ResponseEntity<Item> createItem(@RequestBody Item item){
     Item savedItem = itemRepo.save(item);
     return ResponseEntity.created(URI.create("/item/" + savedItem.getItemName())).body(savedItem);
 }
 //WEAPONS
+//Creates new weapons
 @PostMapping("/weapon")
 public ResponseEntity<Weapon> createWeapon(@RequestBody Weapon weapon){
     Weapon savedWeapon = weaponRepo.save(weapon);
     return ResponseEntity.created(URI.create("/weapon/" + savedWeapon.getWeaponName())).body(savedWeapon);
 }
 //ARMOR
+//Creates new armor
 @PostMapping("/armor")
 public ResponseEntity<Armor> createArmor(@RequestBody Armor armor){
     Armor savedArmor = armorRepo.save(armor);
     return ResponseEntity.created(URI.create("/armor/" + savedArmor.getArmorName())).body(savedArmor);
 
 }
+//Updates an existing CharacterSheet object, this is done so that we can add on new information the the same character sheet
+//over multiple pages 
 @PutMapping("/charsheet/{charId}")
 public CharacterSheet updateCharacterSheet(@PathVariable Integer charId, @RequestBody CharacterSheet charSheet){
 	   CharacterSheet existingCharSheet = charSheetRepo.findByCharId(charId);
@@ -218,5 +231,34 @@ public CharacterSheet updateCharacterSheet(@PathVariable Integer charId, @Reques
 	   CharacterSheet savedCharSheet = charSheetRepo.save(existingCharSheet);
         return savedCharSheet;
 }
+ 
+//
+////Returns all of the objects in the Armor table in the DB
+//@GetMapping("/armors")
+//public List<Armor> getAllArmor(){
+// return armorRepo.findAll();
+//}
+////Returns the Armor object by name from the Armor table in the DB
+//@GetMapping("/armors/{armorName}")
+//public Optional<Armor> getArmorByArmorName(@PathVariable("name") String name) {
+// return  armorRepo.findByArmorName(name);
+//}
+////Updates an existing Armor object in the DB
+//@PutMapping("/armors/{armorName}")
+//public ResponseEntity<Armor> updateArmor(@PathVariable String name, @RequestBody Armor armor){
+// Armor existingArmor = armorRepo.findByArmorName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+//		   "Armor not found"));
+// existingArmor.setArmorName(armor.getArmorName());
+// existingArmor.setAcBonus(armor.getAcBonus());
+// existingArmor.setDetails(armor.getDetails());
+//	   Armor savedArmor = armorRepo.save(existingArmor);
+//     return ResponseEntity.ok(savedArmor);
+// }
+////Deletes an Armor object from the DB selected by name
+//@DeleteMapping("/armors/{armorName}")
+//public ResponseEntity<Void> deleteArmor(@PathVariable String name) {
+// armorRepo.deleteByArmorName(name);
+// return ResponseEntity.noContent().build();
 }
+
 

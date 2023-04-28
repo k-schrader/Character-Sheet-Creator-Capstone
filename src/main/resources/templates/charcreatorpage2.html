@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+<link th:href="@{/css/page2.css}" rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
 <script
@@ -16,17 +17,9 @@
 
 
 <style>
-body {
-	position: relative;
-}
-
-ul.nav-pills {
-	top: 20px;
-	position: fixed;
-}
-
-div.col-8 div {
-	height: 500px;
+.card-body {
+	text-align: center;
+	padding: 5%;
 }
 </style>
 </head>
@@ -87,16 +80,13 @@ div.col-8 div {
 				</nav>
 
 				<div class="col-sm-12 col-12">
-					<div id="section11"
-						style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue;">
+					<div id="section11">
 
-						<div id="section12"
-							style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue; text-align: center; padding: 5%; opacity:80%;">
+						<div id="section12">
 							<h1>Weapons</h1>
 							<h3>I want to have...</h3>
 							<select th:field="*{weapon1}" name="weaponpick1"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 2px 2px;">
+								class="custom-select-lg">
 								<option th:text="*{charClass.weapon1.weaponName}"
 									th:value="*{charClass.weapon1.weaponName}" />
 								<option th:text="*{charClass.weapon2.weaponName}"
@@ -106,8 +96,7 @@ div.col-8 div {
 							</select>
 							<h1>And a...</h1>
 							<select th:field="*{weapon2}" name="weaponpick2"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 2px 2px;">
+								class="custom-select-lg">
 								<option th:text="*{charClass.weapon1.weaponName}"
 									th:value="*{charClass.weapon1.weaponName}" />
 								<option th:text="*{charClass.weapon2.weaponName}"
@@ -117,16 +106,14 @@ div.col-8 div {
 							</select>
 						</div>
 
-						<div id="section21"
-							style="background-color:rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-shadow: 1px 1px;">
+						<div id="section21">
 							<div id="itemCarousel" class="carousel slide"
 								data-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 5px 10px;">
+										<div class="cards-wrapper">
 											<div class="col-sm-12">
-												<div class="card-body"
-													style="text-align: center; padding: 5%;">
+												<div class="card-body">
 													<h1 class="card-title">Items</h1>
 													<p class="card-text"
 														style="margin: 10px; font-size: large;">Some handy
@@ -136,10 +123,9 @@ div.col-8 div {
 										</div>
 									</div>
 									<div th:each="item: ${items}" class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%;; margin-top: 5%; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 5px 10px;">
+										<div class="cards-wrapper">
 											<div class="col-sm-12">
-												<div class="card-body"
-													style="text-align: center; padding: 5%;">
+												<div class="card-body">
 													<h5 class="card-title" th:text="${item.itemName}"></h5>
 													<p class="card-text" th:text="${item.details}"
 														style="margin: 10px; font-size: x-large;"></p>
@@ -159,55 +145,48 @@ div.col-8 div {
 								</div>
 							</div>
 						</div>
-						<div id="section22"
-							style="background-color:rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center; padding: 5%; text-shadow: 1px 1px;">
+						<div id="section22">
 							<h1>Items</h1>
 							<h3>I want to have...</h3>
 							<select th:field="*{item1}" name="itempick1"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 2px 2px; opacity: 80%;">
+								class="custom-select-lg">
 								<option th:each="item: ${items}" th:text="${item.itemName}"
 									th:value="${item.itemName}" />
 							</select>
 							<h1>and...</h1>
 							<select th:field="*{item2}" name="itempick2"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 2px 2px; opacity: 80%;">
+								class="custom-select-lg">
 								<option th:each="item: ${items}" th:text="${item.itemName}"
 									th:value="${item.itemName}" />
 							</select>
 							<h1>and...</h1>
 							<select th:field="*{item3}" name="itempick3"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 2px 2px; opacity: 80%;">
+								class="custom-select-lg">
 								<option th:each="item: ${items}" th:text="${item.itemName}"
 									th:value="${item.itemName}" />
 							</select>
 						</div>
-							<div  th:unless = '*{charClass.spellSlots == 0}' id="section31" style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue; text-align: center;">
+							<div  th:unless = '*{charClass.spellSlots == 0}' id="section31">
 							<div id="spellCarousel" class="carousel slide"
 								data-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; border-radius: 25px; box-shadow: 5px 10px; -webkit-text-fill-color: black;">
+										<div class="cards-wrapper">
 											<div class="col-sm-12">
 												<div class="card-body"
 													style="text-align: center; padding: 5%;">
 													<h1 class="card-title">Spells</h1>
-													<p class="card-text"
-														style="margin: 10px; font-size: large;">Select the magic spells you want to have!</p>
+													<p class="card-text">Select the magic spells you want to have!</p>
 												</div>
 											</div>
 										</div>
 									</div>
 									<div th:each="spell: ${spells}" class="carousel-item">
-										<div class="cards-wrapper" style="background-color: white; width: 80%; margin: 10%; opacity: 70%; margin-top: 5%; border-radius: 25px; box-shadow: 5px 10px; -webkit-text-fill-color: black;">
+										<div class="cards-wrapper">
 											<div class="col-sm-12">
-												<div class="card-body"
-													style="text-align: center; padding: 5%;">
+												<div class="card-body">
 													<h5 class="card-title" th:text="${spell.name}"></h5>
-													<p class="card-text" th:text="${spell.details}"
-														style="margin: 10px; font-size: x-large;"></p>
+													<p class="card-text" th:text="${spell.details}"></p>
 												</div>
 											</div>
 										</div>
@@ -224,8 +203,7 @@ div.col-8 div {
 								</div>
 							</div>
 						</div>
-						<div id="section32" th:unless = '*{charClass.spellSlots == 0}'
-							style="background-color: rgb(74,78,105); -webkit-text-fill-color: aliceblue; text-align: center; margin-bottom: 15px">
+						<div id="section32" th:unless = '*{charClass.spellSlots == 0}'>
 							<h1>Spells</h1>
 							
 							<!-- Here, we do a th:each for each cantrip the character has available. First we:
@@ -245,8 +223,7 @@ div.col-8 div {
 							<th:block th:each="i : ${#numbers.sequence(1, #object.charClass.numCantrips)}">
 							<h3 style="text-shadow: 1px 1px;">I want to have the cantrip...</h3>
 							<select th:field="*{spell__${i}__}" name="spell__${i}__"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black;  border-radius:25px; box-shadow: 2px 2px; opacity:80%;">
+								class="custom-select-lg">
 								<option th:each="cantrip: ${cantrips}" th:text="${cantrip.name}"
 									th:value="${cantrip.name}" />
 							</select>
@@ -259,20 +236,18 @@ div.col-8 div {
 							<th:block th:each="i : ${#numbers.sequence(#object.charClass.numCantrips+1, #object.charClass.numSpells+#object.charClass.numCantrips)}">
 							<h3 style="text-shadow: 1px 1px;">I want to have the spell...</h3>
 							<select th:field="*{spell__${i}__}" name="spell__${i}__"
-								class="custom-select-lg"
-								style="padding: 10px; -webkit-text-fill-color: black; border-radius:25px; box-shadow: 2px 2px; opacity:80%;">
+								class="custom-select-lg">
 								<option th:each="spell: ${spells}" th:text="${spell.name}"
 									th:value="${spell.name}" />
 							</select>
 							</th:block>
 
 						</div>
-						<div id="section4"
-							style="background-color: rgb(94,66,94); -webkit-text-fill-color: rgb(23, 15, 7); text-align: center;">
+						<div id="section4">
 							<h1>Let's move on!</h1>
 
 							<a th:href="@{/charsheetpage}"> <input type="submit"
-								class="btn btn-info" style="padding: 5%; margin: 10%;  opacity:60%;" />
+								class="btn btn-primary btn-lg" style="margin: 10%; box-shadow: 1px 2px" />
 							</a>
 						</div>
 					</div>

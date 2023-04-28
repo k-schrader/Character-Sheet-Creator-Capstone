@@ -51,5 +51,5 @@ public class UserData implements Serializable {
 		this.userPass = userPass;
 	}
 
-    //getter and setter
+
 }

@@ -20,14 +20,12 @@ import org.springframework.stereotype.Service;
 public class FormattingService {
 
 	 private String playerName;
-//	 private String profBonus;
 	 private int modStrength;
 	 private int modDexterity;
 	 private int modCon;
 	 private int modIntelligence;
 	 private int modWisdom;
 	 private int modCharisma;
-	// private List<Integer> skillScores; //list of skill scores 
 	 private int modAcrobatics;
 	 private int modAnimalHandling;
 	 private int modArcana;
@@ -86,7 +84,7 @@ public class FormattingService {
 	
 public FormattingService(CharacterSheet charSheet) {
 	this.charSheet=charSheet;
-	setAbilityScores();
+//	setAbilityScores();
 	setSkillScores();
 	setHitPoints();
 	setArmorClass();
@@ -119,20 +117,27 @@ public FormattingService(CharacterSheet charSheet) {
 	setCharName();
 	setPlayerName(); 
 }
-//logic to calculate skill scores 
-	 public void setAbilityScores() {
-		 String[] abilityScoreArray = charSheet.getCharRace().getAbilityScoreIn().split(",");
-		 List<Integer> abilityScoreList = new ArrayList<Integer>();
-		 for (String number : abilityScoreArray) {
-		     abilityScoreList.add(Integer.parseInt(number.trim()));
+	//Takes in string of score modifiers and list of raw scores, 
+	 public List<Integer> getModdedScores(String scoreModifierString, List<Integer> rawScoreList) {
+		 List<Integer> scoreModifierList = getAsNumberList(scoreModifierString);
+		 List<Integer> scoreList = new ArrayList<>();
+		 for (int i = 0; i < rawScoreList.size(); i++) {
+			 int moddedScore = ((rawScoreList.get(i) + scoreModifierList.get(i)) - 10) / 2;
+			 scoreList.add(i, moddedScore);
 		 }
-		 modStrength=((charSheet.getStrength() + abilityScoreList.get(0))-10)/2;
-		 modDexterity=((charSheet.getDex() + abilityScoreList.get(1))-10)/2;
-		 modCon=((charSheet.getCon() + abilityScoreList.get(2))-10)/2;
-		 modIntelligence=((charSheet.getIntelligence() + abilityScoreList.get(3))-10)/2;
-		 modWisdom=((charSheet.getWisdom() + abilityScoreList.get(4))-10)/2;
-		 modCharisma=((charSheet.getCharisma() + abilityScoreList.get(5))-10)/2;
+		 return scoreList;
 	 }
+	 
+	 //Separates string of comma-delimited integers into a list
+	 public List<Integer> getAsNumberList(String numberString) {
+		 String[] numberArray = numberString.split(",");
+		 List<Integer> numberList = new ArrayList<>();
+		 for (String number : numberArray) {
+		     numberList.add(Integer.parseInt(number.trim()));
+		 }
+		 return numberList;
+	 }
+	 
 //logic to add skill scores/separate delimited list 
 	 public void setSkillScores() {
 		 String[] skillScoreArray = charSheet.getCharClass().getSkills().split(",");

@@ -1,12 +1,11 @@
 package org.kalieschrader.CSCPractice2.controller;
 
-import java.net.URI;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import org.kalieschrader.CSCPractice2.model.CharacterRace;
+
 import org.kalieschrader.CSCPractice2.model.CharacterSheet;
 import org.kalieschrader.CSCPractice2.model.Spells;
 import org.kalieschrader.CSCPractice2.model.User;
@@ -17,43 +16,30 @@ import org.kalieschrader.CSCPractice2.repository.ItemRepository;
 import org.kalieschrader.CSCPractice2.repository.RoleRepository;
 import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
 import org.kalieschrader.CSCPractice2.repository.UserRepository;
-import org.kalieschrader.CSCPractice2.repository.WeaponRepository;
 import org.kalieschrader.CSCPractice2.service.FormattingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.ModelAndView;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.websocket.server.PathParam;
-
+//This class maps out and handles requests for the pages that build up the final character sheet
+//Session attribute for storing our character sheet for the session
 @SessionAttributes("characterSheet")
 @Controller
 public class Page1Controller {
-
+	
+	//New logger created for troubleshooting and debugging
 	Logger logger = LoggerFactory.getLogger(Page1Controller.class);
-
+	
+	//Injects instances of each needed repository so that we can use them inside of this controller
 	@Autowired
 	public CharacterRaceRepository characterRaceRepo;
 	@Autowired
@@ -65,17 +51,15 @@ public class Page1Controller {
 	@Autowired
 	private SpellsRepository spellsRepo;
 	@Autowired
-	private ModelController modelController;
-	@Autowired
 	private UserRepository userRepo;
-	@Autowired
-	private RoleRepository roleRepo;
-
+	
+	//Instance of charactersheet 
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
 		return new CharacterSheet();
 	}
-
+	//Handles requests to the first page of the character creator 
+	//All races and classes are added for the view to access by adding the attributes to the model
 	@GetMapping(value = "/page1")
 	public String viewPage(Model model) {
 		CharacterSheet charsheet = new CharacterSheet();
@@ -84,26 +68,28 @@ public class Page1Controller {
 		model.addAttribute("classes", charClassRepo.findAll());
 		return "charcreatorpage1";
 	}
-
+	//Adds the half finished character sheet from page one to a saved sheet to pass through to the second page to be finished 
 	@PostMapping("/page1")
 	public String createCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model) {
 		CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
 		model.addAttribute("characterSheet", savedCharSheet);
 		return "redirect:page2/" + savedCharSheet.getCharId();
 	}
-
+	//Handles requests to the second page of the character creator 
+	//Adds the items and spells for the views to access 
+	//If-else added to assure that only the same user from page one can access page 2
 	@GetMapping(value = "/page2/{charId}")
 	public String submit(@PathVariable("charId") Integer charId, Model model, Authentication authentication) {
-		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
+		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect which adds our half finished character sheet values to the view 
 		if(authentication.getName().equals(characterSheet.getUsername())) {
 		model.addAttribute("characterSheet", characterSheet);
 		model.addAttribute("items", itemRepo.findAll());
 		List<Spells> spellsList = new ArrayList<Spells>();
-		List<Spells> cantripsList = new ArrayList<Spells>(); // Here, I'm creating another list of spells but this one will only have cantrips in it
+		List<Spells> cantripsList = new ArrayList<Spells>(); //List of spells to only include cantrips
 		String className = characterSheet.getCharClass().getName();
 		for (Spells spell : spellsRepo.findAll()) {
 			if (spell.getCastingClasses().contains(className)) {
-				switch (spell.getCastingLevel()) { // Here, we read in the spell's casting level and put it in one of the lists accordingly.
+				switch (spell.getCastingLevel()) { //Assess the spells casting level to separate into spells vs cantrips
 				case 0:
 					cantripsList.add(spell);
 					break;
@@ -111,7 +97,7 @@ public class Page1Controller {
 					spellsList.add(spell);
 				}
 			}
-		} // This can be expanded in the future by creating a list for each level of spell the same way we did for cantrips.
+		}
 		model.addAttribute("cantrips", cantripsList);
 		model.addAttribute("spells", spellsList);
 		return "charcreatorpage2";
@@ -119,31 +105,20 @@ public class Page1Controller {
 		return "unauthorized";
 	}
 	}
-
+	//Added to test login and security to see which user is logged in 
 	@GetMapping("/principal")
 	public String getPrincipal(@CurrentSecurityContext(expression = "authentication.principal") Principal principal) {
 		return principal.getName();
 	}
-	
+	//Handles requests to view all users- available only to ROLE_ADMIN
 	@GetMapping("/userview")
 	public String viewUsers(Model model) {
 		model.addAttribute("users", userRepo.findAll());
 		return "userview";
 	}
-	
-
-//	  @GetMapping(value = "/charsheetpage/{charId}")
-//	  public String submit2(@PathVariable("charId") Integer charId, Model model) {
-//		  CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
-//		  logger.info(characterSheet.toString());
-//		  FormattingService formatting = new FormattingService(characterSheet);
-////			model.addAttribute("characterSheet", characterSheet);
-//			model.addAttribute("formatting", formatting);
-//			return "charsheetpage";
-//		}
-
-	// TODO update schema to remove unnecessary columns from characterSheet,
-	// including: armor_class, spell_attack, spell_savedc, armor_armor_name,
+	//Handles requests to the final character sheet page 
+	//If the user is authenticated they are passed on to their character sheet page 
+	//New formatting service created to use on the view page 
 	@GetMapping(value = "/charsheetpage/{charId}")
 	public String charSheetPage(@PathVariable("charId") Integer charId, Model model, Authentication authentication) {
 		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by
@@ -155,22 +130,15 @@ public class Page1Controller {
 		return "unauthorized";
 	}
 	}
-
+	//Adds the finished character sheet to the final page 
 	@PostMapping("/page2")
 	public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model) {
 		CharacterSheet savedCharSheet = charSheetRepo.save(characterSheet);
 		model.addAttribute("characterSheet", savedCharSheet);
 		return "redirect:charsheetpage/" + characterSheet.getCharId();
 	}
-	
-	
-//	@PostMapping("/charsheetpage")
-//	public String saveCharSheet(@ModelAttribute("user") User user, Model model) {
-//		User savedUser = userRepo.findByEmail(user.getEmail());
-//		model.addAttribute("user", savedUser);
-//		return "redirect:/oldcharacterview/" + savedUser.getEmail();
-//	}
-
+	//Handles requests to view old character sheets 
+	//Checks first if user is the same as the old sheet user, if else they are redirected to unauthorized page
 	@GetMapping(value = "/oldcharacterview/{email}")
 	public String oldCharSheet(@PathVariable("email") String email, Model model, Authentication authentication) {
 		User user = userRepo.findByEmail(email); 
@@ -183,48 +151,5 @@ public class Page1Controller {
 		return "unauthorized";
 }
 	}
-//		@PostMapping("/page2")  
-//		public String updateCharacterSheet(@ModelAttribute("characterSheet") CharacterSheet characterSheet, Model model){
-//		  // ResponseEntity<CharacterSheet> savedCharSheet = modelController.updateCharacterSheet(charSheet.getCharId(), charSheet);
-//		   logger.info(characterSheet.toString());
-//			   CharacterSheet existingCharSheet = charSheetRepo.findByCharId(characterSheet.getCharId());
-//			  // CharacterSheet savedCharSheet = modelController.updateCharacterSheet(characterSheet.getCharId(), existingCharSheet);
-//			  charSheetRepo.save(existingCharSheet);
-////			   model.addAttribute("characterSheet", existingCharSheet);
-//			return "redirect:charsheetpage/"+characterSheet.getCharId();
-////			   return (ResponseEntity<CharacterSheet>) ResponseEntity.created(URI.create("/charsheetpage/" + existingCharSheet.getCharId()));
-//			} 
-
-//	@GetMapping("/page1")
-//	public ModelAndView getAllAttributes() {
-//		ModelAndView mav = new ModelAndView("charcreatorpage1"); //This is the page referenced, so the HTML file. It can match what's passed in above, but doesn't always
-//		mav.addObject("races", characterRaceRepo.findAll());
-//		mav.addObject("classes", charClassRepo.findAll());
-//		mav.addObject("characterSheet", new CharacterSheet());
-//		return mav;
-//	}
-
-//	@GetMapping("/page2/{charId}")
-//	public String charSheetInfo(@ModelAttribute("characterSheet") CharacterSheet charSheet, Model model) {
-	// ModelAndView mav = new ModelAndView("charcreatorpage2"); //This is the page
-	// referenced, so the HTML file. It can match what's passed in above, but
-	// doesn't always
-	// model.addAttribute(CharacterSheet)
-	// charSheet1 = charSheetRepo.findByCharId(charSheet1.getCharId());
-	// model.addAttribute("charSheet1", charSheetInfo(charSheet, model));
-
-//		//logger.info(request.getSession().getAttribute("characterSheet").toString());
-////		mav.addObject("spells", spellsRepo.findAll());
-////				for (spell : spells) {
-////					if spell.castingClasses.contains(characterSheet.getClass.getClassName) {
-////						mav.addObject("spells", spell);
-////					}
-//////				}
-//		model.addAttribute("items", itemRepo.findAll());
-//		model.addAttribute("weapon1", weaponRepo.findByWeaponName(charSheet.getCharClass().getWeapon1().getWeaponName()));//We're adding "spells" to our model and view here so we will be able to reference it from within the HTML page
-//		model.addAttribute("weapon2", weaponRepo.findByWeaponName(charSheet.getCharClass().getWeapon2().getWeaponName()));
-//		model.addAttribute("weapon3", weaponRepo.findByWeaponName(charSheet.getCharClass().getWeapon3().getWeaponName()));
-//		return "charcreatorpage2";
-//	}
 
 }
