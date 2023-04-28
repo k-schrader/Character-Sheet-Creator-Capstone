@@ -1,0 +1,91 @@
+body {
+	position: relative;
+}
+
+ul.nav-pills {
+	top: 20px;
+	position: fixed;
+}
+
+div.col-8 div {
+	height: 500px;
+}
+
+.cards-wrapper {
+	background-color: white;
+	width: 80%;
+	margin: 10%;
+	opacity: 70%;
+	margin-top: 5%;
+	-webkit-text-fill-color: black;
+	border-radius: 25px;
+	box-shadow: 5px 10px;
+}
+
+.card-body {
+	text-align: center;
+	padding: 5%;
+}
+
+#section11 {
+	background-color: rgb(74, 78, 105);
+	-webkit-text-fill-color: aliceblue;
+	text-align: center;
+	text-shadow: 1px 1px;
+}
+
+#section12 {
+	background-color: rgb(74, 78, 105);
+	-webkit-text-fill-color: aliceblue;
+	text-shadow: 2px 2px;
+	text-align: center;
+	padding: 5%;
+	opacity: 80%;
+}
+
+#section21 {
+	background-color: rgb(94, 66, 94);
+	-webkit-text-fill-color: rgb(23, 15, 7);
+	text-shadow: 1px 1px;
+}
+
+#section22 {
+	background-color: rgb(94, 66, 94);
+	-webkit-text-fill-color: rgb(23, 15, 7);
+	text-shadow: 1px 1px;
+	text-align: center;
+	padding: 5%;
+}
+
+#section31 {
+	background-color: rgb(74, 78, 105);
+	-webkit-text-fill-color: aliceblue;
+	text-shadow: 1px 1px;
+	text-align: center;
+	opacity: 80%;
+	margin-bottom: 5px
+}
+
+#section32 {
+	background-color: rgb(74,78,105); 
+	-webkit-text-fill-color: aliceblue; 
+	text-align: center; 
+	margin-bottom: 15px"
+}
+#section4{
+background-color: rgb(94,66,94); 
+-webkit-text-fill-color: rgb(23, 15, 7); 
+text-align: center;
+}
+
+.card-text {
+	margin: 10px;
+	font-size: large;
+}
+
+.custom-select-lg {
+	padding: 10px;
+	box-shadow: 5px 5px;
+	-webkit-text-fill-color: black;
+	border-radius: 25px;
+}
