@@ -59,7 +59,7 @@ public class SpringSecurity{
 	                                .permitAll()
 	                ).logout(
 	                        logout -> logout
-	                                .logoutRequestMatcher(new AntPathRequestMatcher("/register"))
+	                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	                                .logoutSuccessUrl("/login")
 	                                .invalidateHttpSession(true)
 	                                .deleteCookies("JSESSIONID")

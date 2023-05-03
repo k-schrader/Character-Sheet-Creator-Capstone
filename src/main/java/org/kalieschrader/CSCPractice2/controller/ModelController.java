@@ -64,50 +64,14 @@ public class ModelController {
 	@GetMapping("/classes/{name}")
 	public Optional<CharacterClass> getCharacterClassByClassName(@PathVariable("name") String name) {
 		return characterClassRepo.findByName(name);
-	}//Edit an existing class
-//	@PostMapping("/edit")
-//	public ModelAndView edit(@ModelAttribute CharacterClass charClass,
-//			@RequestParam(value = "action", required = true) String action) {
-//
-//		if (action.equals("barbarian")) {
-//			charClass.setName("Barbarian");
-//		}
-//		if (action.equals("bard")) {
-//			charClass.setName("Bard");
-//		}
-//		if (action.equals("cleric")) {
-//			charClass.setName("Cleric");
-//		}
-//		if (action.equals("druid")) {
-//			charClass.setName("Druid");
-//		}
-//		if (action.equals("fighter")) {
-//			charClass.setName("Fighter");
-//		}
-//		if (action.equals("paladin")) {
-//			charClass.setName("Paladin");
-//		}
-//		if (action.equals("rogue")) {
-//			charClass.setName("Rogue");
-//		}
-//		if (action.equals("sorcerer")) {
-//			charClass.setName("Sorcer");
-//		}
-//		if (action.equals("warlock")) {
-//			charClass.setName("Warlock");
-//		}
-//		if (action.equals("wizard")) {
-//			charClass.setName("Wizard");
-//		}
-//		return edit(charClass, action);
-//	
-//	}
+	}
 	//Creates a new class
 	@PostMapping("/classes")
 	   public ResponseEntity<CharacterClass> createCharacterClass(@RequestBody CharacterClass characterClass){
 	       CharacterClass savedCharacterClass = characterClassRepo.save(characterClass);
 	       return ResponseEntity.created(URI.create("/characterClass/" + savedCharacterClass.getName())).body(savedCharacterClass);
-	   }//Edits an existing class
+	   }
+	//Edits an existing class
 	@PutMapping("/classes/{name}")
 	public ResponseEntity<CharacterClass> updateCharacterClass(@PathVariable String name,
 			@RequestBody CharacterClass charClass) {

@@ -75,7 +75,6 @@ public class Armor {
 	}
 
 	public Armor orElseThrow(Object object) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -53,7 +53,7 @@ public class Page1Controller {
 	@Autowired
 	private UserRepository userRepo;
 	
-	//Instance of charactersheet 
+	//Instance of characterSheet 
 	@ModelAttribute("characterSheet")
 	public CharacterSheet setUpCharacterSheet() {
 		return new CharacterSheet();
@@ -121,8 +121,8 @@ public class Page1Controller {
 	//New formatting service created to use on the view page 
 	@GetMapping(value = "/charsheetpage/{charId}")
 	public String charSheetPage(@PathVariable("charId") Integer charId, Model model, Authentication authentication) {
-		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by
-		if(authentication.getName().equals(characterSheet.getUsername())) {																// page1 controller's redirect
+		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); // Gets characterSheet with id passed in by page1 controller's redirect
+		if(authentication.getName().equals(characterSheet.getUsername())) {
 		FormattingService formatting = new FormattingService(characterSheet);
 		model.addAttribute("formatting", formatting);
 		return "charsheetpage";

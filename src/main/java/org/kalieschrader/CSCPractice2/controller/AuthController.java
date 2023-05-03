@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-//This class handles the request to be 
 @Controller
 public class AuthController {
 
