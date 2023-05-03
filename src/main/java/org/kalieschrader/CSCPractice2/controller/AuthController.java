@@ -3,7 +3,9 @@ package org.kalieschrader.CSCPractice2.controller;
 import jakarta.validation.Valid;
 
 import org.kalieschrader.CSCPractice2.DTO.UserDto;
+import org.kalieschrader.CSCPractice2.model.CharacterSheet;
 import org.kalieschrader.CSCPractice2.model.User;
+import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
 import org.kalieschrader.CSCPractice2.service.UserAlreadyExistException;
 import org.kalieschrader.CSCPractice2.service.UserData;
 import org.kalieschrader.CSCPractice2.service.UserService;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-//This class handles the request to be 
 @Controller
 public class AuthController {
+	
+	@Autowired
+	CharacterSheetRepository charSheetRepo;
 
 	  private UserService userService;
 	  
@@ -50,6 +55,10 @@ public class AuthController {
 	    public String unauthorized(){
 	        return "unauthorized";
 	    }
+	    @GetMapping("/diceroller")
+	    public String diceroller(){
+	        return "diceroller";
+	    }
 
 	    //Handles requests to the login page
 	    @GetMapping("/login")
@@ -60,6 +69,12 @@ public class AuthController {
 	    @GetMapping("/newcharacterstart")
 	    public String start(){
 	        return "newcharacterstart";
+	    }
+	    @GetMapping("/deletecheck/{charId}")
+	    public String deletecheck(@PathVariable("charId") int charId, Model model){
+			CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); 
+			model.addAttribute("characterSheet", characterSheet);
+	        return "deletecheck";
 	    }
 
 	    //Handles requests for user registration form 

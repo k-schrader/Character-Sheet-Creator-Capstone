@@ -39,6 +39,8 @@ public class SpringSecurity{
           .requestMatchers("/armor/**").permitAll()
           .requestMatchers("/classes/**").permitAll()
           .requestMatchers("/js/**").permitAll()
+          .requestMatchers("/deletecheck/**").hasRole("USER")
+          .requestMatchers("/diceroller/**").hasRole("USER")
           .requestMatchers("/page2/**").hasRole("USER")
           .requestMatchers("/page1/**").hasRole("USER")
           .requestMatchers("/userview").hasRole("ADMIN")
@@ -59,7 +61,7 @@ public class SpringSecurity{
 	                                .permitAll()
 	                ).logout(
 	                        logout -> logout
-	                                .logoutRequestMatcher(new AntPathRequestMatcher("/register"))
+	                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	                                .logoutSuccessUrl("/login")
 	                                .invalidateHttpSession(true)
 	                                .deleteCookies("JSESSIONID")

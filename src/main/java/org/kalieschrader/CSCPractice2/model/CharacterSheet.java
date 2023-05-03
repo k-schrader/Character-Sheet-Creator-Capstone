@@ -1,6 +1,8 @@
 package org.kalieschrader.CSCPractice2.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
@@ -92,6 +94,18 @@ Spells spell4;
 @ManyToOne
 Spells spell5;
 
+//Returns list of integers representing ability scores, matching index as following:
+/* 0: Strength
+ * 1: Dexterity (dex)
+ * 2: Constitution (con)
+ * 3: Intelligence
+ * 4: Wisdom
+ * 5: Charisma
+ */
+public List<Integer> getAbilityScoresAsList() {
+	List<Integer> abilityScores = new ArrayList<>(List.of(strength, dex, con, intelligence, wisdom, charisma));
+	return abilityScores;
+}
 
 public Integer getCharId() {
 	return charId;
