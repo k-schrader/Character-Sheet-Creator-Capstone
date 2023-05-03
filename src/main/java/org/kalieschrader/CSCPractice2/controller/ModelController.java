@@ -195,6 +195,11 @@ public CharacterSheet updateCharacterSheet(@PathVariable Integer charId, @Reques
 	   CharacterSheet savedCharSheet = charSheetRepo.save(existingCharSheet);
         return savedCharSheet;
 }
+@DeleteMapping("/charsheet/{charId}")
+public ResponseEntity<Void> deleteCharacterSheet(@PathVariable Integer charId) {
+   charSheetRepo.deleteByCharId(charId);
+   return ResponseEntity.noContent().build();
+}
  
 //
 ////Returns all of the objects in the Armor table in the DB

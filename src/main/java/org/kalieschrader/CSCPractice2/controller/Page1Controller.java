@@ -24,6 +24,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -151,5 +152,14 @@ public class Page1Controller {
 		return "unauthorized";
 }
 	}
-
+	@PostMapping("/deletecheck/{charId}")
+	public String deleteCharacterSheet(@PathVariable("charId") int charId, Model model, Authentication authentication) {
+		CharacterSheet characterSheet = charSheetRepo.findByCharId(charId);
+		if(authentication.getName().equals(characterSheet.getUsername())) {
+		charSheetRepo.deleteById(charId);
+		return "redirect:/oldcharacterview/" + authentication.getName();
+	}else {
+		return "unauthorized";
+	}
+}
 }
