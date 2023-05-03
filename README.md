@@ -1,5 +1,5 @@
-#Children's TTRPG Character Sheet Creator
-#####Written by Kalie Schrader<br>
+# Children's TTRPG Character Sheet Creator
+##### Written by Kalie Schrader<br>
 This project is a Spring Boot-based application designed to help children create their own custom characters for Dungeons and Dragons! It is easy to use, interactive, and engaging. Through the use of visual aids and simple desciptions, children should be able to use the application all by themselves to learn and discover D&D!
 ***
 Features
