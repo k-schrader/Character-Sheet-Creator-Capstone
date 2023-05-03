@@ -41,6 +41,8 @@ public class SpringSecurity{
           .requestMatchers("/js/**").permitAll()
           .requestMatchers("/deletecheck/**").hasRole("USER")
           .requestMatchers("/diceroller/**").hasRole("USER")
+          .requestMatchers("/editpage1/**").hasRole("USER")
+          .requestMatchers("/editpage2/**").hasRole("USER")
           .requestMatchers("/page2/**").hasRole("USER")
           .requestMatchers("/page1/**").hasRole("USER")
           .requestMatchers("/userview").hasRole("ADMIN")

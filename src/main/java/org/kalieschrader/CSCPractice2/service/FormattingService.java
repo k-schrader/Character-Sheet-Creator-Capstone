@@ -293,11 +293,11 @@ public class FormattingService {
 	}
 
 	public void setWeapon1() {
-		this.weapon1 = charSheet.getCharClass().getWeapon1();
+		this.weapon1 = charSheet.getWeapon1();
 	}
 
 	public void setWeapon2() {
-		this.weapon2 = charSheet.getCharClass().getWeapon2();
+		this.weapon2 = charSheet.getWeapon2();
 	}
 
 	public void setItem1() {

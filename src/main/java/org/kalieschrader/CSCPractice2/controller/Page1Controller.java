@@ -13,7 +13,6 @@ import org.kalieschrader.CSCPractice2.repository.CharacterClassRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterRaceRepository;
 import org.kalieschrader.CSCPractice2.repository.CharacterSheetRepository;
 import org.kalieschrader.CSCPractice2.repository.ItemRepository;
-import org.kalieschrader.CSCPractice2.repository.RoleRepository;
 import org.kalieschrader.CSCPractice2.repository.SpellsRepository;
 import org.kalieschrader.CSCPractice2.repository.UserRepository;
 import org.kalieschrader.CSCPractice2.service.FormattingService;
@@ -24,7 +23,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,13 +59,26 @@ public class Page1Controller {
 	}
 	//Handles requests to the first page of the character creator 
 	//All races and classes are added for the view to access by adding the attributes to the model
-	@GetMapping(value = "/page1")
-	public String viewPage(Model model) {
+	@GetMapping(value = {"/page1", "/page1/{charId}"})
+	public String viewPage(@PathVariable (required = false) Integer charId, Model model, Authentication authentication) {
+		if(charId == null) {
 		CharacterSheet charsheet = new CharacterSheet();
 		model.addAttribute("characterSheet", charsheet);
 		model.addAttribute("races", characterRaceRepo.findAll());
 		model.addAttribute("classes", charClassRepo.findAll());
 		return "charcreatorpage1";
+		} else {
+			CharacterSheet characterSheet = charSheetRepo.findByCharId(charId); 
+			if(authentication.getName().equals(characterSheet.getUsername())) {
+			model.addAttribute("characterSheet", characterSheet);
+			model.addAttribute("races", characterRaceRepo.findAll());
+			model.addAttribute("classes", charClassRepo.findAll());
+			return "charcreatorpage1";
+		}else {
+			return "unauthorized";
+		}
+			
+		}
 	}
 	//Adds the half finished character sheet from page one to a saved sheet to pass through to the second page to be finished 
 	@PostMapping("/page1")
@@ -106,6 +117,7 @@ public class Page1Controller {
 		return "unauthorized";
 	}
 	}
+
 	//Added to test login and security to see which user is logged in 
 	@GetMapping("/principal")
 	public String getPrincipal(@CurrentSecurityContext(expression = "authentication.principal") Principal principal) {
