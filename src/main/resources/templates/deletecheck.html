@@ -38,8 +38,8 @@
 
 	<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column"
 		style="background-image: url('/images/fantasyHome.jpg'); -webkit-text-fill-color: white; text-shadow: 2px;">
-		<form th:action="@{/deletecheck/__${charId}__}" th:object="${characterSheet}"
-			th:method="post">
+		<form th:action="@{/deletecheck/__${charId}__}"
+			th:object="${characterSheet}" th:method="post">
 			<header class="mb-auto">
 				<div>
 					<h3 class="float-md-start mb-0">Welcome Adventurer</h3>
@@ -47,10 +47,9 @@
 						<a class="nav-link" th:href="@{/index}">Home</a> <a
 							class="nav-link" th:href="@{/newcharacterstart}">Create a new
 							character</a> <a class="nav-link"
-							th:href="@{oldcharacterview/__${#authentication.principal.username}__}">See
-							your old characters</a> 
-							<a class="nav-link" th:href="@{/diceroller}">Dice Roller</a>
-							<a class="nav-link" th:href="@{/register}">Logout</a>
+							th:href="@{/oldcharacterview/__${#authentication.principal.username}__}">See
+							your old characters</a> <a class="nav-link" th:href="@{/diceroller}">Dice
+							Roller</a> <a class="nav-link" th:href="@{/register}">Logout</a>
 
 					</nav>
 				</div>
@@ -59,8 +58,13 @@
 				<h1>Are you sure you want to delete this character?</h1>
 				<p class="lead">This action cannot be undone!</p>
 			</div>
-			<a th:href="@{/oldcharacterview/__${#authentication.principal.username}__}"> <input class="btn btn-primary btn-lg" style="margin: 10%; box-shadow: 1px 2px" />
-			<a th:href="@{/oldcharacterview/__${#authentication.principal.username}__}"> <input type="submit" class="btn btn-danger btn-lg" style="margin: 10%; box-shadow: 1px 2px" />
+			<a
+				th:href="@{/oldcharacterview/__${#authentication.principal.username}__}"><input
+				class="btn btn-primary btn-lg"
+				style="margin: 10%; box-shadow: 1px 2px" value="Go back!" /></a> <a
+				th:href="@{/oldcharacterview/__${#authentication.principal.username}__}"><input
+				type="submit" class="btn btn-danger btn-lg"
+				style="margin: 10%; box-shadow: 1px 2px" value="Delete" /></a>
 		</form>
 
 	</div>

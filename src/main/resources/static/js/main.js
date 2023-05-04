@@ -1,3 +1,6 @@
+//Custom Javascript for disabling the values that have already been selected in the character creator ability score section
+//Enables the values if the button to do so is selected
+
 function disableOption(value, select1, select2, select3, select4,
 	select5, select6) {
 	$('#' + select1 + ' option[value="' + value + '"]').prop(

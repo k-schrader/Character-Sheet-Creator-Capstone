@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.kalieschrader.CSCPractice2.model.CharacterClass;
-import org.kalieschrader.CSCPractice2.model.CharacterRace;
-import org.kalieschrader.CSCPractice2.model.CharacterSheet;
-import org.kalieschrader.CSCPractice2.model.Item;
-import org.kalieschrader.CSCPractice2.model.Spells;
-import org.kalieschrader.CSCPractice2.model.Weapon;
-import org.kalieschrader.CSCPractice2.repository.CharacterClassRepository;
-import org.kalieschrader.CSCPractice2.repository.CharacterRaceRepository;
+import org.kalieschrader.CSC.model.CharacterClass;
+import org.kalieschrader.CSC.model.CharacterRace;
+import org.kalieschrader.CSC.model.CharacterSheet;
+import org.kalieschrader.CSC.model.Item;
+import org.kalieschrader.CSC.model.Spells;
+import org.kalieschrader.CSC.model.Weapon;
+import org.kalieschrader.CSC.repository.CharacterClassRepository;
+import org.kalieschrader.CSC.repository.CharacterRaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 class FormattingServiceTests {

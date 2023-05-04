@@ -43,7 +43,6 @@
 .th:nth-child(even), td:nth-child(even) {
 	background-color: rgba(150, 212, 212, 0.4);
 }
-
 </style>
 </head>
 <body>
@@ -57,15 +56,14 @@
 					<a class="nav-link" th:href="@{/index}">Home</a> <a
 						class="nav-link" th:href="@{/newcharacterstart}">Create a new
 						character</a> <a class="nav-link active" aria-current="page" href="#">See
-						your old characters</a> 
-						<a class="nav-link" th:href="@{/diceroller}">Dice Roller</a>
-						<a class="nav-link" th:href="@{/register}">Logout</a>
+						your old characters</a> <a class="nav-link" th:href="@{/diceroller}">Dice
+						Roller</a> <a class="nav-link" th:href="@{/register}">Logout</a>
 				</nav>
 			</div>
 		</header>
 		<div class="px-3" style="padding: 10%;">
 			<h1>See your old characters!</h1>
-			<table class="table" style="background-color:aliceblue;">
+			<table class="table" style="background-color: aliceblue;">
 				<thead>
 					<tr>
 						<th>Character Name</th>
@@ -82,11 +80,12 @@
 						<td th:text="${userChar.charRace.raceName}"></td>
 						<td th:text="${userChar.charClass.name}"></td>
 						<td><a th:href="@{/charsheetpage/__${userChar.charId}__}"
-							th:text="'View this one!'"><button class="btn btn-primary btn-lg" style="margin: 10%; box-shadow: 1px 2px"></button></a></td>
-						<td><a th:href="@{/deletecheck/__${userChar.charId}__}" th:text="'Delete this one!'"> <input class="btn btn-danger btn-lg" style="margin: 10%; box-shadow: 1px 2px" /></a></td>
-						<td><a th:href="@{/charsheetpage/__${userChar.charId}__}"
-							th:text="'Edit this one!'"><input class="btn btn-primary btn-lg" style="margin: 10%; box-shadow: 1px 2px" /></a></td>
-							
+							th:text="'View this one!'" class="link-dark"></a></td>
+						<td><a th:href="@{/deletecheck/__${userChar.charId}__}"
+							th:text="'Delete this one!'" class="link-danger"></a></td>
+						<td><a th:href="@{/page1/__${userChar.charId}__}"
+							th:text="'Edit this one!'" class="link-primary"></a></td>
+
 					</tr>
 				</tbody>
 			</table>
