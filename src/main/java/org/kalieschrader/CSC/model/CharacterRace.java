@@ -4,13 +4,14 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+//Model class for Race
+//It is mapped to the table with annotations and contains all the column values, constructors, and getters/setters
+//It has the overridden Hashcode, Equals, and toString methods for testing 
 @Entity
-@Table(name="Race")
+@Table(name = "Race")
 public class CharacterRace {
 
 	@Id
@@ -41,66 +42,88 @@ public class CharacterRace {
 		this.details = details;
 		this.speed = speed;
 	}
-	public CharacterRace() {}
+
+	public CharacterRace() {
+	}
+
 	public String getRaceName() {
 		return raceName;
 	}
+
 	public void setRaceName(String raceName) {
 		this.raceName = raceName;
 	}
+
 	public String getAbilityScoreIn() {
 		return abilityScoreIn;
 	}
+
 	public void setAbilityScoreIn(String abilityScoreIn) {
 		this.abilityScoreIn = abilityScoreIn;
 	}
+
 	public String getRaceFeat1() {
 		return raceFeat1;
 	}
+
 	public void setRaceFeat1(String raceFeat1) {
 		this.raceFeat1 = raceFeat1;
 	}
+
 	public String getRaceFeat2() {
 		return raceFeat2;
 	}
+
 	public void setRaceFeat2(String raceFeat2) {
 		this.raceFeat2 = raceFeat2;
 	}
+
 	public String getRaceFeat3() {
 		return raceFeat3;
 	}
+
 	public void setRaceFeat3(String raceFeat3) {
 		this.raceFeat3 = raceFeat3;
 	}
+
 	public String getLang() {
 		return lang;
 	}
+
 	public void setLang(String lang) {
 		this.lang = lang;
 	}
+
 	public boolean isDarkVision() {
 		return darkVision;
 	}
+
 	public void setDarkVision(boolean darkVision) {
 		this.darkVision = darkVision;
 	}
+
 	public String getDetails() {
 		return details;
 	}
+
 	public void setDetails(String details) {
 		this.details = details;
 	}
+
 	public int getSpeed() {
 		return speed;
 	}
+
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(abilityScoreIn, darkVision, details, lang, raceFeat1, raceFeat2, raceFeat3, raceName,
 				speed);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,11 +139,12 @@ public class CharacterRace {
 				&& Objects.equals(raceFeat3, other.raceFeat3) && Objects.equals(raceName, other.raceName)
 				&& speed == other.speed;
 	}
+
 	@Override
 	public String toString() {
 		return "CharacterRace [raceName=" + raceName + ", abilityScoreIn=" + abilityScoreIn + ", raceFeat1=" + raceFeat1
 				+ ", raceFeat2=" + raceFeat2 + ", raceFeat3=" + raceFeat3 + ", lang=" + lang + ", darkVision="
 				+ darkVision + ", details=" + details + ", speed=" + speed + "]";
 	}
-	
+
 }

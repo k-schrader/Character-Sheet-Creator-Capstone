@@ -2,8 +2,6 @@ package org.kalieschrader.CSC.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.kalieschrader.CSC.controller.Page1Controller;
 import org.kalieschrader.CSC.model.Armor;
 import org.kalieschrader.CSC.model.CharacterClass;
 import org.kalieschrader.CSC.model.CharacterRace;
@@ -76,9 +74,12 @@ public class FormattingService {
 	private int spellAttack;
 	private CharacterSheet charSheet;
 
+	// This class contains all the methods that take input from the users selections
+	// in the character creator and format them to put on the final character sheet
 	public FormattingService() {
 	}
 
+	// Logger used for debugging
 	Logger logger = LoggerFactory.getLogger(FormattingService.class);
 
 	SpellsRepository spellRepo;
@@ -87,7 +88,8 @@ public class FormattingService {
 		this.charSheet = charSheet;
 		setCharRace(charSheet.getCharRace());
 		setCharClass(charSheet.getCharClass());
-		setAbilityAndSkillScores(charRace.getAbilityScoreIn(), charSheet.getAbilityScoresAsList(), charClass.getSkills());
+		setAbilityAndSkillScores(charRace.getAbilityScoreIn(), charSheet.getAbilityScoresAsList(),
+				charClass.getSkills());
 		setHitPoints();
 		setArmorClass();
 		setWeapon1Modifier();
@@ -121,7 +123,8 @@ public class FormattingService {
 	}
 
 // Sets ability scores and skill scores given a list of ability score modifiers
-	public void setAbilityAndSkillScores(String abilityIncreaseString, List<Integer> rawAbilityScoreList, String skillIncreaseString) {
+	public void setAbilityAndSkillScores(String abilityIncreaseString, List<Integer> rawAbilityScoreList,
+			String skillIncreaseString) {
 		List<Integer> abilities = getAbilityScoreModifiers(abilityIncreaseString, rawAbilityScoreList);
 		setModStrength(abilities.get(0));
 		setModDexterity(abilities.get(1));
@@ -146,12 +149,8 @@ public class FormattingService {
 	// and returns list of ability score modifiers.
 	// Each index contains the modifier for an ability score as follows:
 	/*
-	 * 0: Strength 
-	 * 1: Dexterity 
-	 * 2: Constitution (Con) 
-	 * 3: Intelligence 
-	 * 4: Wisdom 
-	 * 5: Charisma
+	 * 0: Strength 1: Dexterity 2: Constitution (Con) 3: Intelligence 4: Wisdom 5:
+	 * Charisma
 	 */
 	public List<Integer> getAbilityScoreModifiers(String abilityIncreaseString, List<Integer> rawAbilityScoreList) {
 		List<Integer> abilityIncreaseList = getAsNumberList(abilityIncreaseString);
@@ -190,24 +189,13 @@ public class FormattingService {
 	// and adds the relevant modifier to the ability score increase.
 	// Skill and modifier for each index listed below:
 	/*
-	 * 0: Acrobatics (dexterity) 
-	 * 1: Animal Handling (wisdom) 
-	 * 2: Arcana (intelligence)
-	 * 3: Athletics (strength)
-	 * 4: Deception (charisma) 
-	 * 5: History (intelligence) 
-	 * 6: Insight (wisdom) 
-	 * 7: Intimidation (charisma) 
-	 * 8: Investigation (intelligence)
-	 * 9: Medicine (wisdom) 
-	 * 10: Nature (intelligence) 
-	 * 11: Perception (wisdom) 
-	 * 12: Performance (charisma) 
-	 * 13: Persuasion (charisma) 
-	 * 14: Religion (intelligence)
-	 * 15: Sleight of hand (dexterity) 
-	 * 16: Stealth (dexterity) 
-	 * 17: Survival (wisdom)
+	 * 0: Acrobatics (dexterity) 1: Animal Handling (wisdom) 2: Arcana
+	 * (intelligence) 3: Athletics (strength) 4: Deception (charisma) 5: History
+	 * (intelligence) 6: Insight (wisdom) 7: Intimidation (charisma) 8:
+	 * Investigation (intelligence) 9: Medicine (wisdom) 10: Nature (intelligence)
+	 * 11: Perception (wisdom) 12: Performance (charisma) 13: Persuasion (charisma)
+	 * 14: Religion (intelligence) 15: Sleight of hand (dexterity) 16: Stealth
+	 * (dexterity) 17: Survival (wisdom)
 	 */
 	public List<Integer> getSkillScoreModifiers(String skillIncreaseString, List<Integer> abilityModifierList) {
 		List<Integer> skillIncreaseList = getAsNumberList(skillIncreaseString);
@@ -220,33 +208,41 @@ public class FormattingService {
 		for (int i = 0; i < skillIncreaseList.size(); i++) {
 			int skill = skillIncreaseList.get(i);
 			switch (i) {
-				case 0, 15, 16 -> skill += dexterity;
-				case 1, 6, 9, 11, 17 -> skill += wisdom;
-				case 2, 5, 8, 10, 14 -> skill += intelligence;
-				case 3 -> skill += strength;
-				case 4, 7, 12, 13 -> skill += charisma;
-				default -> skill += 0;
+			case 0, 15, 16 -> skill += dexterity;
+			case 1, 6, 9, 11, 17 -> skill += wisdom;
+			case 2, 5, 8, 10, 14 -> skill += intelligence;
+			case 3 -> skill += strength;
+			case 4, 7, 12, 13 -> skill += charisma;
+			default -> skill += 0;
 			}
 			skillModifierList.add(i, skill);
 		}
 		return skillModifierList;
 	}
 
+	// Retrieves and sets hit points from the character sheets chosen class and adds
+	// the constitution modifier
 	public void setHitPoints() {
 		hitPoints = charSheet.getCharClass().getHitDie() + modCon;
 	}
 
+	// Retrieves and sets armor class from the character sheets chosen classes set
+	// armor
+	// AC is equal to 10 + dex mod + ac bonus from armor
 	public void setArmorClass() {
 		armorClass = charSheet.getCharClass().getArmor().getAcBonus() + modDexterity + 10;
 	}
 
+	// Retrieves and sets spell slots from character sheets chosen class
 	public void setSpellSlots() {
 		spellSlots = charSheet.getCharClass().getSpellSlots();
 	}
 
+	// Retrieves and sets spell modifier based on character sheet chosen class
+	// Spell modifier is one of three ability scores
 	public void setSpellModifiers() {
 		String spellModifier = charSheet.getCharClass().getSpellModifier();
-		int spellPlus = 0;
+		int spellPlus = 0; // Spell plus will be set equal to the relevant score modifier
 		if (("Intelligence").equals(spellModifier)) {
 			spellPlus = modIntelligence;
 		} else if (("Wisdom").equals(spellModifier)) {
@@ -254,13 +250,18 @@ public class FormattingService {
 		} else if (("Charisma").equals(spellModifier)) {
 			spellPlus = modCharisma;
 		}
+		// Spell save DC is equal to 10 + spell casting skill mod
 		spellSaveDC = 10 + spellPlus;
+		// Spell attack is equal to proficiency bonus (set at 2 for level 1 characters)
+		// plus casting skill mod
 		spellAttack = 2 + spellPlus;
 	}
 
+	// Retrieves and sets weapon modifier based on character sheets chosen weapon
+	// Weapon modifier will be either strength or dex
 	public void setWeapon1Modifier() {
 		String weaponModifier = charSheet.getWeapon1().getSkillMod();
-		int weaponPlus = 0;
+		int weaponPlus = 0;// Weapon plus will be set equal to the relevant score modifier
 		if (("Strength").equals(weaponModifier)) {
 			weaponPlus = modStrength;
 		} else if (("Dexterity").equals(weaponModifier)) {
@@ -269,6 +270,7 @@ public class FormattingService {
 		toHit1 = weaponPlus;
 	}
 
+	// Repeated for second weapon choice
 	public void setWeapon2Modifier() {
 		String weaponModifier = charSheet.getWeapon2().getSkillMod();
 		int weaponPlus = 0;
@@ -376,6 +378,7 @@ public class FormattingService {
 		this.playerName = charSheet.getUsername();
 	}
 
+	// Regular getters and setters
 	public void setModStrength(int modStrength) {
 		this.modStrength = modStrength;
 	}

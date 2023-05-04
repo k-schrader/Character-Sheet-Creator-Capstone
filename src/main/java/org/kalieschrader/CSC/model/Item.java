@@ -1,11 +1,13 @@
 package org.kalieschrader.CSC.model;
 
-
 import java.util.Objects;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
+//Model class for Item
+//It is mapped to the table with annotations and contains all the column values, constructors, and getters/setters
+//It has the overridden Hashcode, Equals, and toString methods for testing 
 
 @Entity
 public class Item {

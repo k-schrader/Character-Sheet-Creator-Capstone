@@ -4,9 +4,9 @@ import java.util.Collection;
 
 import org.kalieschrader.CSC.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
+//Interface for role repo, extends JpaRepo to allow use of data manipulation methods 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Collection<Role> findByName(String name);
+	Collection<Role> findByName(String name);
 }

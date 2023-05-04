@@ -2,80 +2,76 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="ISO-8859-1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
-<link th:href="@{/css/page2.css}" rel="stylesheet" />
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="ISO-8859-1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<script type="text/javascript" th:src="@{/js/bootstrap.bundle.js}"></script>
+	<link th:href="@{/css/page2.css}" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
-<style>
-.card-body {
-	text-align: center;
-	padding: 5%;
-}
-</style>
+	<style>
+		.card-body {
+			text-align: center;
+			padding: 5%;
+		}
+	</style>
+	<title>Page 2</title>
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-	<form th:action="@{/page2}" th:object="${characterSheet}"
-		th:method="post">
-		
+	<form th:action="@{/page2}" th:object="${characterSheet}" th:method="post">
+
 		<!-- We are using hidden values here to pass the information from the existing character sheet onto the next one.
 		They are basically just input fields except we've selected them already and hidden them so the user can't change them. -->
-		<input type="hidden" th:field-value="*{charId}" /> 
-		<input type="hidden" th:field-value="*{username}" /> 
-		<input type="hidden" th:field-value="*{charRace.raceName}" /> 
-		<input type="hidden" th:field-value="*{charClass.name}" /> 
-		<input type="hidden" th:field-value="*{strength}" /> 
-		<input type="hidden" th:field-value="*{con}" /> 
-		<input type="hidden" th:field-value="*{dex}" /> 
-		<input type="hidden" th:field-value="*{intelligence}" /> 
-		<input type="hidden" th:field-value="*{wisdom}" /> 
+		<input type="hidden" th:field-value="*{charId}" />
+		<input type="hidden" th:field-value="*{username}" />
+		<input type="hidden" th:field-value="*{charRace.raceName}" />
+		<input type="hidden" th:field-value="*{charClass.name}" />
+		<input type="hidden" th:field-value="*{strength}" />
+		<input type="hidden" th:field-value="*{con}" />
+		<input type="hidden" th:field-value="*{dex}" />
+		<input type="hidden" th:field-value="*{intelligence}" />
+		<input type="hidden" th:field-value="*{wisdom}" />
 		<input type="hidden" th:field-value="*{charisma}" />
 
 		<div class="container-fluid">
 			<div class="row">
 				<nav hidden="hidden" class="col-sm-0 col-0" id="myScrollspy">
 					<ul class="nav nav-pills flex-column">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Weapons</a>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								href="#">Weapons</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#section11">Weapons</a> <a
-									class="dropdown-item" href="#section12">Choose your weapons</a>
-							</div></li>
+								<a class="dropdown-item" href="#section11">Weapons</a> <a class="dropdown-item"
+									href="#section12">Choose your weapons</a>
+							</div>
+						</li>
 
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Items</a>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								href="#">Items</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#section21">Items</a> <a
-									class="dropdown-item" href="#section22">Choose your items</a>
+								<a class="dropdown-item" href="#section21">Items</a> <a class="dropdown-item"
+									href="#section22">Choose your items</a>
 
-								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle" data-toggle="dropdown"
-									href="#">Spells</a>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#section31">Spells</a> <a
-											class="dropdown-item" href="#section32">Choose your
-											spells</a>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								href="#">Spells</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#section31">Spells</a> <a class="dropdown-item"
+									href="#section32">Choose your
+									spells</a>
 
-									</div>
-									</li>
-									<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle" data-toggle="dropdown"
-									href="#"></a>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="#section4">Submit</a> 
+							</div>
+						</li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								href="#"></a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#section4">Submit</a>
 
-									</div>
-									</li>
+							</div>
+						</li>
 					</ul>
 				</nav>
 
@@ -85,8 +81,7 @@
 						<div id="section12">
 							<h1>Weapons</h1>
 							<h3>I want to have...</h3>
-							<select th:field="*{weapon1}" name="weaponpick1"
-								class="custom-select-lg">
+							<select th:field="*{weapon1}" name="weaponpick1" class="custom-select-lg">
 								<option th:text="*{charClass.weapon1.weaponName}"
 									th:value="*{charClass.weapon1.weaponName}" />
 								<option th:text="*{charClass.weapon2.weaponName}"
@@ -95,8 +90,7 @@
 									th:value="*{charClass.weapon3.weaponName}" />
 							</select>
 							<h1>And a...</h1>
-							<select th:field="*{weapon2}" name="weaponpick2"
-								class="custom-select-lg">
+							<select th:field="*{weapon2}" name="weaponpick2" class="custom-select-lg">
 								<option th:text="*{charClass.weapon1.weaponName}"
 									th:value="*{charClass.weapon1.weaponName}" />
 								<option th:text="*{charClass.weapon2.weaponName}"
@@ -107,16 +101,15 @@
 						</div>
 
 						<div id="section21">
-							<div id="itemCarousel" class="carousel slide"
-								data-ride="carousel">
+							<div id="itemCarousel" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<div class="cards-wrapper">
 											<div class="col-sm-12">
 												<div class="card-body">
 													<h1 class="card-title">Items</h1>
-													<p class="card-text"
-														style="margin: 10px; font-size: large;">Some handy
+													<p class="card-text" style="margin: 10px; font-size: large;">Some
+														handy
 														items that you might find good use for</p>
 												</div>
 											</div>
@@ -133,13 +126,13 @@
 											</div>
 										</div>
 									</div>
-									<a class="carousel-control-prev" href="#itemCarousel"
-										role="button" data-slide="prev"> <span
-										class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<a class="carousel-control-prev" href="#itemCarousel" role="button"
+										data-slide="prev"> <span class="carousel-control-prev-icon"
+											aria-hidden="true"></span>
 										<span class="sr-only"></span>
-									</a> <a class="carousel-control-next" href="#itemCarousel"
-										role="button" data-slide="next"> <span
-										class="carousel-control-next-icon" aria-hidden="true"></span>
+									</a> <a class="carousel-control-next" href="#itemCarousel" role="button"
+										data-slide="next"> <span class="carousel-control-next-icon"
+											aria-hidden="true"></span>
 										<span class="sr-only"></span>
 									</a>
 								</div>
@@ -148,33 +141,28 @@
 						<div id="section22">
 							<h1>Items</h1>
 							<h3>I want to have...</h3>
-							<select th:field="*{item1}" name="itempick1"
-								class="custom-select-lg">
+							<select th:field="*{item1}" name="itempick1" class="custom-select-lg">
 								<option th:each="item: ${items}" th:text="${item.itemName}"
 									th:value="${item.itemName}" />
 							</select>
 							<h1>and...</h1>
-							<select th:field="*{item2}" name="itempick2"
-								class="custom-select-lg">
+							<select th:field="*{item2}" name="itempick2" class="custom-select-lg">
 								<option th:each="item: ${items}" th:text="${item.itemName}"
 									th:value="${item.itemName}" />
 							</select>
 							<h1>and...</h1>
-							<select th:field="*{item3}" name="itempick3"
-								class="custom-select-lg">
+							<select th:field="*{item3}" name="itempick3" class="custom-select-lg">
 								<option th:each="item: ${items}" th:text="${item.itemName}"
 									th:value="${item.itemName}" />
 							</select>
 						</div>
-							<div  th:unless = '*{charClass.spellSlots == 0}' id="section31">
-							<div id="spellCarousel" class="carousel slide"
-								data-ride="carousel">
+						<div th:unless='*{charClass.spellSlots == 0}' id="section31">
+							<div id="spellCarousel" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<div class="cards-wrapper">
 											<div class="col-sm-12">
-												<div class="card-body"
-													style="text-align: center; padding: 5%;">
+												<div class="card-body" style="text-align: center; padding: 5%;">
 													<h1 class="card-title">Spells</h1>
 													<p class="card-text">Select the magic spells you want to have!</p>
 												</div>
@@ -191,21 +179,21 @@
 											</div>
 										</div>
 									</div>
-									<a class="carousel-control-prev" href="#spellCarousel"
-										role="button" data-slide="prev"> <span
-										class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<a class="carousel-control-prev" href="#spellCarousel" role="button"
+										data-slide="prev"> <span class="carousel-control-prev-icon"
+											aria-hidden="true"></span>
 										<span class="sr-only"></span>
-									</a> <a class="carousel-control-next" href="#spellCarousel"
-										role="button" data-slide="next"> <span
-										class="carousel-control-next-icon" aria-hidden="true"></span>
+									</a> <a class="carousel-control-next" href="#spellCarousel" role="button"
+										data-slide="next"> <span class="carousel-control-next-icon"
+											aria-hidden="true"></span>
 										<span class="sr-only"></span>
 									</a>
 								</div>
 							</div>
 						</div>
-						<div id="section32" th:unless = '*{charClass.spellSlots == 0}'>
+						<div id="section32" th:unless='*{charClass.spellSlots == 0}'>
 							<h1>Spells</h1>
-							
+
 							<!-- Here, we do a th:each for each cantrip the character has available. First we:
 							
 							Create a th:block to enclose the thing we want to have a variable number of, in this case a select box of available cantrips.
@@ -215,39 +203,37 @@
 							In this case, we set firstNumber to equal 1, and we set lastNumber to equal numCantrips.
 							 	(note we called with #object instead of *{}, that's because it's inside another variable so we can't use the ${} syntax)
 							Let's say numCantrips is 3. In that case, we've just created a list of numbers from 1-3, and made a th:each that will repeat for each of those numbers.
-							This is essentially the same as a for(int i=1; i <= numCantrips; i++) loop in Java. 
 							Inside the th:each loop, we set the field name. In order to set a field name with a variable inside it, we have to do pre-processing.
 							This means we surround the variable with a symbol that will tell Thymeleaf "process this first and then treat it as a string".
 							In this case, that's two underscores, so we have th:field="*{spell__${i}__}". 
 							Once pre-processing is complete, this will be the same as if we put th:field="*{spell1}" on the first loop, th:field=*{spell2} on the second, etc.-->
 							<th:block th:each="i : ${#numbers.sequence(1, #object.charClass.numCantrips)}">
-							<h3 style="text-shadow: 1px 1px;">I want to have the cantrip...</h3>
-							<select th:field="*{spell__${i}__}" name="spell__${i}__"
-								class="custom-select-lg">
-								<option th:each="cantrip: ${cantrips}" th:text="${cantrip.name}"
-									th:value="${cantrip.name}" />
-							</select>
+								<h3 style="text-shadow: 1px 1px;">I want to have the cantrip...</h3>
+								<select th:field="*{spell__${i}__}" name="spell__${i}__" class="custom-select-lg">
+									<option th:each="cantrip: ${cantrips}" th:text="${cantrip.name}"
+										th:value="${cantrip.name}" />
+								</select>
 							</th:block>
-							
+
 							<!-- Here, we're doing much the same as above, except with spells, and we're adding numCantrips to each side of the numbers.sequence.
 							This is because we want to put our first level 1 spell in the lowest unused spell column on the sheet. 
 							E.g., if numCantrips = 3, and numSpells = 2, we want the first level 1 spell to be in the spell4 column, since spell1-spell3 will be taken.
 							Otherwise, the logic is the exact same, except it uses the "spells" list instead of "cantrips" so that we only see level 1 spells in the selection boxes. -->
-							<th:block th:each="i : ${#numbers.sequence(#object.charClass.numCantrips+1, #object.charClass.numSpells+#object.charClass.numCantrips)}">
-							<h3 style="text-shadow: 1px 1px;">I want to have the spell...</h3>
-							<select th:field="*{spell__${i}__}" name="spell__${i}__"
-								class="custom-select-lg">
-								<option th:each="spell: ${spells}" th:text="${spell.name}"
-									th:value="${spell.name}" />
-							</select>
+							<th:block
+								th:each="i : ${#numbers.sequence(#object.charClass.numCantrips+1, #object.charClass.numSpells+#object.charClass.numCantrips)}">
+								<h3 style="text-shadow: 1px 1px;">I want to have the spell...</h3>
+								<select th:field="*{spell__${i}__}" name="spell__${i}__" class="custom-select-lg">
+									<option th:each="spell: ${spells}" th:text="${spell.name}"
+										th:value="${spell.name}" />
+								</select>
 							</th:block>
 
 						</div>
 						<div id="section4">
 							<h1>Let's move on!</h1>
 
-							<a th:href="@{/charsheetpage}"> <input type="submit"
-								class="btn btn-primary btn-lg" style="margin: 10%; box-shadow: 1px 2px" />
+							<a th:href="@{/charsheetpage}"> <input type="submit" class="btn btn-primary btn-lg"
+									style="margin: 10%; box-shadow: 1px 2px" />
 							</a>
 						</div>
 					</div>

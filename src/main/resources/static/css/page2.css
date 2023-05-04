@@ -1,3 +1,4 @@
+/* Custom CSS for page 2 of character creator */
 body {
 	position: relative;
 }
@@ -67,15 +68,16 @@ div.col-8 div {
 }
 
 #section32 {
-	background-color: rgb(74,78,105); 
-	-webkit-text-fill-color: aliceblue; 
-	text-align: center; 
+	background-color: rgb(74, 78, 105);
+	-webkit-text-fill-color: aliceblue;
+	text-align: center;
 	margin-bottom: 15px"
 }
-#section4{
-background-color: rgb(94,66,94); 
--webkit-text-fill-color: rgb(23, 15, 7); 
-text-align: center;
+
+#section4 {
+	background-color: rgb(94, 66, 94);
+	-webkit-text-fill-color: rgb(23, 15, 7);
+	text-align: center;
 }
 
 .card-text {
